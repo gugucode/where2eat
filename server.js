@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 //const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -19,10 +19,7 @@ if (process.env.NODE_ENV === "production") {
 // Connect to the Mongo DB
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/where2eatDB");
 
-app.use(express.static("client/build"))
-app.use((req,res) => {
-  res.sendFile(path.join(__dirname,"client/build/index.html"));
-});
+app.use(express.static("client/build"));
 
 // Start the API server
 app.listen(PORT, function() {
