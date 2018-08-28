@@ -30,46 +30,51 @@ export const ShowCarousel = props => {
   };
 
   return (
-    <div
-      id="multi-item-example"
-      className="carousel slide carousel-multi-item"
-      data-ride="carousel"
-    >
-      {/* Slides */}
-      <div className="carousel-inner" role="listbox">
-        {createSlides(props.data)}
-      </div>
+    <div id="trending">
+      <h5 className="text-left my-0">
+        Trending Now <hr style={{margin: "0 0 2em 0"}}/>
+      </h5>
+      <div
+        id="multi-item-example"
+        className="carousel slide carousel-multi-item"
+        data-ride="carousel"
+      >
+        {/* Slides */}
+        <div className="carousel-inner" role="listbox">
+          {createSlides(props.data)}
+        </div>
 
-      {/* Controls */}
-      <div className="controls-top">
-        <a
-          className="carousel-control-prev"
-          href="#multi-item-example"
-          role="button"
-          data-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-            style={{ background: "blue" }}
+        {/* Controls */}
+        <div className="controls-top">
+          <a
+            className="carousel-control-prev"
+            href="#multi-item-example"
+            role="button"
+            data-slide="prev"
           >
-            <i className="fas fa-angle-left" />
-          </span>
-        </a>
-        <a
-          className="carousel-control-next"
-          href="#multi-item-example"
-          role="button"
-          data-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-            style={{ background: "blue" }}
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+              style={{ background: "blue" }}
+            >
+              <i className="fas fa-angle-left" />
+            </span>
+          </a>
+          <a
+            className="carousel-control-next"
+            href="#multi-item-example"
+            role="button"
+            data-slide="next"
           >
-            <i className="fas fa-angle-right" />
-          </span>
-        </a>
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+              style={{ background: "blue" }}
+            >
+              <i className="fas fa-angle-right" />
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   );
