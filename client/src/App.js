@@ -5,6 +5,46 @@ import { ShowRestList } from "./components/showRest/showRestList/showRestList";
 import { ShowCarousel } from "./components/showRest/showRestCarousel/";
 
 class App extends Component {
+  testData = [
+    {
+      img: "images/rest1.png",
+      url: "#",
+      restName: "Hoho",
+      rating: "2/10"
+    },
+    {
+      img: "images/rest2.png",
+      url: "#",
+      restName: "Sushi",
+      rating: "5/10"
+    },
+    {
+      img: "images/rest3.png",
+      url: "#",
+      restName: "Wanango",
+      rating: "8/10"
+    },
+    {
+      img: "images/rest2.png",
+      url: "#",
+      restName: "Pizza",
+      rating: "7/10"
+    },
+    {
+      img: "images/rest3.png",
+      url: "#",
+      restName: "Noodle",
+      rating: "9/10"
+    },
+    {
+      img: "images/rest1.png",
+      url: "#",
+      restName: "Haha",
+      rating: "8/10"
+    }
+    
+  ];
+
   render() {
     return (
       <div className="App">
@@ -16,7 +56,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <ShowRestList />
-        <ShowCarousel />
+        <ShowCarousel data={this.testData} />
       </div>
     );
   }

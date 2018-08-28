@@ -4,14 +4,27 @@ import { ShowSlides } from "./showSlides";
 
 export const ShowCarousel = props => {
   const createSlides = restData => {
-    let result = "";
+    console.log(restData);
+    let result = [];
+    let k = 1;
     for (let i = 0; i < restData.length; i += 3) {
       // Pass every 3 restaurants to ShowSLides component
+      let active = i === 0 ? "active" : "";
       if (i + 3 < restData.length) {
-        result += <ShowSlides data={restData.slice(i, i + 3)} />;
+        result.push(
+          <ShowSlides
+            key={k}
+            k={k}
+            active={active}
+            data={restData.slice(i, i + 3)}
+          />
+        );
       } else {
-        result += <ShowSlides data={restData.slice(i)} />;
+        result.push(
+          <ShowSlides key={k} k={k} active={active} data={restData.slice(i)} />
+        );
       }
+      k++;
     }
     return result;
   };
@@ -22,38 +35,41 @@ export const ShowCarousel = props => {
       className="carousel slide carousel-multi-item"
       data-ride="carousel"
     >
-      {/* Controls */}
-      <div className="controls-top">
-        <a
-          className="btn-floating"
-          href="#multi-item-example"
-          data-slide="prev"
-        >
-          <i className="fa fa-chevron-left" />
-        </a>
-        <a
-          className="btn-floating"
-          href="#multi-item-example"
-          data-slide="next"
-        >
-          <i className="fa fa-chevron-right" />
-        </a>
-      </div>
-
-      {/* Indicators */}
-      <ol className="carousel-indicators">
-        <li
-          data-target="#multi-item-example"
-          data-slide-to="0"
-          className="active"
-        />
-        <li data-target="#multi-item-example" data-slide-to="1" />
-        <li data-target="#multi-item-example" data-slide-to="2" />
-      </ol>
-
       {/* Slides */}
       <div className="carousel-inner" role="listbox">
         {createSlides(props.data)}
+      </div>
+
+      {/* Controls */}
+      <div className="controls-top">
+        <a
+          className="carousel-control-prev"
+          href="#multi-item-example"
+          role="button"
+          data-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+            style={{ background: "blue" }}
+          >
+            <i className="fas fa-angle-left" />
+          </span>
+        </a>
+        <a
+          className="carousel-control-next"
+          href="#multi-item-example"
+          role="button"
+          data-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+            style={{ background: "blue" }}
+          >
+            <i className="fas fa-angle-right" />
+          </span>
+        </a>
       </div>
     </div>
   );

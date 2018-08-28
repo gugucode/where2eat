@@ -2,15 +2,27 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const ShowCard = props => {
+  console.log(props);
+
+  const imgStyle = {
+    maxWidth: "70%",
+    margin: "auto"
+  };
+
   return (
-    <div className="col-md-4">
-      <div className="card mb-2">
-        <img className="card-img-top" src={props.img} alt="Card" />
-        <div className="card-body">
-          <a href={props.url} className="card-title">
+    <div className="col-3 col-sm-2 p-1">
+      <div className="card border-white">
+        <img
+          className="card-img-top rounded-circle"
+          src={props.img}
+          alt="Card"
+          style={imgStyle}
+        />
+        <div className="card-body p-0">
+          <a href={props.url} className="card-title small">
             {props.restName}
           </a>
-          <p className="card-text">{props.rating}</p>
+          <p className="card-text small">{props.rating}</p>
         </div>
       </div>
     </div>
