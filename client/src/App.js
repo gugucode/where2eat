@@ -26,6 +26,13 @@ class App extends Component {
       rating: "8/10",
       address: "10710 Research Blvd #200, Austin, TX 78759"
     },
+    {
+      img: "images/rest3.png",
+      url: "#",
+      restName: "Wanango",
+      rating: "8/10",
+      address: "10710 Research Blvd #200, Austin, TX 78759"
+    },
     
   ];
 

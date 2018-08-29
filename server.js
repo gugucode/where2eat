@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const emailTemp = require("./public/emailTemplate/pickRestInvite");
 // const mongoose = require("mongoose");
 //const routes = require("./routes");
 const app = express();
@@ -20,6 +21,19 @@ if (process.env.NODE_ENV === "production") {
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/where2eatDB");
 
 app.use(express.static("client/build"));
+
+
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const msg = {
+  to: 'meiyuechang@gmail.com',
+  from: 'gugocodedev@gmail.com',
+  subject: 'Sending with SendGrid',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: emailTemp,
+};
+sgMail.send(msg);
+
 
 // Start the API server
 app.listen(PORT, function() {
