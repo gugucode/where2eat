@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Nav from "../../nav/navigation";
-import { ShowRestList } from "../../showRest/showRestList/showRestList";
-import { ShowCarousel } from "../../showRest/showRestCarousel";
+import Nav from "../../components/nav/navigation";
+import { ShowRestList } from "../../components/showRest/showRestList/showRestList";
+import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 
 class AfterLoginHome extends Component {
   render() {

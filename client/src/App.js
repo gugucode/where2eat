@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import AfterLoginHome from "./components/pages/afterLogin/home";
+import AfterLoginHome from "./pages/afterLogin/home";
 
 class App extends Component {
   testData = [
