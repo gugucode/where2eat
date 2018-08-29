@@ -1,0 +1,38 @@
+.red{fill:#F46036;}
+.yellow{fill:#E8C547;}
+.blue{fill:#1BA2E5;}
+.green{fill:#69B578;}
+.st4{fill:#1A1A1A;}
+.st5{fill:none;stroke:#1A1A1A;stroke-width:4.4928;stroke-miterlimit:10;}
+.st6{font-family:'Rubik';}
+.st7{font-size:74.6628px;}
+
+*{
+ box-sizing: border-box;   
+}
+.wrapper{
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.homeDiv .logoDiv{
+    width:50%;
+    margin: auto;
+}
+
+img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+
+.homeDiv{
+    position: absolute;
+    top: 20vh;
+    left:25%;
+    width: 50%;
+    height: 60vh;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
