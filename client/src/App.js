@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import AfterLoginHome from "./pages/afterLogin/home";
 
@@ -32,14 +31,13 @@ class App extends Component {
       restName: "Wanango",
       rating: "8/10",
       address: "10710 Research Blvd #200, Austin, TX 78759"
-    },
-    
+    }
   ];
 
   render() {
     return (
       <div className="App">
-        <AfterLoginHome data={this.testData}/>
+        <AfterLoginHome data={this.testData} />
       </div>
     );
   }
