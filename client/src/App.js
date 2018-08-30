@@ -34,10 +34,12 @@ class App extends Component {
     }
   ];
 
+  friends = [{ label: "apple" }, { label: "banana" }, { label: "pear" }];
+
   render() {
     return (
       <div className="App">
-        <AfterLoginHome data={this.testData} />
+        <AfterLoginHome data={this.testData} friends={this.friends} />
       </div>
     );
   }

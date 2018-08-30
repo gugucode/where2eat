@@ -31,9 +31,9 @@ export const ShowCarousel = props => {
 
   return (
     <div id="trending">
-      <h5 className="text-left my-0">
-        Trending Now <hr style={{margin: "0 0 2em 0"}}/>
-      </h5>
+      <h6 className="text-left my-0">
+        Trending Now <hr style={{ margin: "0 0 2em 0" }} />
+      </h6>
       <div
         id="multi-item-example"
         className="carousel slide carousel-multi-item"

@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 export const ShowRestList = props => {
   return (
     <div id="favorite-places">
-      <h5 className="text-left my-0">
+      <h6 className="text-left my-0">
         Your favorite places <hr style={{ margin: "0 0 2em 0" }} />
-      </h5>
+      </h6>
       <ul>
         {props.data.map((rest, index) => (
           <li key={index} className="list-group-item">
