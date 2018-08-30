@@ -12,7 +12,8 @@
     "install-client": "cd client && yarn install",
     "install-local": "yarn install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test": "npm run lint"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
