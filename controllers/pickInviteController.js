@@ -17,8 +17,14 @@ module.exports = {
     html: emailTemp(data),
     };
 
-    sgMail.send(msg).then(result => {
-        res.send(result);
+    sgMail.send(msg, (error, result) => {
+        // console.log(result);
+        if(error){
+          console.log(error)
+          res.send(error);
+        }else{
+          res.send(result);
+        }
     })
   },
 };

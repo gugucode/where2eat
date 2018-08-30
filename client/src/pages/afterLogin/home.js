@@ -4,6 +4,7 @@ import Nav from "../../components/nav/navigation";
 import { ShowRestList } from "../../components/showRest/showRestList/showRestList";
 import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 import InviteForm from "../../components/invite/inviteForm";
+import FindFriends from "../../components/findFriends/findFriends";
 
 class AfterLoginHome extends Component {
   render() {
@@ -33,6 +34,7 @@ class AfterLoginHome extends Component {
             <div className="row">
               <div className="col-12">
                 <InviteForm friends={this.props.friends} />
+                <FindFriends />
               </div>
             </div>
           </div>

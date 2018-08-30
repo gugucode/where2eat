@@ -1,4 +1,5 @@
 import React from "react";
+import $ from "jquery";
 import PropTypes from "prop-types";
 import Autocomplete from "react-autocomplete";
 import API from "../../utils/API";
@@ -15,20 +16,26 @@ class InviteForm extends React.Component {
     event.preventDefault();
     console.log(this.state.value);
     const data = {
-      sender: "Erin",
+      sender: "Erin", // need to get sender
+      reciever: this.state.value, // need check if erciever has signed up
       receiverEmail: this.state.value,
-      inviteUrl: "#"
+      inviteUrl: "#" // need to compose the invite url
     };
 
     API.sendPickInvite(data).then(result => {
       console.log(result);
+      if (result.data.code === 400) {
+        $("#sendStatus").text("Send invite failed");
+      } else {
+        $("#sendStatus").text("Invitation has been sent");
+      }
     });
   };
 
   render() {
     return (
       <form>
-        <div className="form-group">
+        <div className="form-group" id="pickInviteForm">
           <h6>Invite your friend to eat together</h6>
           <hr style={{ margin: "0 0 .5em 0" }} />
           <Autocomplete
@@ -44,15 +51,17 @@ class InviteForm extends React.Component {
             value={this.state.value}
             onChange={e => this.setState({ value: e.target.value })}
             onSelect={val => this.setState({ value: val })}
-            inputProps={{ class: "form-control", placeholder: "Grace" }}
+            inputProps={{ className: "form-control", placeholder: "Grace" }}
           />
           <button
             onClick={this.handleSubmit}
             type="submit"
             className="btn btn-primary btn-sm mx-2"
+            id="sendInviteBnt"
           >
             Submit
           </button>
+          <p id="sendStatus" />
         </div>
       </form>
     );

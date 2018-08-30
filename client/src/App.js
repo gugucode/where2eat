@@ -34,7 +34,7 @@ class App extends Component {
     }
   ];
 
-  friends = [{ label: "apple" }, { label: "banana" }, { label: "pear" }];
+  friends = [{ label: "meiyuechang@gmail.com" }, { label: "Tom" }, { label: "Frank" }];
 
   render() {
     return (
