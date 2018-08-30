@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const emailTemp = require("./public/emailTemplate/pickRestInvite");
+const axios = require("axios");
 // const mongoose = require("mongoose");
 //const routes = require("./routes");
 const app = express();
@@ -16,6 +17,12 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 //app.use(routes);
+//google map API
+searchLocation = event => {
+  let location = {
+    
+  }
+}
 
 // Connect to the Mongo DB
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/where2eatDB");
@@ -33,6 +40,8 @@ const msg = {
   html: emailTemp,
 };
 sgMail.send(msg);
+
+
 
 
 // Start the API server
