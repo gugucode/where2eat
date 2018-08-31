@@ -1,7 +1,19 @@
-.red{fill:#F46036;}
-.yellow{fill:#E8C547;}
-.blue{fill:#1BA2E5;}
-.green{fill:#69B578;}
+.red{
+    fill:#F46036;
+    background:#F46036;
+}
+.yellow{
+    fill:#E8C547;
+    background:#E8C547;
+}
+.blue{
+    fill:#1BA2E5;
+    background:#1BA2E5;
+}
+.green{
+    fill:#69B578;
+    background:#69B578;
+}
 .st4{fill:#1A1A1A;}
 .st5{fill:none;stroke:#1A1A1A;stroke-width:4.4928;stroke-miterlimit:10;}
 .st6{font-family:'Rubik';}
@@ -10,29 +22,36 @@
 *{
  box-sizing: border-box;   
 }
-.wrapper{
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-}
-
-.homeDiv .logoDiv{
-    width:50%;
-    margin: auto;
-}
-
-img{
+.mycontainer{
+    
+    margin: 0;
     width: 100%;
-    object-fit: cover;
-    height: 100%;
 }
 
-.homeDiv{
-    position: absolute;
-    top: 20vh;
-    left:25%;
-    width: 50%;
-    height: 60vh;
+body{
+    background: white;
+}
+
+#home{
+    padding: 20px 10%;
+}
+#home .col1{
+    display: inline-block;
+    width: 70%;
+}
+#home .col2{
+    display: inline-block;
+    width: 30%;
+    z-index: 1000;
+}
+
+
+.col2 .login{
     background: rgba(255, 255, 255, 0.8);
+    padding: 10%;
+    box-shadow: #aaa 0 0 2px;
+    margin-top: 37%;
+    width:100%;
+    margin-left: -50%;
     border-radius: 10px;
 }
