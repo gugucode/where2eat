@@ -6,13 +6,15 @@
 
 // And then create our markup:
 const markup = (data)=>(
+    "<styele> h2{ color:red}</styele>"
+    +
     "<div>"
     + "<h2> Where2eat </h2>"
     + (data.reciever)
     + "<p class='location'>"
-    + "You friend "
+    + "You friend, "
     + (data.sender)
-    + " send you an invitation to pick a restaurant together!"
+    + ", send you an invitation to pick a restaurant together!"
     + "</p>"
     + "<a class='bio' href='"
     + (data.inviteUrl)

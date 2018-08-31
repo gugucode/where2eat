@@ -5,5 +5,10 @@ export default {
   sendPickInvite: function(data) {
     console.log("react send invite");
     return axios.post("/api/invite/sendPickInvite", data);
+  },
+
+  searchEmail: function(key,cb) {
+    console.log(key);
+    cb(["ww","hoho","haha"]);
   }
 };
