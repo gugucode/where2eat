@@ -4,13 +4,26 @@ import PropTypes from "prop-types";
 import Autocomplete from "react-autocomplete";
 import API from "../../utils/API";
 
+import { ShowPotentialFriends } from "./showPotentialFriends";
+
 class FindFriends extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      potentialFriends: ""
+      searchKey: "",
+      potentialFriends: []
     };
   }
+
+  handleSearchKeyChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value }, () => {
+      API.searchEmail(this.state.searchKey, result => {
+        console.log(result);
+        this.setState({ potentialFriends: result });
+      });
+    });
+  };
 
   render() {
     return (
@@ -45,8 +58,11 @@ class FindFriends extends React.Component {
                     Find frind by email:
                   </label>
                   <input
+                    onChange={this.handleSearchKeyChange}
+                    value={this.state.searchKey}
                     type="email"
                     className="form-control"
+                    name="searchKey"
                     id="friendEmail"
                   />
                 </div>
@@ -54,7 +70,9 @@ class FindFriends extends React.Component {
                   <label htmlFor="message-text" className="col-form-label">
                     Suggested result:
                   </label>
-                  <textarea className="form-control" id="message-text" />
+                  <div className="border border-info">
+                    <ShowPotentialFriends data={this.state.potentialFriends} />
+                  </div>
                 </div>
               </form>
             </div>

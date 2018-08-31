@@ -34,7 +34,11 @@ class App extends Component {
     }
   ];
 
-  friends = [{ label: "meiyuechang@gmail.com" }, { label: "Tom" }, { label: "Frank" }];
+  friends = [
+    { label: "meiyuechang@gmail.com" },
+    { label: "Tom" },
+    { label: "Frank" }
+  ];
 
   render() {
     return (
