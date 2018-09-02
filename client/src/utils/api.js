@@ -19,7 +19,7 @@ const api = {
   getRestaurant: function(cuisine, zipCode) {
     return axios.get("/api/searchRestaurant/" + cuisine + "/" + zipCode);
   },
-  
+
   // Saves a new article to the db
   saveRestaurant: function(savedRestaurant) {
     return axios.post("/api/saved", savedRestaurant);
