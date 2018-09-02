@@ -8,32 +8,36 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 class App extends Component {
   testData = [
     {
-      img: "images/rest1.png",
+      photos_url: "images/rest1.png",
       url: "#",
-      restName: "Hoho",
+      name: "Hoho",
       rating: "2/10",
-      address: "10710 Research Blvd #200, Austin, TX 78759"
+      cuisines: "BBQ",
+      location: {address: "10710 Research Blvd #200, Austin, TX 78759"}
     },
     {
-      img: "images/rest2.png",
+      photos_url: "images/rest2.png",
       url: "#",
-      restName: "Sushi",
+      name: "Sushi",
       rating: "5/10",
-      address: "10710 Research Blvd #200, Austin, TX 78759"
+      cuisines: "BBQ",
+      location: { address: "10710 Research Blvd #200, Austin, TX 78759"}
     },
     {
-      img: "images/rest3.png",
+      photos_url: "images/rest3.png",
       url: "#",
-      restName: "Wanango",
+      name: "Wanango",
       rating: "8/10",
-      address: "10710 Research Blvd #200, Austin, TX 78759"
+      cuisines: "BBQ",
+      location: {address: "10710 Research Blvd #200, Austin, TX 78759"}
     },
     {
-      img: "images/rest3.png",
+      photos_url: "images/rest3.png",
       url: "#",
-      restName: "Wanango",
+      name: "Wanango",
       rating: "8/10",
-      address: "10710 Research Blvd #200, Austin, TX 78759"
+      cuisines: "BBQ",
+      location: { address: "10710 Research Blvd #200, Austin, TX 78759"}
     }
   ];
 
