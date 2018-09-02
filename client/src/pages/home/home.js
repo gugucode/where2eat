@@ -2,15 +2,24 @@ import React, { Component } from "react";
 import {Input} from "../../components/input"
 import {Submit} from "../../components/submitBtn"
 import {HomeHeader} from "../../components/homeHeader"
+import {SignupModal, SignupBtn} from "../../components/signupModal"
 import API from "../../utils/API";
 import "./home.css"
+import { userInfo } from "os";
 class Home extends Component {
     state = {
         username: "",
         password: "",
+        signUpUser: "",
+        signUpEmail: "",
+        signUpPass: "",
+        signUpPass2: "",
+        signUpFirst: "",
+        signUpLast: "",
         auth: false,
         loginMsg: "",
-        alerttype: "normal"
+        alerttype: "normal",
+
     }
 
     handleInputChange = event => {
@@ -52,6 +61,18 @@ class Home extends Component {
         }
         
     }
+
+    handleSignUp = event =>{
+        event.preventDefault();
+        const userInfo={
+            firstName: this.state.signUpFirst,
+            lastName: this.state.signUpLast,
+            email: this.state.signUpEmail,
+            email: this.state.signUpUser,
+            password: this.state.signUpPass,
+        }
+        console.log(userInfo)
+    }
     componentDidMount(){
 
     }
@@ -59,6 +80,50 @@ class Home extends Component {
         return (
             <div className="mycontainer">
                 <HomeHeader/>
+                
+                <SignupModal>
+                    <Input
+                        name= "signUpFirst"
+                        value = {this.state.signUpFirst}
+                        onChange = {this.handleInputChange}
+                        label = "First Name:"
+                    />
+                    <Input
+                        name= "signUpLast"
+                        value = {this.state.signUpLast}
+                        onChange = {this.handleInputChange}
+                        label = "Last Name:"
+                    />
+                    <Input
+                        name= "signUpUser"
+                        value = {this.state.signUpUser}
+                        onChange = {this.handleInputChange}
+                        label = "Pick a Username:"
+                    />
+                    <Input
+                        name= "signUpEmail"
+                        value = {this.state.signUpEmail}
+                        onChange = {this.handleInputChange}
+                        label = "Email Address:"
+                    />
+                    <Input
+                        type= "password"
+                        name= "signUpPass"
+                        value = {this.state.signUpPass}
+                        onChange = {this.handleInputChange}
+                        label = "Choose Password"
+                    />
+                    <Input
+                        type= "password"
+                        name= "signUpPass2"
+                        value = {this.state.signUpPass2}
+                        onChange = {this.handleInputChange}
+                        label = "Repeat Password"
+                    />
+                    <Submit
+                        onClick={this.handleSignUp}
+                    />
+                </SignupModal>
                 <div className="row" id="home">
                     <div className="col1">
                         <div id="svgDiv">
@@ -150,6 +215,7 @@ class Home extends Component {
                                 <Submit
                                     onClick={this.handleSignIn}
                                 />
+                                <SignupBtn/>
                             </div>
                         </div>
                         

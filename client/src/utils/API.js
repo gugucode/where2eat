@@ -25,6 +25,7 @@ const API = {
     console.log(key);
     cb(["ww","hoho","haha"]);
   },
+  
   authenticate: function(data){
     return axios.post("/api/auth", data);
   }
