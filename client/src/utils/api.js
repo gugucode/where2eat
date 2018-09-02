@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = {
+const API = {
   // Retrieves saved articles from the db
   getRestaurant: function(cuisine, zipCode) {
     return axios.get("/api/searchRestaurant/" + cuisine + "/" + zipCode);
@@ -25,4 +25,4 @@ const api = {
   }
 };
 
-export default api;
+export default API;

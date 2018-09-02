@@ -1,11 +1,11 @@
-import axios from "axios";
+// import axios from "axios";
+// import restDBAPI from "./restaurantDbAPI";
+const restDBAPI = require("./restaurantDbAPI");
+const axios = require("axios");
 
-import restDBAPI from "./restaurantDbAPI";
-
-
-
-const zomatoAPI = {
-  // Query Zomato API
+module.exports = {
+// export const ZomatoAPI = {
+//   // Query Zomato API
   searchRestaurant: function(cuisine, lat, lng,res) {
     const apiKey = "2fd0b311e7bd53843b8e12bb25f230c1";
     const queryURL = "https://developers.zomato.com/api/v2.1/search";
@@ -30,7 +30,10 @@ const zomatoAPI = {
       res.send(result);
       restDBAPI.create(req, res);
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log("zomato")
+      console.log(error)
+    });
   },
   // Retrieves saved articles from the db
   getRestaurant: function() {
@@ -46,4 +49,4 @@ const zomatoAPI = {
   }
 };
 
-export default zomatoAPI;
+// export default zomatoAPI;
