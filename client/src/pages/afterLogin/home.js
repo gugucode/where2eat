@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import Nav from "../../components/nav/navigation";
 import { ShowRestList } from "../../components/showRest/showRestList/showRestList";
 import { ShowCarousel } from "../../components/showRest/showRestCarousel";
+import InviteForm from "../../components/invite/inviteForm";
+import FindFriends from "../../components/findFriends/findFriends";
+import RestSearch from "../../components/restaurantSearch/restSearch";
 
 class AfterLoginHome extends Component {
   render() {
@@ -27,11 +30,12 @@ class AfterLoginHome extends Component {
           {/* search restaurants and find friends */}
           <div className="col-12 col-md-6">
             <div className="row">
-              <div className="col-12">{/* <ShowRestList /> */}</div>
+              <div className="col-12">{<RestSearch />}</div>
             </div>
             <div className="row">
               <div className="col-12">
-                {/* <ShowCarousel data={this.props.data} /> */}
+                <InviteForm friends={this.props.friends} />
+                <FindFriends />
               </div>
             </div>
           </div>
@@ -40,7 +44,9 @@ class AfterLoginHome extends Component {
     );
   }
 }
+
 AfterLoginHome.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  friends: PropTypes.array
 };
 export default AfterLoginHome;

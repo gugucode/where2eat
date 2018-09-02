@@ -1,20 +1,28 @@
-const person = {
-    name: 'Wes',
-    job: 'Web Developer',
-    city: 'Hamilton',
-    bio: 'Wes is a really cool guy that loves to teach web development!'
-}
+// const person = {
+//     sender: "Erin",
+//     reciever: 'Wes',
+//     inviteUrl: '#',
+// }
 
 // And then create our markup:
-const markup = " <div class='person'> <h2>" 
-                      + (person.name)
-                      + "</h2>"
-                      + "<p class='location'>"
-                      + "</p>"
-                      + "<p class='bio'>"
-                      + (person.bio)
-                      + "</p></div>";
-                      
+const markup = (data)=>(
+    "<styele> h2{ color:red}</styele>"
+    +
+    "<div>"
+    + "<h2> Where2eat </h2>"
+    + (data.reciever)
+    + "<p class='location'>"
+    + "You friend, "
+    + (data.sender)
+    + ", send you an invitation to pick a restaurant together!"
+    + "</p>"
+    + "<a class='bio' href='"
+    + (data.inviteUrl)
+    + "'>Open Invite</a>"
+    +"<p>Thank you!</p>"
+    +"<p>Where2eat Team</p>"
+    +"</div>"
+)                    
 module.exports = markup;
 
 // export markup;
