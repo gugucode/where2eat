@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const emailTemp = require("./public/emailTemplate/pickRestInvite");
+const axios = require("axios");
+const zomatoAPI = require("")
 // const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -23,22 +25,8 @@ app.use(routes);
 app.use(express.static("client/build"));
 // app.use(express.static("./public"));
 
-// const data = {
-//   sender: "Erin",
-//   reciever: 'Wes',
-//   inviteUrl: '#',
-// }
 
-// const sgMail = require('@sendgrid/mail');
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-// const msg = {
-//   to: 'meiyuechang@gmail.com',
-//   from: 'gugocodedev@gmail.com',
-//   subject: 'Sending with SendGrid',
-//   // text: 'and easy to do anywhere, even with Node.js',
-//   html: emailTemp(data),
-// };
-// sgMail.send(msg);
+
 
 
 // Start the API server
