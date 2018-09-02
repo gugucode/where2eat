@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import AfterLoginHome from "./pages/afterLogin/home";
 import Home from './pages/home';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 
 class App extends Component {
   testData = [
@@ -43,10 +45,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Home/>
-        <AfterLoginHome data={this.testData} friends={this.friends} />
-      </div>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/dashboard" render={() => <AfterLoginHome data={this.testData} friends={this.friends} />} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }

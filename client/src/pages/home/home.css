@@ -31,7 +31,23 @@
 body{
     background: white;
 }
-
+.alert p{
+    font-size: 10px;
+    padding: 0;
+}
+.alert{
+    padding: 0;
+    margin:0;
+}
+p.normal{
+    color: black;
+}
+p.success{
+    color: #69B578;
+}
+p.fail{
+    color: #F46036;
+}
 #home{
     padding: 20px 10%;
 }

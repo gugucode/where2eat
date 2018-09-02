@@ -2,15 +2,20 @@ import React, { Component } from "react";
 import {Input} from "../../components/input"
 import {Submit} from "../../components/submitBtn"
 import {HomeHeader} from "../../components/homeHeader"
+import API from "../../utils/API";
 import "./home.css"
 class Home extends Component {
     state = {
         username: "",
         password: "",
+        auth: false,
+        loginMsg: "",
+        alerttype: "normal"
     }
 
     handleInputChange = event => {
         const { name, value } = event.target;
+        console.log(name,value)
         this.setState({
           [name]: value
         });
@@ -18,11 +23,37 @@ class Home extends Component {
 
     handleSignIn = event => {
         event.preventDefault();
+        if (this.state.username && this.state.password){
+            const data= {username: this.state.username, password: this.state.password}
+            console.log(data)
+            API.authenticate(data)
+            .then(result => {
+                console.log(result)
+                this.setState(result.data)
+                console.log(result.data)
+                if(result.data.auth){
+                    this.setState({
+                        loginMsg: "Login Successful",
+                        alerttype: "success"
+                    })
+                    window.location.href = "./dashboard";
+                }else{
+                    this.setState({
+                        loginMsg: "Wrong Username or Password",
+                        alerttype: "fail"
+                    })
+                }
+            })
+        }else{
+            this.setState({
+                loginMsg: "Please enter your Username/Password",
+                alerttype: "normal"
+            })
+        }
+        
     }
     componentDidMount(){
-        // var tl = new TimelineMax();
-        //     tl.to("#floor", 0.4, {scale:0, transformOrigin: "50% 50%"})
-        // alert("HI")
+
     }
     render() {
         return (
@@ -99,6 +130,11 @@ class Home extends Component {
 
                             </div>
                             <div className = "loginDiv">
+                            {this.state.loginMsg ? 
+                                <div className="alert">
+                                    <p className= {this.state.alerttype}>{this.state.loginMsg}</p>
+                                </div> : ""}
+                            
                                 <Input 
                                     name= "username"
                                     value = {this.state.username}
@@ -112,7 +148,7 @@ class Home extends Component {
                                     label= "Password"
                                 />
                                 <Submit
-                                    onClick={this.handleSubmit}
+                                    onClick={this.handleSignIn}
                                 />
                             </div>
                         </div>
