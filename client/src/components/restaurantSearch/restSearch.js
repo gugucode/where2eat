@@ -27,7 +27,7 @@ class RestSearch extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
     API.getRestaurant(this.state.cuisine, this.state.zipCode).then(res => {
-      this.setState({ restArray: res });
+      this.setState({ restArray: res.restaurants });
       // this.setState({restName: res.data.response.restName},
       //               {cuisine: res.data.respone.cuisine},
       //               {photos: res.data.respone.photo},
@@ -84,7 +84,7 @@ class RestSearch extends React.Component {
           </div>
         </div>
         <div className="row">
-          {/* <DisplayResults data={this.state.restArray[0]} /> */}
+          <DisplayResults data={this.state.restArray[0]} />
         </div>
       </div>
     );

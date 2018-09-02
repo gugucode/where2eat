@@ -18,10 +18,10 @@ module.exports = {
       // apiKey;
 
     const d = {
-      apiKey: apiKey,
+      apikey: apiKey,
       cuisine: cuisine,
       lat: lat,
-      lng: lng
+      lon: lng
     }
 
     axios.get(queryURL,{params: d})
