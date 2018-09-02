@@ -1,4 +1,6 @@
 import axios from "axios";
+import passport from "passport";
+import LocalStrategy from "passport-local";
 
 export default {
   // Send a Pick-Restaurant invite to friends
