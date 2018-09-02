@@ -5,6 +5,7 @@ import { ShowRestList } from "../../components/showRest/showRestList/showRestLis
 import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 import InviteForm from "../../components/invite/inviteForm";
 import FindFriends from "../../components/findFriends/findFriends";
+import RestSearch from "../../components/restaurantSearch/restSearch";
 
 class AfterLoginHome extends Component {
   render() {
@@ -29,7 +30,7 @@ class AfterLoginHome extends Component {
           {/* search restaurants and find friends */}
           <div className="col-12 col-md-6">
             <div className="row">
-              <div className="col-12">{/* <InviteForm /> */}</div>
+              <div className="col-12">{<RestSearch />}</div>
             </div>
             <div className="row">
               <div className="col-12">
