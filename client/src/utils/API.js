@@ -19,10 +19,16 @@ const API = {
     return axios.post("/api/invite/sendPickInvite", data);
   },
 
-  searchEmail: function(key,cb) {
+  // search and add friend
+  searchFriends: function(key,cb) {
     console.log(key);
     cb(["ww","hoho","haha"]);
   },
+
+  addFriend: function(userName) {
+    return axios.post("api/invite/addFriend",userName)
+  },
+
   authenticate: function(data){
     return axios.post("/api/auth", data);
   }
