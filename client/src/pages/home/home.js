@@ -24,7 +24,6 @@ class Home extends Component {
 
     handleInputChange = event => {
         const { name, value } = event.target;
-        console.log(name,value)
         this.setState({
           [name]: value
         });
@@ -68,10 +67,11 @@ class Home extends Component {
             firstName: this.state.signUpFirst,
             lastName: this.state.signUpLast,
             email: this.state.signUpEmail,
-            email: this.state.signUpUser,
+            username: this.state.signUpUser,
             password: this.state.signUpPass,
         }
-        console.log(userInfo)
+        console.log(userInfo);
+        API.signUp(userInfo)
     }
     componentDidMount(){
 

@@ -28,6 +28,10 @@ const API = {
   
   authenticate: function(data){
     return axios.post("/api/auth", data);
+  },
+
+  signUp: function(data){
+    return axios.post("/api/signup", data);
   }
 };
 
