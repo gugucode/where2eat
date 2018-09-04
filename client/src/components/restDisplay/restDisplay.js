@@ -27,6 +27,11 @@ export const DisplayResults = props => {
             <img href={props.data.photos_url} target="_blank" />
           </span>
         </h4>
+        <p>
+          <em>{props.data.cuisines}</em>
+        </p>
+        <img src={props.data.photos_url} />
+
       </li>
       <button className="btn btn-primary" onClick={() => props.handleSaveButton(props._id)}>Save</button>
     </div>

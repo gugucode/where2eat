@@ -1,18 +1,19 @@
 {
     "development": {
       "username": "root",
-      "password": "password",
-      "database": "restaurantDB",
-      "host": "localhost",
+      "password": "root",
+      "database": "where2eat",
+      "host": "127.0.0.1",
       "dialect": "mysql"
     },
     "test": {
       "username": "root",
       "password": "root",
-      "database": "testdb",
-      "host": "localhost",
+      "database": "where2eat",
+      "host": "127.0.0.1",
       "dialect": "mysql",
-      "logging": false
+      "logging": false,
+      "port": 8889
     },
     "production": {
       "use_env_variable": "JAWSDB_URL",

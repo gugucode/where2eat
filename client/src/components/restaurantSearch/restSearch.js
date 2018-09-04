@@ -1,5 +1,6 @@
 import React from "react";
 import { DisplayResults } from "../restDisplay/restDisplay";
+import { ShowRestList } from "../../components/showRest/showRestList/showRestList";
 import API from "../../utils/API";
 
 class RestSearch extends React.Component {
@@ -27,9 +28,13 @@ class RestSearch extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
     API.getRestaurant(this.state.cuisine, this.state.zipCode).then(res => {
+      // console.log(err)
       console.log(res);
-      this.setState({ restArray: res });
+      this.setState({ restArray: res.data }, () => {
+        console.log(this.state.restArray[0].restaurant)
+      }
 
+      );
       // this.setState({restName: res.data.response.restName},
       //               {cuisine: res.data.respone.cuisine},
       //               {photos: res.data.respone.photo},
@@ -85,8 +90,12 @@ class RestSearch extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row">
-          <DisplayResults data={this.state.restArray[0]} />
+        <div className="row" id="result">
+        {
+          //  (this.state.restArray).length > 0 ? (<DisplayResults data={this.state.restArray[1].restaurant} />) : ""
+          (this.state.restArray).length > 0 ? (<ShowRestList data={this.state.restArray} />) : ""
+        }
+          {/* <DisplayResults data={this.state.restArray[0]} /> */}
         </div>
       </div>
     );

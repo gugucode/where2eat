@@ -1,4 +1,6 @@
 import axios from "axios";
+import passport from "passport";
+import LocalStrategy from "passport-local";
 
 const API = {
   // Retrieves saved articles from the db
@@ -19,12 +21,23 @@ const API = {
     return axios.post("/api/invite/sendPickInvite", data);
   },
 
-  searchEmail: function(key,cb) {
+  // search and add friend
+  searchFriends: function(key,cb) {
     console.log(key);
-    cb(["ww","hoho","haha"]);
+    return axios.get("api/addFriend/searchFriend/"+key);
   },
+
+  addFriend: function(data) {
+    console.log(data);
+    return axios.put("api/addFriend/add",data)
+  },
+
   authenticate: function(data){
     return axios.post("/api/auth", data);
+  },
+
+  signUp: function(data){
+    return axios.post("/api/signup", data);
   }
 };
 

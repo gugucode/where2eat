@@ -1,10 +1,8 @@
 import React from "react";
 import $ from "jquery";
-import PropTypes from "prop-types";
-import Autocomplete from "react-autocomplete";
 import API from "../../utils/API";
 
-import { ShowPotentialFriends } from "./showPotentialFriends";
+
 
 class FindFriends extends React.Component {
   constructor(props) {
@@ -15,19 +13,59 @@ class FindFriends extends React.Component {
     };
   }
 
+  // set searchKey and send request to retrive a list of potential friends
   handleSearchKeyChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => {
-      API.searchEmail(this.state.searchKey, result => {
-        console.log(result);
-        this.setState({ potentialFriends: result });
+      API.searchFriends(this.state.searchKey)
+      .then(result => {
+        console.log(result.data);
+        this.setState({ potentialFriends: result.data });
       });
     });
   };
 
+  // When option is selected, change searchKey
+  handleSelect = event => {
+    // console.log(value)
+    const {name, value} = event.target;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  verifyFriendInDB = name =>{
+    const friends = this.state.potentialFriends;
+    for(let i=0; i < friends.length; i++){
+      if(friends[i].username === name){
+        return true;
+      }
+    }
+    return false;
+  }
+  // handle add friend request, searchKey cannot be empty and searchKey must be in the potentialFriends list
+  handleSubmit = event => {
+    const searchKey = this.state.searchKey;
+    if(this.state.searchKey && this.verifyFriendInDB(this.state.searchKey)){
+      // const searchKey = this.state.searchKey;
+      API.addFriend({
+        user: "erin",
+        friend: searchKey
+      }).then(result => {
+        console.log(result);
+          $("#addStatus").text(result.data)
+      })
+      .catch(err => {
+        console.log(err);
+        $("#addStatus").text(`Add Friend request failed`)
+      });
+    }else{
+      $("#addStatus").text(`Sorry, we don't have a user named '${searchKey}'!`);
+    }
+  }
+
   render() {
     return (
-      // <button type="button" classNameName="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
       <div
         className="modal fade"
         id="findFriendComp"
@@ -37,6 +75,7 @@ class FindFriends extends React.Component {
         aria-hidden="true"
       >
         <div className="modal-dialog" role="document">
+          {/* title and close button */}
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
@@ -51,32 +90,47 @@ class FindFriends extends React.Component {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
+            {/* body */}
             <div className="modal-body">
               <form>
+
+                {/* Enter search key here */}
                 <div className="form-group">
                   <label htmlFor="recipient-name" className="col-form-label">
-                    Find frind by email:
+                    Find frind by user name:
                   </label>
                   <input
                     onChange={this.handleSearchKeyChange}
                     value={this.state.searchKey}
-                    type="email"
+                    type="text"
                     className="form-control"
                     name="searchKey"
-                    id="friendEmail"
+                    list="searchFriends"
                   />
                 </div>
+
+                {/* print suggested friends here */}
                 <div className="form-group">
                   <label htmlFor="message-text" className="col-form-label">
                     Suggested result:
                   </label>
-                  <div className="border border-info">
-                    <ShowPotentialFriends data={this.state.potentialFriends} />
+                  <div>
+                    <select id="searchFriends" name="searchKey" onChange={this.handleSelect} className="border border-info" multiple style={{width:"100%"}}>
+                      {this.state.potentialFriends.map(user => (
+                        <option key={user.id} value={user.username} >
+                          {user.username}
+                        </option>
+                      ))}
+                    </select>                  
                   </div>
+                  <p id="addStatus"></p>
                 </div>
               </form>
             </div>
-            <div className="modal-footer">
+
+            {/* footer: display close and add buttons */}
+            <div className="modal-footer" id="modal-addFriend">
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -84,7 +138,7 @@ class FindFriends extends React.Component {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
+              <button onClick={this.handleSubmit} type="button" className="btn btn-primary">
                 Add
               </button>
             </div>
