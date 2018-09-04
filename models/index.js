@@ -10,6 +10,7 @@ var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "./../config/config.json")[env];
 var db = {};
 
+
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
@@ -21,7 +22,6 @@ if (config.use_env_variable) {
       host: '127.0.0.1',
       dialect: "mysql",
       port: 8889
-
     }
   );
 }

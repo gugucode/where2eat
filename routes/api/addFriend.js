@@ -1,10 +1,13 @@
 const router = require("express").Router();
-const pickInviteController = require("../../controllers/pickInviteController");
+const userController = require("../../controllers/userController");
 
-// Matches with "/api/sendPickInvite"
+// Matches with "/api/addFriend/searchFriend/searchKey"
 router
-  .route("/addFriend")
-  .post(pickInviteController.sendPickInvite)
+  .route("/searchFriend/:searchKey")
+  .get(userController.findUsers)
 
-
+router
+  .route("/add")
+  .put(userController.addFriend)
+  
 module.exports = router;

@@ -24,11 +24,12 @@ const API = {
   // search and add friend
   searchFriends: function(key,cb) {
     console.log(key);
-    cb(["ww","hoho","haha"]);
+    return axios.get("api/addFriend/searchFriend/"+key);
   },
 
-  addFriend: function(userName) {
-    return axios.post("api/invite/addFriend",userName)
+  addFriend: function(data) {
+    console.log(data);
+    return axios.put("api/addFriend/add",data)
   },
 
   authenticate: function(data){

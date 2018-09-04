@@ -3,8 +3,9 @@ module.exports = function(sequelize, Sequelize) {
       username: Sequelize.STRING,
       password: Sequelize.STRING,
       firstName: Sequelize.STRING,
-      lastName: Sequelize.INTEGER,
-      email: Sequelize.INTEGER
+      lastName: Sequelize.STRING,
+      email: Sequelize.STRING,
+      friends: Sequelize.TEXT
     });
   
     return User;

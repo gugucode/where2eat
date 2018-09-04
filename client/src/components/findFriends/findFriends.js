@@ -1,5 +1,7 @@
 import React from "react";
+import $ from "jquery";
 import API from "../../utils/API";
+
 
 
 class FindFriends extends React.Component {
@@ -15,9 +17,10 @@ class FindFriends extends React.Component {
   handleSearchKeyChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => {
-      API.searchFriends(this.state.searchKey, result => {
-        console.log(result);
-        this.setState({ potentialFriends: result });
+      API.searchFriends(this.state.searchKey)
+      .then(result => {
+        console.log(result.data);
+        this.setState({ potentialFriends: result.data });
       });
     });
   };
@@ -31,17 +34,33 @@ class FindFriends extends React.Component {
     })
   }
 
+  verifyFriendInDB = name =>{
+    const friends = this.state.potentialFriends;
+    for(let i=0; i < friends.length; i++){
+      if(friends[i].username === name){
+        return true;
+      }
+    }
+    return false;
+  }
   // handle add friend request, searchKey cannot be empty and searchKey must be in the potentialFriends list
   handleSubmit = event => {
-    if(this.state.searchKey && this.state.potentialFriends.indexOf(this.state.searchKey) !== -1){
-      API.addFriend(this.state.searchKey)
-      .then(result => {
+    const searchKey = this.state.searchKey;
+    if(this.state.searchKey && this.verifyFriendInDB(this.state.searchKey)){
+      // const searchKey = this.state.searchKey;
+      API.addFriend({
+        user: "erin",
+        friend: searchKey
+      }).then(result => {
         console.log(result);
-        this.setState({ potentialFriends: result });
+          $("#addStatus").text(result.data)
       })
       .catch(err => {
         console.log(err);
+        $("#addStatus").text(`Add Friend request failed`)
       });
+    }else{
+      $("#addStatus").text(`Sorry, we don't have a user named '${searchKey}'!`);
     }
   }
 
@@ -99,12 +118,13 @@ class FindFriends extends React.Component {
                   <div>
                     <select id="searchFriends" name="searchKey" onChange={this.handleSelect} className="border border-info" multiple style={{width:"100%"}}>
                       {this.state.potentialFriends.map(user => (
-                        <option key={user} value={user} >
-                          {user}
+                        <option key={user.id} value={user.username} >
+                          {user.username}
                         </option>
                       ))}
                     </select>                  
                   </div>
+                  <p id="addStatus"></p>
                 </div>
               </form>
             </div>
@@ -118,7 +138,7 @@ class FindFriends extends React.Component {
               >
                 Close
               </button>
-              <button onSubmit={this.handleSubmit} type="button" className="btn btn-primary">
+              <button onClick={this.handleSubmit} type="button" className="btn btn-primary">
                 Add
               </button>
             </div>
