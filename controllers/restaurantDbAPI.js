@@ -1,37 +1,41 @@
-const db = require("../models");
+var db = require("../models");
 
-// Defining methods for the booksController
-module.exports = {
-  findAll: function(req, res) {
-    db.Restaurant
-      .find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findById: function(req, res) {
-    db.Restaurant
-      .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  create: function(result) {
-    db.Restaurant
-      .create(result)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  update: function(req, res) {
-    db.Restaurant
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  remove: function(req, res) {
-    db.Restaurant
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  }
+module.exports = function(app) {
+  // Find all Restaurants and return them to the user with res.json
+  app.get("/api/searchRestaurant", function(req, res) {
+    db.Restaurant.findAll({}).then(function(dbRestaurant) {
+      res.json(dbRestaurant);
+    });
+  });
+
+  app.get("/api/Restaurants/:id", function(req, res) {
+    // Find one Restaurant with the id in req.params.id and return them to the user with res.json
+    db.Restaurant.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbRestaurant) {
+      res.json(dbRestaurant);
+    });
+  });
+
+  app.post("/api/Restaurants", function(req, res) {
+    // Create an Restaurant with the data available to us in req.body
+    console.log(req.body);
+    db.Restaurant.create(req.body).then(function(dbRestaurant) {
+      res.json(dbRestaurant);
+    });
+  });
+
+  app.delete("/api/Restaurants/:id", function(req, res) {
+    // Delete the Restaurant with the id available to us in req.params.id
+    db.Restaurant.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbRestaurant) {
+      res.json(dbRestaurant);
+    });
+  });
+
 };

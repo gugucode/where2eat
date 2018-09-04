@@ -18,17 +18,17 @@ module.exports = {
       // apiKey;
 
     const d = {
-      apiKey: apiKey,
+      apikey: apiKey,
       cuisine: cuisine,
       lat: lat,
-      lng: lng
+      lon: lng
     }
 
     axios.get(queryURL,{params: d})
     .then(result => {
       console.log(result);
-      res.send(result);
-      restDBAPI.create(req, res);
+      res.send(result.data.restaurants);
+      // restDBAPI.create(res);
     })
     .catch(error => {
       console.log("zomato")

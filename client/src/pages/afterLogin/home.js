@@ -30,7 +30,10 @@ class AfterLoginHome extends Component {
           {/* search restaurants and find friends */}
           <div className="col-12 col-md-6">
             <div className="row">
-              <div className="col-12">{<RestSearch />}</div>
+              <div className="col-12">
+                <RestSearch />
+                
+              </div>
             </div>
             <div className="row">
               <div className="col-12">
