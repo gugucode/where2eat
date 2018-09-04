@@ -6,14 +6,13 @@ export const DisplayResults = props => {
     <div className="container">
       <li className="list-group-item">
         <h4>
-          <span>
-            <em>{props.data.restName}</em>
-            <em>{props.data.cuisine}</em>
-          </span>
-          <span className="btn-group pull-right">
-            <img href={props.data.photos} target="_blank" />
-          </span>
+            <em>{props.data.name}</em>
         </h4>
+        <p>
+          <em>{props.data.cuisines}</em>
+        </p>
+        <img src={props.data.photos_url} />
+
       </li>
     </div>
   );
