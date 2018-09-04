@@ -23,6 +23,11 @@
     "express-handlebars": "^3.0.0",
     "if-env": "^1.0.4",
     "mysql2": "^1.6.1",
+<<<<<<< HEAD
+=======
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+>>>>>>> b025a785e7da341ced47b103d2b435bca2e87fdb
     "react-router-dom": "^4.3.1",
     "request": "^2.87.0",
     "sequelize": "^4.38.0"

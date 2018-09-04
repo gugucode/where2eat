@@ -1,4 +1,6 @@
 import axios from "axios";
+import passport from "passport";
+import LocalStrategy from "passport-local";
 
 const API = {
   // Retrieves saved articles from the db
@@ -24,13 +26,21 @@ const API = {
     console.log(key);
     cb(["ww","hoho","haha"]);
   },
+<<<<<<< HEAD
 
   addFriend: function(userName) {
     return axios.post("api/invite/addFriend",userName)
   },
 
+=======
+  
+>>>>>>> b025a785e7da341ced47b103d2b435bca2e87fdb
   authenticate: function(data){
     return axios.post("/api/auth", data);
+  },
+
+  signUp: function(data){
+    return axios.post("/api/signup", data);
   }
 };
 

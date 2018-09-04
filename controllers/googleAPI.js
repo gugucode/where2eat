@@ -16,7 +16,11 @@ module.exports = {
         // axios.get('https://maps.googleapis.com/maps/api/geocode/json?address='+zip)
         // const api = "https://www.mapquestapi.com/geocoding/v1/address?outFormat=json&location=78660&thumbMaps=false&key=zthBRJJHCwGmCYdi6u8DHWcOQ7AM6SVM";
         const api = "https://maps.googleapis.com/maps/api/geocode/json?"
+<<<<<<< HEAD
         axios.get("https://maps.googleapis.com/maps/api/geocode/json?",{params:data})
+=======
+        axios.get("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDjpbs88N8q6PV1awFyJKFKY4U4N3v_Sx8&address=78660")
+>>>>>>> b025a785e7da341ced47b103d2b435bca2e87fdb
         .then(result => {
             //this.setState({searchResult: response.location.lat.response.location.lng})
             //zomato API
