@@ -2,6 +2,7 @@ import React from "react";
 import { DisplayResults } from "../restDisplay/restDisplay";
 import { ShowRestList } from "../../components/showRest/showRestList/showRestList";
 import API from "../../utils/API";
+import DeleteRest from "../../components/savedRestaurant/savedRestaurant";
 
 class RestSearch extends React.Component {
   constructor(props) {
@@ -93,7 +94,13 @@ class RestSearch extends React.Component {
         <div className="row" id="result">
         {
           //  (this.state.restArray).length > 0 ? (<DisplayResults data={this.state.restArray[1].restaurant} />) : ""
-          (this.state.restArray).length > 0 ? (<ShowRestList data={this.state.restArray} />) : ""
+          // (this.state.restArray).length > 0 ? (<ShowRestList data={this.state.restArray} />) : ""
+          (this.state.restArray).length > 0 ? (<DisplayResults data={(this.state.restArray)[0].restaurant} />) : (<p></p>)
+          
+          // <DisplayResults data={(this.state.restArray)[0].restaurant} />
+        }
+        {
+          (this.state.restArray).length > 0 ? (<DeleteRest data={(this.state.restArray)[0].restaurant} />) : <p></p>
         }
           {/* <DisplayResults data={this.state.restArray[0]} /> */}
         </div>

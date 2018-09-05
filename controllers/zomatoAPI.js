@@ -1,6 +1,6 @@
 // import axios from "axios";
 // import restDBAPI from "./restaurantDbAPI";
-const restDBAPI = require("./restaurantDbAPI");
+const restDBAPI = require("./saveRest");
 const axios = require("axios");
 
 module.exports = {
