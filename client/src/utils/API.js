@@ -2,6 +2,7 @@ import axios from "axios";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 
+
 const API = {
   // Retrieves saved articles from the db
   getRestaurant: function(cuisine, zipCode) {

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const restaurantController = require("../../controllers/restaurantDbAPI");
+const restaurantController = require("../../controllers/saveRest");
 const googleAPI =  require("../../controllers/googleAPI");
 
 // // Matches with "/api/restaurant"

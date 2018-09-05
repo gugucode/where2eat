@@ -1,13 +1,13 @@
 import React from "react";
+import API from "../../utils/API";
 
  // When delete article button is clicked, remove article from db
- handleDeleteButton = (id) => {
-    API.deleteRestaurant(id)
-      .then(this.getSavedRestaurants());
-  }
+const handleDeleteButton = (id) => {
+  API.deleteRestaurant(id)
+    // .then(this.deleteRestaurant());
+}
 
-
-const Saved = props =>
+const Saved = props =>(
   <div className="container">
     <li className="list-group-item">
       <h4>
@@ -17,20 +17,16 @@ const Saved = props =>
             <em>{props.data.user_rating.aggregate_rating}</em>
           </span>
           <span className="btn-group pull-right">
-            <img href={props.data.photos_url} target="_blank" />
+            <img href={props.data.thumb} target="_blank" />
           </span>
           
             <button className="btn btn-default ">View Restaurant</button>
          
-          <button className="btn btn-primary" onClick={() => props.handleDeleteButton(props._id)}>Delete</button>
+          <button className="btn btn-primary" onClick={() => handleDeleteButton(props.data.id)}>Delete</button>
       
       </h4>
      
     </li>
- 
-       
-
-   
   </div>
-
+  )
 export default Saved;
