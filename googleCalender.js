@@ -3,14 +3,15 @@ const readline = require('readline');
 const {google} = require('googleapis');
 
 // If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/calendar'];
 const TOKEN_PATH = 'token.json';
 
 // Load client secrets from a local file.
 fs.readFile('credentials.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err);
   // Authorize a client with credentials, then call the Google Calendar API.
-  authorize(JSON.parse(content), listEvents);
+  console.log(content);
+  authorize(JSON.parse(content), createEvent);
 });
 
 /**
@@ -25,11 +26,11 @@ function authorize(credentials, callback) {
       client_id, client_secret, redirect_uris[0]);
 
   // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, (err, token) => {
-    if (err) return getAccessToken(oAuth2Client, callback);
+  // fs.readFile(TOKEN_PATH, (err, token) => {
+    return getAccessToken(oAuth2Client, callback);
     oAuth2Client.setCredentials(JSON.parse(token));
     callback(oAuth2Client);
-  });
+  // });
 }
 
 /**
@@ -87,5 +88,55 @@ function listEvents(auth) {
     } else {
       console.log('No upcoming events found.');
     }
+  });
+}
+
+
+function createEvent(auth){
+  // Refer to the Node.js quickstart on how to setup the environment:
+  // https://developers.google.com/calendar/quickstart/node
+  // Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
+  // stored credentials.
+
+  var event = {
+    'summary': 'Google I/O 2015',
+    'location': '800 Howard St., San Francisco, CA 94103',
+    'description': 'A chance to hear more about Google\'s developer products.',
+    'start': {
+      'dateTime': '2018-09-28T09:00:00-07:00',
+      'timeZone': 'America/Los_Angeles',
+    },
+    'end': {
+      'dateTime': '2018-09-28T17:00:00-07:00',
+      'timeZone': 'America/Los_Angeles',
+    },
+    // 'recurrence': [
+    //   'RRULE:FREQ=DAILY;COUNT=2'
+    // ],
+    'attendees': [
+      {'email': 'lpage@example.com'},
+      {'email': 'sbrin@example.com'},
+    ],
+    'reminders': {
+      'useDefault': false,
+      'overrides': [
+        {'method': 'email', 'minutes': 24 * 60},
+        {'method': 'popup', 'minutes': 10},
+      ],
+    },
+  };
+
+  const calendar = google.calendar({version: 'v3', auth});
+
+  calendar.events.insert({
+    auth: auth,
+    calendarId: 'primary',
+    resource: event,
+  }, function(err, event) {
+    if (err) {
+      console.log('There was an error contacting the Calendar service: ' + err);
+      return;
+    }
+    console.log('Event created: %s', event.htmlLink);
   });
 }

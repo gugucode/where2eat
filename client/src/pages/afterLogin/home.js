@@ -6,6 +6,7 @@ import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 import InviteForm from "../../components/invite/inviteForm";
 import FindFriends from "../../components/findFriends/findFriends";
 import RestSearch from "../../components/restaurantSearch/restSearch";
+import CreateEvent from "../../components/createEvent/createEventForm";
 
 class AfterLoginHome extends Component {
   render() {
@@ -39,6 +40,7 @@ class AfterLoginHome extends Component {
               <div className="col-12">
                 <InviteForm friends={this.props.friends} />
                 <FindFriends />
+                <CreateEvent />
               </div>
             </div>
           </div>
