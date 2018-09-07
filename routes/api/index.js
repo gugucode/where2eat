@@ -1,8 +1,9 @@
+const passport = require("passport")
 const router = require("express").Router();
 const inviteFriendRoutes = require("./inviteFriend");
 const addFriend = require("./addFriend");
 const loginUser = require("./login");
-const signUp = require("./signUp");
+const signUp = require("./auth")(passport);
 const saveRest = require("./saveRest");
 
 // Book routes
