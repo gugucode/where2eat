@@ -4,7 +4,8 @@ module.exports = function(sequelize, Sequelize) {
     cuisines: Sequelize.STRING,
     photos: Sequelize.STRING,
     rates: Sequelize.INTEGER,
-    rest_id: Sequelize.STRING
+    rest_id: Sequelize.STRING,
+    comment: Sequelize.TEXT
   });
 
   return Restaurant;
