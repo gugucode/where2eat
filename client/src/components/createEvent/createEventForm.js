@@ -9,9 +9,10 @@ class FindFriends extends React.Component {
     this.state = {
       summary: "",
       location: "",
-      start: "",
-      end: "",
+      startDateTime: "",
+      endDateTime: "",
       description: "",
+      timeZone: Moment.tz.guess(),
       searchKey: "",
       searchResult: [],
       attendees: []
@@ -27,7 +28,7 @@ class FindFriends extends React.Component {
     })
   }
 
-  handleStartTimeChange = event => {
+  handlestartDateTimeTimeChange = event => {
     const {name,value} = event.target;
     this.setState({
       [name]: {
@@ -115,6 +116,12 @@ class FindFriends extends React.Component {
   // handle add friend request, searchKey cannot be empty and searchKey must be in the potentialFriends list
   handleSubmit = event => {
     console.log(this.state);
+    API.createEvent(this.state)
+    .then(result =>{
+
+    }).catch(err => {
+      console.log(err);
+    })
     // const searchKey = this.state.searchKey;
     // if(this.state.searchKey && this.verifyFriendInDB(this.state.searchKey)){
     //   // const searchKey = this.state.searchKey;
@@ -197,11 +204,11 @@ class FindFriends extends React.Component {
                                 Start time
                             </label>
                             <input
-                                onChange={this.handleStartTimeChange}
-                                value={this.state.start.dateTime}
+                                onChange={this.handlInputChange}
+                                value={this.state.startDateTime}
                                 type="datetime-local"
                                 className="form-control px-0"
-                                name="start"
+                                name="startDateTime"
                                 placeholder="Start datetime"
                             />
                         </div>
@@ -210,11 +217,11 @@ class FindFriends extends React.Component {
                                 End time
                             </label>
                             <input
-                                onChange={this.handleEndTimeChange}
-                                value={this.state.end.dateTime}
+                                onChange={this.handlInputChange}
+                                value={this.state.endDateTime}
                                 type="datetime-local"
                                 className="form-control px-0"
-                                name="end"
+                                name="endDateTime"
                                 placeholder="End datatime"
                             />
                         </div>

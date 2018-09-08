@@ -1,19 +1,12 @@
 const router = require("express").Router();
-const userController = require("../../controllers/userController");
+const event = require("../../controllers/eventController");
 const pickInviteController = require("../../controllers/eventController");
 
 // Matches with "/api/sendPickInvite"
 router
-  .route("/createEvent")
-  .post()
+  .route("/createevent")
+  .post(event.createEvent)
 
-// Matches with "/api/addFriend/searchFriend/searchKey"
-router
-  .route("/searchFriend/:searchKey")
-  .get(userController.findUsers)
 
-router
-  .route("/add")
-  .put(userController.addFriend)
   
 module.exports = router;

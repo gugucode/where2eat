@@ -34,7 +34,11 @@ const API = {
   },
 
   createEvent: function(data) {
-    return axios.post("api/event/createEvent",data);
+    delete data['searchKey'],
+    delete data['searchResult'];
+    data.attendees = data.attendees.toString();
+    console.log(data);
+    return axios.post("api/event/createevent",data);
   },
 
   authenticate: function(data){

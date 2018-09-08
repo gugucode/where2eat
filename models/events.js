@@ -3,7 +3,7 @@ module.exports = function(sequelize, Sequelize) {
       summary: Sequelize.STRING,
       location: Sequelize.STRING,
       description: Sequelize.STRING,
-      timeZone: Sequelize.INTEGER,
+      timeZone: Sequelize.STRING,
       startDateTime: Sequelize.STRING,
       endDateTime: Sequelize.STRING,
       attendees: Sequelize.STRING,
