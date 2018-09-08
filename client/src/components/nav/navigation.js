@@ -1,6 +1,16 @@
 import React from "react";
+import Axios from "axios";
 
 class Nav extends React.Component {
+  handleLogout = event =>{
+    event.preventDefault();
+    Axios.get("/api/logout").then(function(result){
+      console.log(result.data)
+      if(result.data.logout){
+        window.location.href = "/";
+      }
+    })
+  }
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,7 +50,7 @@ class Nav extends React.Component {
 
             {/* log out */}
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" onClick= {this.handleLogout}>
                 Log out
               </a>
             </li>

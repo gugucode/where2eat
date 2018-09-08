@@ -4,8 +4,8 @@ import AfterLoginHome from "./pages/afterLogin/home";
 import Home from './pages/home';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-
 class App extends Component {
+
   testData = [
     {
       photos_url: "images/rest1.png",

@@ -7,9 +7,29 @@ import InviteForm from "../../components/invite/inviteForm";
 import FindFriends from "../../components/findFriends/findFriends";
 import RestSearch from "../../components/restaurantSearch/restSearch";
 import CreateEvent from "../../components/createEvent/createEventForm";
-
+import axios from "axios";
 class AfterLoginHome extends Component {
+  constructor(props){
+    super(props);
+    this.state= {
+      loggedIn: false,
+    }
+  }
+  
+  componentWillMount= () =>{
+    axios.get("/api/auth").then((result)=>{
+      if(result.data.passport){
+        this.setState({loggedIn:true});
+        
+      }else{
+        window.location.href= ("/");
+        this.setState({loggedIn:false});
+      }
+    })
+  }
+
   render() {
+    if(this.state.loggedIn){
     return (
       <div className="container-fluid">
         <Nav />
@@ -47,6 +67,13 @@ class AfterLoginHome extends Component {
         </div>
       </div>
     );
+  }else{
+    return (
+      <div>
+        <h1>Nope</h1>
+      </div>
+    )
+  }
   }
 }
 

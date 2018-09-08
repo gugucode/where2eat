@@ -43,7 +43,7 @@ class Home extends Component {
                         loginMsg: "Login Successful",
                         alerttype: "success"
                     })
-                    window.location.href = "./dashboard";
+                    window.location.href = "/dashboard";
                 }else{
                     this.setState({
                         loginMsg: "Wrong Username or Password",

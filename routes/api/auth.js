@@ -1,6 +1,13 @@
 const router = require("express").Router();
 const db = require("../../models");
 const bcrypt = require("bcrypt-nodejs")
+const loggedIn = function(req,res,next){
+    if(req.isAuthenticated()){
+        next()
+    }else{
+        res.json({loggedIn: false})
+    }
+}
 
 // const hashPassword = function(passport){
 //     return bcrypt.hashSync(bcrypt.genSaltSync(10))
@@ -48,5 +55,18 @@ module.exports= function(passport){
         res.json({success: true, message: "Logged in successfully"})
         console.log("HEY")
     })
+
+    router.get("/logout", function(req, res){
+        console.log("Logged out")
+        req.session.destroy(function (err) {
+            console.log("here")
+            if(err){console.log(err)}
+            res.send({logout: true, message: "Logged out successfully"})
+        })
+      })
+
+      router.get("/auth", loggedIn, function(req, res, next){
+        res.send(req.session)
+      })
     return router;
 }
