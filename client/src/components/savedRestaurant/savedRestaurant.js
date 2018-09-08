@@ -7,52 +7,85 @@ const handleDeleteButton = (id) => {
     // .then(this.deleteRestaurant());
 }
 
-const addCommentButton = (id) => {
 
-}
+class Saved extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      comment: "",
+      id: ''
+    }
+  }
 
-const Saved = props =>(
+  handInputChange = (event) => {
+    const { name , value } = event.target;
+    this.setState({
+      [name] : value
+    })
+  }
+
+  saveCommentButton = (event) => {
+    
+    console.log ("saveComment: ", this.state.comment);
+    // const newComment = {
+    //   comment: saveComments.comments
+    // }
+    const newComment = {comment: this.state.comment};
+    API.saveRestaurant(newComment)
+    .then(result => {
+      console.log(result)
+    })
+  
+  
+  }
+
+  render() {
+  
+  return (
   <div className="container">
     <li className="list-group-item">
       <h4>
       <span>
-            <em>{props.data.name}</em> 
-            <em>{props.data.cuisines}</em>
-            <em>{props.data.user_rating.aggregate_rating}</em>
+            <em>{this.props.data.name}</em> 
+            <em>{this.props.data.cuisines}</em>
+            <em>{this.props.data.user_rating.aggregate_rating}</em>
           </span>
           <span className="btn-group pull-right">
-            <img href={props.data.thumb} target="_blank" />
+            <img href={this.props.data.thumb} target="_blank" />
           </span>
           
-            <button className="btn btn-default" onClick={() => addCommentButton(props.data.id)}>Add Comment</button>
+          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Comment</button>
          
-          <button className="btn btn-primary" onClick={() => handleDeleteButton(props.data.id)}>Delete</button>
+          <button className="btn btn-primary" onClick={() => handleDeleteButton(this.props.data.id)}>Delete</button>
       
       </h4>  
     </li>
 
   {/* modal for add comment */}
-  <div className="modal" tabindex="-1" role="dialog">
+  <div className="modal" id="exampleModal" tabindex="-1" role="dialog">
   <div className="modal-dialog" role="document">
     <div className="modal-content">
+      {/* <form> */}
       <div className="modal-header">
-        <h5 className="modal-title">Modal title</h5>
+        <h5 className="modal-title">Add Comment Here...</h5>
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div className="modal-body">
-        <p></p>
+        <textarea className ="form-control" name="comment" value={this.state.comment} onChange={this.handInputChange}/>
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save Comment</button>
+        <button className="btn btn-primary" onClick={this.saveCommentButton}>Save Comment</button>
       </div>
+      {/* </form> */}
     </div>
   </div>
 </div>
 
 
   </div>
-  )
+  )}
+}
 export default Saved;

@@ -8,8 +8,8 @@ class RestSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zipCode: "",
-      cuisine: "",
+      zipCode: "78660",
+      cuisine: "bbq",
       restArray: []
     };
   }
@@ -67,6 +67,7 @@ class RestSearch extends React.Component {
                       id="zipcode"
                       aria-describedby="emailHelp"
                       name="zipCode"
+                      
                     />
                   </div>
                   <div className="form-group">
@@ -77,6 +78,7 @@ class RestSearch extends React.Component {
                       className="form-control"
                       id="cuisine"
                       name="cuisine"
+                      
                     />
                   </div>
                   <button
