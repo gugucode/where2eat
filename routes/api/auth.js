@@ -28,10 +28,13 @@ module.exports= function(passport){
             else{
                 let newUser = new db.User();
                 newUser.username = req.body.username;
+                newUser.firstName = req.body.firstName;
+                newUser.lastName = req.body.lastName;
+                newUser.email = req.body.email;
                 newUser.password = newUser.hashPassword(req.body.password);
                 
                 newUser.save().then(function(newuser){
-                    console.log(newuser)
+                    console.log(newuser.usernamr + " created successfully")
                     res.json({success: true})
                 }).catch(function(error){
                     console.log(error)
@@ -42,7 +45,7 @@ module.exports= function(passport){
 
     router.post("/login", passport.authenticate('local'), 
     function(req,res){
-        res.json({sucess: true})
+        res.json({success: true, message: "Logged in successfully"})
         console.log("HEY")
     })
     return router;

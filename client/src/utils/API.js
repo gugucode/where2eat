@@ -1,7 +1,4 @@
 import axios from "axios";
-import passport from "passport";
-import LocalStrategy from "passport-local";
-
 
 const API = {
   // Retrieves saved articles from the db
@@ -34,7 +31,7 @@ const API = {
   },
 
   authenticate: function(data){
-    return axios.post("/api/auth", data);
+    return axios.post("/api/login", data);
   },
 
   signUp: function(data){
