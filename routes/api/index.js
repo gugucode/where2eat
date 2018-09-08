@@ -1,13 +1,15 @@
 const router = require("express").Router();
-const inviteFriendRoutes = require("./inviteFriend");
-const addFriend = require("./addFriend");
+// const inviteFriendRoutes = require("./inviteFriend");
+const friend = require("./friend");
 const loginUser = require("./login");
 const signUp = require("./signUp");
 const saveRest = require("./saveRest");
+const event = require("./event")
 
 // Book routes
-router.use("/invite", inviteFriendRoutes);
-router.use("/addFriend", addFriend);
+router.use("/friend", friend);
+// router.use("/addFriend", friend);
+router.use("/event", event);
 router.use("/saved", saveRest);
 const restaurantRoutes = require("./restaurant");
 

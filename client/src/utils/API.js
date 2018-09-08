@@ -18,19 +18,23 @@ const API = {
   },
   // Send a Pick-Restaurant invite to friends
   sendPickInvite: function(data) {
-    console.log("react send invite");
-    return axios.post("/api/invite/sendPickInvite", data);
+    // console.log("react send invite");
+    return axios.post("/api/friend/sendPickInvite", data);
   },
 
   // search and add friend
   searchFriends: function(key,cb) {
-    console.log(key);
-    return axios.get("api/addFriend/searchFriend/"+key);
+    // console.log(key);
+    return axios.get("api/friend/searchFriend/"+key);
   },
 
   addFriend: function(data) {
     console.log(data);
-    return axios.put("api/addFriend/add",data)
+    return axios.put("api/friend/add",data)
+  },
+
+  createEvent: function(data) {
+    return axios.post("api/event/createEvent",data);
   },
 
   authenticate: function(data){
