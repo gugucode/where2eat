@@ -8,6 +8,7 @@ class Nav extends React.Component {
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto">
+            {/* find friend */}
             <li className="nav-item active">
               <a
                 className="nav-link"
@@ -18,17 +19,34 @@ class Nav extends React.Component {
                 Find friends
               </a>
             </li>
+
+            {/* create event */}
+            <li className="nav-item active">
+              <a
+                className="nav-link"
+                data-toggle="modal"
+                href="#createEvent"
+                data-whatever="@mdo"
+              >
+                Create Event
+              </a>
+            </li>
+
             <li className="nav-item active">
               <a className="nav-link" href="#">
                 Name <span className="sr-only">(current)</span>
               </a>
             </li>
+
+            {/* log out */}
             <li className="nav-item">
               <a className="nav-link" href="#">
                 Log out
               </a>
             </li>
           </ul>
+
+          {/* search form */}
           <form className="form-inline">
             <input
               className="form-control mr-sm-2"

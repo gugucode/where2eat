@@ -37,9 +37,8 @@ class Home extends Component {
             API.authenticate(data)
             .then(result => {
                 console.log(result)
-                this.setState(result.data)
                 console.log(result.data)
-                if(result.data.auth){
+                if(result.data.success){
                     this.setState({
                         loginMsg: "Login Successful",
                         alerttype: "success"
