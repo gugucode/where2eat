@@ -1,8 +1,8 @@
 import React from "react";
-import "./signupModal.css";
+import "./Modal.css";
 
-export const SignupModal = props => (
-    <div {...props} className="modal fade" id="signUpModal" tabIndex= "-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+export const Modal = props => (
+    <div {...props} className="modal fade" id="Modal" tabIndex= "-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
                 {props.children}
@@ -14,9 +14,9 @@ export const SignupModal = props => (
     </div>
 );
 
-export const SignupBtn = props => (
-    <button {...props}type="button" className="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
-        Sign Up
+export const Btn = props => (
+    <button {...props}type="button" className="btn btn-primary" data-toggle="modal" data-target="#Modal">
+        {props.btnName}
     </button>
 
 )

@@ -5,6 +5,7 @@ const friend = require("./friend");
 const signUp = require("./auth")(passport);
 const saveRest = require("./saveRest");
 const event = require("./event")
+const checkUser = require("./checkUsername")
 
 
 // Book routes
@@ -18,6 +19,7 @@ const restaurantRoutes = require("./restaurant");
 router.use("/searchRestaurant", restaurantRoutes);
 // router.use("/", loginUser);
 router.use("/", signUp);
+router.use("/check", checkUser);
   
   
   

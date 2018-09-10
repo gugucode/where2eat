@@ -4,6 +4,9 @@
     background: #2E2E3A;
     padding: 10px 20%;
 }
+a{
+    margin: 0 7px;
+}
 .icon{
     display: inline-block;
 }
