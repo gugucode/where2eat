@@ -20,7 +20,8 @@
 .st7{font-size:74.6628px;}
 
 *{
- box-sizing: border-box;   
+ box-sizing: border-box;
+ font-family: "museo-sans-rounded", sans-serif;
 }
 .mycontainer{
     
@@ -48,26 +49,73 @@ p.success{
 p.fail{
     color: #F46036;
 }
+
 #home{
-    padding: 20px 10%;
+    padding: 0 10%;
 }
+
 #home .col1{
     display: inline-block;
-    width: 70%;
+    width: 65%;
 }
 #home .col2{
     display: inline-block;
-    width: 30%;
     z-index: 1000;
+    width: 35%;
 }
 
-
-.col2 .login{
+.col1 #svgDiv{
+    padding-top: 7%;
+    margin: 0 -10%;
+}
+.col2 .intro{
     background: rgba(255, 255, 255, 0.8);
-    padding: 10%;
-    box-shadow: #aaa 0 0 2px;
+    padding: 0;
     margin-top: 37%;
-    width:100%;
-    margin-left: -50%;
+    /* width:100%; */
+    text-align: left;
+    margin-right: -20%;
+    margin-left: 20%;
+}
+
+.intro h1{
+    font-weight: 1000;
+    font-size: 60px;
+    margin-top: 20px;
+    font-family: "museo-sans-rounded", sans-serif;
+    line-height: 0.88em;
+    color: #1A1A1A;
+    width: 120%;
+}
+h1 span{
+    font-size: 80px;
+    line-height: 1.2em;
+    /* font-family: "fatfrank"; */
+    font-weight: 900;
+}
+.intro p{
+    font-size: 14px;
+}
+
+.loginDiv{
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: #aaa 0 0 2px;
     border-radius: 10px;
+    width: 240px;
+    right:20%;
+    z-index: 10001
+}
+.loginDiv form{
+    padding: 20px;
+}
+
+.invisible{
+    display: none;
+}
+@media only screen and (max-width: 800px){
+   
+    #home .col2, #home .col1{
+        width: 100%;
+    }
 }

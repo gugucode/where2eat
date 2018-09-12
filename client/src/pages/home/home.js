@@ -4,7 +4,29 @@ import {Submit} from "../../components/submitBtn"
 import {HomeHeader} from "../../components/homeHeader"
 import API from "../../utils/API";
 import "./home.css"
+import { TimelineLite, CSSPlugin, AttrPlugin, Elastic, Power4, Power1 }  from "gsap/all";
+//this line is to avoid tree shaking : https://greensock.com/docs/NPMUsage
+const plugins = [ CSSPlugin, AttrPlugin ];
+
 class Home extends Component {
+
+    // loginAnimation = () =>{
+    //     var tl = new TimelineLite();
+    //     tl.fromTo(".loginDiv", 0.25,{height:0, transformOrigin: "50% 0%"},{height:300})
+    // }
+
+    // ShowLogin = () =>{
+    //     const form = document.getElementById("loginForm")
+    //     form.classList.toggle('invisible');
+    //     this.loginAnimation();
+    // }
+    
+    componentDidMount = () =>{
+        var tl = new TimelineLite();
+        tl.staggerFrom(".img1", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4);
+        tl.staggerTo(".img1", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1);
+        tl.staggerFrom(".img2", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4, "+=0.3");
+    }
     state = {
         username: "",
         password: "",
@@ -56,36 +78,40 @@ class Home extends Component {
     render() {
         return (
             <div className="mycontainer">
-                <HomeHeader/>
-                <div className="row" id="home">
-                    <div className="col1">
-                        <div id="svgDiv">
-                        <svg id="homesvg" viewBox="0 0 1024 768">
-
-                            <circle id="circle" className="blue" cx="714.1" cy="377.6" r="104"/>
-                            
-                            <image href="./img/1-b.png"  transform="matrix(0.3195 0 0 0.3195 249.265 116.3358)">
-                            </image>
-                            <polygon id="floor" className="red" points="167.4,626.5 421.3,559 729.2,575.2 297,650.8 "/>
-                            <image href="./img/1-p.png"  transform="matrix(7.640124e-02 0 0 7.640124e-02 763.2389 368.2395)">
-                            </image>
-                            <image href="./img/1-t.png"  transform="matrix(0.2132 0 0 0.2132 195.0435 454.0901)">
-                            </image>
-
-                            {/* <image href="./img/2-b.png"  transform="matrix(0.2938 0 0 0.2938 264.1174 145.792)">
-                            </image>
-
-                            <image href="./img/2-p.png"  transform="matrix(0.1054 0 0 0.1054 220 481.5145)">
-                            </image>
-
-                            <image href="./img/2-s.png"  transform="matrix(9.469943e-02 0 0 9.469943e-02 683.7705 452.4616)">
-                            </image> */}
-                        </svg>
-                        </div>
+                <HomeHeader
+                />
+                <div className="container">
+                    <div id="login" className = "loginDiv collapse">
+                        
+                            <form>
+                            {this.state.loginMsg ? 
+                            <div className="alert">
+                                <p className= {this.state.alerttype}>{this.state.loginMsg}</p>
+                            </div> : ""}
+                                <Input
+                                    name= "username"
+                                    value = {this.state.username}
+                                    onChange = {this.handleInputChange}
+                                    label = "User name:"
+                                />
+                                <Input
+                                    type="password"
+                                    name="password"
+                                    value = {this.state.password}
+                                    onChange = {this.handleInputChange}
+                                    label= "Password"
+                                />
+                                <Submit
+                                    type="submit" onClick={this.handleSignIn}
+                                />
+                            <p>Don't have an account? Sign up <a href="/signup">Here</a></p>
+                            </form>
                     </div>
-                    <div className="col2">
-                        <div className="login">
-                            <div className="logoDiv">
+                <div className="row" id="home">
+                    
+                    <div className="col2 mycol">
+                        <div className="intro">
+                            {/* <div className="logoDiv">
                                 <svg x="0px" y="0px" viewBox="0 0 583 138">
                                     
                                     <g id="icon">
@@ -126,34 +152,47 @@ class Home extends Component {
                                     </g>
                                 </svg>
 
-                            </div>
-                            <div className = "loginDiv">
-                            {this.state.loginMsg ? 
-                                <div className="alert">
-                                    <p className= {this.state.alerttype}>{this.state.loginMsg}</p>
-                                </div> : ""}
+                            </div> */}
+                            <h1>
+                                Life is too short to not know where to eat!
+                                {/* Don't fight over the place you want to go,<br></br> <span>Play it!</span> */}
+                            </h1>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a maximus felis, vitae efficitur arcu. In eleifend lacus vitae urna eleifend viverra. Maecenas eget ullamcorper orci, nec scelerisque mi. Nam congue arcu a varius commodo. Pellentesque vehicula ullamcorper efficitur. In eros erat, viverra at mauris eget, placerat auctor enim. 
+
+
+                            </p>
                             
-                                <Input 
-                                    name= "username"
-                                    value = {this.state.username}
-                                    onChange = {this.handleInputChange}
-                                    label = "User name:"
-                                />
-                                <Input
-                                    name="password"
-                                    value = {this.state.password}
-                                    onChange = {this.handleInputChange}
-                                    label= "Password"
-                                />
-                                <Submit
-                                    onClick={this.handleSignIn}
-                                />
-                                <p>Don't have an account? Sign up <a href="/signup">Here</a></p>
-                            </div>
                         </div>
                         
                     </div>
+                    <div className="col1 mycol">
+                        <div id="svgDiv">
+                        <svg id="homesvg" viewBox="0 0 1024 768">
+
+                            <circle id="circle" className="blue" cx="714.1" cy="377.6" r="104"/>
+                            
+                            <image className="img1" href="./img/1-b.png"  transform="matrix(0.3195 0 0 0.3195 249.265 116.3358)">
+                            </image>
+                            <polygon id="floor" className="red" points="167.4,626.5 421.3,559 729.2,575.2 297,650.8 "/>
+                            <image className="img1" href="./img/1-p.png"  transform="matrix(7.640124e-02 0 0 7.640124e-02 763.2389 368.2395)">
+                            </image>
+                            <image className="img1" href="./img/1-t.png"  transform="matrix(0.2132 0 0 0.2132 195.0435 454.0901)">
+                            </image>
+
+                            <image className="img2" href="./img/2-b.png"  transform="matrix(0.2938 0 0 0.2938 264.1174 145.792)">
+                            </image>
+
+                            <image className="img2" href="./img/2-p.png"  transform="matrix(0.1054 0 0 0.1054 220 481.5145)">
+                            </image>
+
+                            <image  className="img2" href="./img/2-s.png"  transform="matrix(9.469943e-02 0 0 9.469943e-02 683.7705 452.4616)">
+                            </image>
+                        </svg>
+                        </div>
+                    </div>
                     
+                </div>
                 </div>
             </div>
         )
