@@ -155,7 +155,7 @@ class Home extends Component {
 
                             </div>
                             <h1>
-                                Life is too short for indecision!
+                                Life is too short to be indecisive!
                             </h1>
                             <p>
                             Where2eat breaks the restaurant selection process into quick and simple one-on-one comparisons. It's a gamified experience that is designed to help YOU choose restaurants quickly! 
@@ -196,7 +196,7 @@ class Home extends Component {
                 </div>
                 </div>
                 <div className="footer">
-                    <img id="bg-img" src="./img/bg.png"/>
+                    <img id="bg-img" src="./img/bg-2.png"/>
                 </div>
             </div>
         )

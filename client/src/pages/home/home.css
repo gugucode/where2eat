@@ -1,21 +1,21 @@
 .red{
-    fill:#F46036;
-    background:#F46036;
+    fill:#e55812;
+    background:#e55812;
 }
 .yellow{
-    fill:#E8C547;
-    background:#E8C547;
+    fill:#efe7da;
+    background:#efe7da;
 }
 .blue{
-    fill:#1BA2E5;
-    background:#1BA2E5;
+    fill:#0e4749;
+    background:#0e4749;
 }
 .green{
-    fill:#69B578;
-    background:#69B578;
+    fill:#95c623;
+    background:#95c623;
 }
-.st4{fill:#1A1A1A;}
-.st5{fill:none;stroke:#1A1A1A;stroke-width:4.4928;stroke-miterlimit:10;}
+.st4{fill:#002626;}
+.st5{fill:none;stroke:#002626;stroke-width:4.4928;stroke-miterlimit:10;}
 .st6{
     font-family:"museo-sans-rounded", sans-serif;
     font-weight: 600;
@@ -32,11 +32,13 @@
     margin: 0;
     width: 100%;
     min-height: 100vh;
+    overflow: hidden;  
 }
 #content{
     flex: 1 0 auto;
     height: fit-content;
-    min-height: 70vh
+    min-height: 70vh;
+    padding-bottom: 40px;
 }
 .footer{
     flex-shrink: 0;
@@ -99,12 +101,13 @@ p.fail{
 
 .intro h1{
     font-weight: 1000;
-    font-size: 60px;
+    font-size: 50px;
     margin-top: 20px;
     font-family: "museo-sans-rounded", sans-serif;
     line-height: 0.88em;
-    color: #1A1A1A;
+    color: #002626;
     width: 120%;
+    hyphens: auto;
 }
 h1 span{
     font-size: 80px;
@@ -165,6 +168,9 @@ h1 span{
         margin-left: 0;
         margin-right: 0;
         margin-top: 10%;
+    }
+    .intro h1{
+        width: 100%;
     }
     .col1 #svgDiv{
         padding-top: 0px;
