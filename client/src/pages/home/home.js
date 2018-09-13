@@ -78,6 +78,7 @@ class Home extends Component {
     render() {
         return (
             <div className="mycontainer">
+            <div id="content">
                 <HomeHeader
                 />
                 <div className="container">
@@ -111,7 +112,7 @@ class Home extends Component {
                     
                     <div className="col2 mycol">
                         <div className="intro">
-                            {/* <div className="logoDiv">
+                            <div className="logoDiv">
                                 <svg x="0px" y="0px" viewBox="0 0 583 138">
                                     
                                     <g id="icon">
@@ -152,13 +153,12 @@ class Home extends Component {
                                     </g>
                                 </svg>
 
-                            </div> */}
+                            </div>
                             <h1>
-                                Life is too short to not know where to eat!
-                                {/* Don't fight over the place you want to go,<br></br> <span>Play it!</span> */}
+                                Life is too short for indecision!
                             </h1>
                             <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a maximus felis, vitae efficitur arcu. In eleifend lacus vitae urna eleifend viverra. Maecenas eget ullamcorper orci, nec scelerisque mi. Nam congue arcu a varius commodo. Pellentesque vehicula ullamcorper efficitur. In eros erat, viverra at mauris eget, placerat auctor enim. 
+                            Where2eat breaks the restaurant selection process into quick and simple one-on-one comparisons. It's a gamified experience that is designed to help YOU choose restaurants quickly! 
 
 
                             </p>
@@ -170,11 +170,11 @@ class Home extends Component {
                         <div id="svgDiv">
                         <svg id="homesvg" viewBox="0 0 1024 768">
 
-                            <circle id="circle" className="blue" cx="714.1" cy="377.6" r="104"/>
+                            {/* <circle id="circle" className="blue" cx="714.1" cy="377.6" r="104"/> */}
                             
                             <image className="img1" href="./img/1-b.png"  transform="matrix(0.3195 0 0 0.3195 249.265 116.3358)">
                             </image>
-                            <polygon id="floor" className="red" points="167.4,626.5 421.3,559 729.2,575.2 297,650.8 "/>
+                            {/* <polygon id="floor" className="red" points="167.4,626.5 421.3,559 729.2,575.2 297,650.8 "/> */}
                             <image className="img1" href="./img/1-p.png"  transform="matrix(7.640124e-02 0 0 7.640124e-02 763.2389 368.2395)">
                             </image>
                             <image className="img1" href="./img/1-t.png"  transform="matrix(0.2132 0 0 0.2132 195.0435 454.0901)">
@@ -193,6 +193,10 @@ class Home extends Component {
                     </div>
                     
                 </div>
+                </div>
+                </div>
+                <div className="footer">
+                    <img id="bg-img" src="./img/bg.png"/>
                 </div>
             </div>
         )

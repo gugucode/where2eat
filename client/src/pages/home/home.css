@@ -16,7 +16,10 @@
 }
 .st4{fill:#1A1A1A;}
 .st5{fill:none;stroke:#1A1A1A;stroke-width:4.4928;stroke-miterlimit:10;}
-.st6{font-family:'Rubik';}
+.st6{
+    font-family:"museo-sans-rounded", sans-serif;
+    font-weight: 600;
+}
 .st7{font-size:74.6628px;}
 
 *{
@@ -24,11 +27,25 @@
  font-family: "museo-sans-rounded", sans-serif;
 }
 .mycontainer{
-    
+    display: flex;
+    flex-direction: column;
     margin: 0;
     width: 100%;
+    min-height: 100vh;
 }
-
+#content{
+    flex: 1 0 auto;
+    height: fit-content;
+    min-height: 70vh
+}
+.footer{
+    flex-shrink: 0;
+    z-index: -1;
+    margin-top: -30vh;
+}
+#bg-img{
+    width: 100%;
+}
 body{
     background: white;
 }
@@ -65,17 +82,19 @@ p.fail{
 }
 
 .col1 #svgDiv{
-    padding-top: 7%;
+    padding-top: 12%;
     margin: 0 -10%;
 }
 .col2 .intro{
     background: rgba(255, 255, 255, 0.8);
     padding: 0;
     margin-top: 37%;
+    padding: 10px;
     /* width:100%; */
     text-align: left;
     margin-right: -20%;
     margin-left: 20%;
+    border-radius: 5px;
 }
 
 .intro h1{
@@ -95,8 +114,11 @@ h1 span{
 }
 .intro p{
     font-size: 14px;
+    margin-top:40px;
 }
-
+.intro .logoDiv{
+    width: 60%;
+}
 .loginDiv{
     position: absolute;
     background: rgba(255, 255, 255, 0.8);
@@ -113,9 +135,40 @@ h1 span{
 .invisible{
     display: none;
 }
+
+
+@media only screen and (max-width: 1000px){
+
+    #home{
+        /* background: red; */
+        padding: 0 2%;
+        margin:0;
+    }
+}
+
+
 @media only screen and (max-width: 800px){
-   
+   .footer{
+       /* display: none; */
+   }
+
+   .mycontainer{
+       overflow: hidden;       
+   }
+   #content{
+    padding-bottom: 40px;
+   }
     #home .col2, #home .col1{
         width: 100%;
     }
+    .col2 .intro{
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 10%;
+    }
+    .col1 #svgDiv{
+        padding-top: 0px;
+    }
+
 }
+
