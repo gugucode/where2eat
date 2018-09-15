@@ -20,6 +20,13 @@
     font-family:"museo-sans-rounded", sans-serif;
     font-weight: 600;
 }
+.flwrs{
+    opacity:0.92;
+    fill:#e55812;
+}
+.rest-line{
+    fill:none;stroke:#95C623;stroke-width:19;stroke-miterlimit:10;
+}
 .st7{font-size:74.6628px;}
 
 *{

@@ -101,48 +101,51 @@ class Home extends Component {
                 
                 <div className="col-md-4"></div>
                 <div className="signupCol col-md-4">
-                    <p id="alert">{this.state.alert}</p>
-                    <Input
-                        name= "signUpFirst"
-                        value = {this.state.signUpFirst}
-                        onChange = {this.handleInputChange}
-                        label = "First Name:"
-                    />
-                    <Input
-                        name= "signUpLast"
-                        value = {this.state.signUpLast}
-                        onChange = {this.handleInputChange}
-                        label = "Last Name:"
-                    />
-                    <Input
-                        name= "signUpUser"
-                        value = {this.state.signUpUser}
-                        onChange = {this.handleInputChange}
-                        label = "Pick a Username:"
-                    />
-                    <Input
-                        name= "signUpEmail"
-                        value = {this.state.signUpEmail}
-                        onChange = {this.handleInputChange}
-                        label = "Email Address:"
-                    />
-                    <Input
-                        type= "password"
-                        name= "signUpPass"
-                        value = {this.state.signUpPass}
-                        onChange = {this.handleInputChange}
-                        label = "Choose Password"
-                    />
-                    <Input
-                        type= "password"
-                        name= "signUpPass2"
-                        value = {this.state.signUpPass2}
-                        onChange = {this.handleInputChange}
-                        label = "Repeat Password"
-                    />
-                    <Submit
-                        onClick={this.handleSignUp}
-                    />
+                    <form>
+                        <p id="alert">{this.state.alert}</p>
+                        <Input
+                            name= "signUpFirst"
+                            value = {this.state.signUpFirst}
+                            onChange = {this.handleInputChange}
+                            label = "First Name:"
+                        />
+                        <Input
+                            name= "signUpLast"
+                            value = {this.state.signUpLast}
+                            onChange = {this.handleInputChange}
+                            label = "Last Name:"
+                        />
+                        <Input
+                            name= "signUpUser"
+                            value = {this.state.signUpUser}
+                            onChange = {this.handleInputChange}
+                            label = "Pick a Username:"
+                        />
+                        <Input
+                            name= "signUpEmail"
+                            value = {this.state.signUpEmail}
+                            onChange = {this.handleInputChange}
+                            label = "Email Address:"
+                        />
+                        <Input
+                            type= "password"
+                            name= "signUpPass"
+                            value = {this.state.signUpPass}
+                            onChange = {this.handleInputChange}
+                            label = "Choose Password"
+                        />
+                        <Input
+                            type= "password"
+                            name= "signUpPass2"
+                            value = {this.state.signUpPass2}
+                            onChange = {this.handleInputChange}
+                            label = "Repeat Password"
+                        />
+                        <Submit
+                            type="submit"
+                            onClick={this.handleSignUp}
+                        />
+                    </form>
                 </div>
                 <div className="col-md-4"></div>
             </div>
