@@ -122,23 +122,7 @@ class FindFriends extends React.Component {
     }).catch(err => {
       console.log(err);
     })
-    // const searchKey = this.state.searchKey;
-    // if(this.state.searchKey && this.verifyFriendInDB(this.state.searchKey)){
-    //   // const searchKey = this.state.searchKey;
-    //   API.addFriend({
-    //     user: "erin",
-    //     friend: searchKey
-    //   }).then(result => {
-    //     console.log(result);
-    //       $("#addStatus").text(result.data)
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     $("#addStatus").text(`Add Friend request failed`)
-    //   });
-    // }else{
-    //   $("#addStatus").text(`Sorry, we don't have a user named '${searchKey}'!`);
-    // }
+
   }
 
   render() {

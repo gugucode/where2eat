@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import AfterLoginHome from "./pages/afterLogin/home";
+import Friend from "./pages/afterLogin/friends";
 import Home from './pages/home';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -47,11 +48,13 @@ class App extends Component {
     { label: "Frank" }
   ];
 
+
   render() {
     return (
       <Router>
         <div className="App">
           <Switch>
+            <Route exact path="/friend" component={Friend} />
             <Route exact path="/" component={Home} />
             <Route exact path="/dashboard" render={() => <AfterLoginHome data={this.testData} friends={this.friends} />} />
           </Switch>

@@ -31,13 +31,11 @@ router.use("/", signUp);
     res.send(req.session)
   })
   
-  router.get("/logout", function(req, res){
-    console.log("Logged out")
-    req.logout();
-    res.redirect("/")
-  })
-
-
+//   router.get("/logout", function(req, res){
+//     console.log("Logged out")
+//     req.logout();
+//     res.redirect("/")
+//   })
 
 
 module.exports = router;

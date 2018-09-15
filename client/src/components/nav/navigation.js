@@ -13,10 +13,10 @@ class Nav extends React.Component {
               <a
                 className="nav-link"
                 data-toggle="modal"
-                href="#findFriendComp"
+                href="/api/friends"
                 data-whatever="@mdo"
               >
-                Find friends
+                friends
               </a>
             </li>
 
@@ -40,7 +40,7 @@ class Nav extends React.Component {
 
             {/* log out */}
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/logout">
                 Log out
               </a>
             </li>
