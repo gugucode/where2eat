@@ -4,7 +4,9 @@ import AfterLoginHome from "./pages/afterLogin/home";
 import Friend from "./pages/afterLogin/friends";
 import Home from './pages/home';
 import Signup from './pages/signUp';
+import NoMatch from "./pages/noMatch";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import axios from "axios";
 
 class App extends Component {
 
@@ -49,19 +51,49 @@ class App extends Component {
     { label: "Frank" }
   ];
 
+  constructor(props){
+    super(props);
+    this.state= {
+      loggedIn: false,
+    }
+  }
+  
+  componentWillMount= () =>{
+    axios.get("/api/auth").then((result)=>{
+      if(result.data.passport){
+        this.setState({loggedIn:true});
+        
+      }else{
+        // window.location.href= ("/");
+        this.setState({loggedIn:false});
+      }
+    })
+  }
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Switch>
-            <Route exact path="/friend" component={Friend} />
-            <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard" render={() => <AfterLoginHome data={this.testData} friends={this.friends} />} />
-            <Route exact path="/signup" component={Signup}/>
-          </Switch>
-        </div>
-      </Router>
+      this.state.loggedIn ? 
+      (
+        <Router>
+          <div className="App">
+            <Switch>
+              <Route exact path="/friends" component={Friend} />
+              <Route exact path="/dashboard" render={() => <AfterLoginHome data={this.testData} friends={this.friends} />} />
+              <Route component={NoMatch} />
+            </Switch>
+          </div>  
+        </Router> 
+        ) : (
+          <Router>
+          <div className="App">
+            <Switch>
+              <Route exact path="/" component={Home} />            
+              <Route exact path="/signup" component={Signup}/>
+              <Route component={NoMatch} />
+            </Switch>
+          </div>  
+        </Router>
+      )
     );
   }
 }

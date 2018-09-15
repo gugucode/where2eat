@@ -2,26 +2,23 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Nav from "../../components/nav/navigation";
 import FindFriends from "../../components/friends/findFriends";
-import ShowAllFriends from "../../components/friends/showAllFriends";
+import ShowFriends from "../../components/friends/showAllFriends";
+import API from "../../utils/API";
 
 class FriendPage extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      allFriends: []
+    }
+  }
+
   render() {
     return (
       <div className="container-fluid">
-        <Nav />
-        <div className="row justify-content-center">
-          {/* show restaurants */}
-          <div className="col-12 col-md-5">
-            <div className="col-12">
-                <ShowAllFriends data={this.state.allFriends} />
-            </div>   
-          </div>
-
-          {/* search restaurants and find friends */}
-          <div className="col-12 col-md-6">           
-            <FindFriends />       
-          </div>
-        </div>
+        <Nav /> 
+        <FindFriends />       
       </div>
     );
   }

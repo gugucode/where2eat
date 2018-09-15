@@ -2,6 +2,15 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+      return next();
+  }
+  res.redirect("/");
+}
+
+router.use("/user", isLoggedIn, apiRoutes);
+
 // API Routes
 router.use("/api", apiRoutes);
 

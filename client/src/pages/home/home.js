@@ -47,8 +47,8 @@ class Home extends Component {
 
     }
     state = {
-        username: "",
-        password: "",
+        username: "kiki",
+        password: "M1234m",
         auth: false,
         loginMsg: "",
         alerttype: "normal",

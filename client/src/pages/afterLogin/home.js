@@ -5,8 +5,9 @@ import { ShowRestList } from "../../components/showRest/showRestList/showRestLis
 import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 import InviteForm from "../../components/invite/inviteForm";
 import RestSearch from "../../components/restaurantSearch/restSearch";
-import CreateEvent from "../../components/createEvent/createEventForm";
+// import CreateEvent from "../../components/createEvent/createEventForm";
 import axios from "axios";
+
 class AfterLoginHome extends Component {
   constructor(props){
     super(props);
@@ -15,20 +16,20 @@ class AfterLoginHome extends Component {
     }
   }
   
-  componentWillMount= () =>{
-    axios.get("/api/auth").then((result)=>{
-      if(result.data.passport){
-        this.setState({loggedIn:true});
+  // componentWillMount= () =>{
+  //   axios.get("/api/auth").then((result)=>{
+  //     if(result.data.passport){
+  //       this.setState({loggedIn:true});
         
-      }else{
-        window.location.href= ("/");
-        this.setState({loggedIn:false});
-      }
-    })
-  }
+  //     }else{
+  //       window.location.href= ("/");
+  //       this.setState({loggedIn:false});
+  //     }
+  //   })
+  // }
 
   render() {
-    if(this.state.loggedIn){
+    // if(this.state.loggedIn){
     return (
       <div className="container-fluid">
         <Nav />
@@ -58,21 +59,21 @@ class AfterLoginHome extends Component {
             <div className="row">
               <div className="col-12">
                 <InviteForm friends={this.props.friends} />
-                <CreateEvent />
+                {/* <CreateEvent /> */}
               </div>
             </div>
           </div>
         </div>
       </div>
     );
-  }else{
-    return (
-      <div>
-        <h1>Nope</h1>
-      </div>
-    )
-  }
-  }
+  }//else{
+  //   return (
+  //     <div>
+  //       <h1>Nope</h1>
+  //     </div>
+  //   )
+  // }
+  //}
 }
 
 AfterLoginHome.propTypes = {

@@ -14,17 +14,30 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand">Brand Name</a>
+        <a className="navbar-brand">Where2eat</a>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto">
+          <li className="nav-item active">
+              <a className="nav-link" href="#">
+                Name <span className="sr-only">(current)</span>
+              </a>
+            </li>
+
+            {/* log out */}
+            <li className="nav-item">
+              <a className="nav-link" onClick= {this.handleLogout}>
+                Log out
+              </a>
+            </li>
+            
             {/* find friend */}
             <li className="nav-item active">
               <a
                 className="nav-link"
-                data-toggle="modal"
-                href="/api/friends"
-                data-whatever="@mdo"
+                // data-toggle="modal"
+                href="/friends"
+                // data-whatever="@mdo"
               >
                 friends
               </a>
@@ -39,23 +52,6 @@ class Nav extends React.Component {
                 data-whatever="@mdo"
               >
                 Create Event
-              </a>
-            </li>
-
-            <li className="nav-item active">
-              <a className="nav-link" href="#">
-                Name <span className="sr-only">(current)</span>
-              </a>
-            </li>
-
-            {/* log out */}
-            <li className="nav-item">
-<<<<<<< HEAD
-              <a className="nav-link" href="/logout">
-=======
-              <a className="nav-link" onClick= {this.handleLogout}>
->>>>>>> a67f7fab3d39b6435627e1ebbaccf2f898106531
-                Log out
               </a>
             </li>
           </ul>

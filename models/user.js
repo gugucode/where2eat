@@ -20,6 +20,7 @@ module.exports = function(sequelize, DataTypes) {
 
       friends: {
         type: DataTypes.TEXT,
+        defaultValue: ""       
       },
 
       password: {

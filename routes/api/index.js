@@ -7,33 +7,31 @@ const saveRest = require("./saveRest");
 const event = require("./event")
 const checkUser = require("./checkUsername")
 
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/");
+}
 
-// Book routes
-router.use("/friend", friend);
+// friend routes
+router.use("/friend", isLoggedIn, friend);
 // router.use("/addFriend", friend);
-router.use("/event", event);
-router.use("/saved", saveRest);
+router.use("/event", isLoggedIn, event);
+router.use("/saved", isLoggedIn, saveRest);
+
 const restaurantRoutes = require("./restaurant");
-
-
 router.use("/searchRestaurant", restaurantRoutes);
+
 // router.use("/", loginUser);
 router.use("/", signUp);
 router.use("/check", checkUser);
   
   
   
-<<<<<<< HEAD
-//   router.get("/logout", function(req, res){
-//     console.log("Logged out")
-//     req.logout();
-//     res.redirect("/")
-//   })
-=======
 
 
 
->>>>>>> a67f7fab3d39b6435627e1ebbaccf2f898106531
 
 
 module.exports = router;

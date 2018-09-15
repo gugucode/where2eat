@@ -8,12 +8,12 @@ import "./signUp.css"
 
 class Home extends Component {
     state = {
-        signUpUser: "",
-        signUpEmail: "",
-        signUpPass: "",
-        signUpPass2: "",
-        signUpFirst: "",
-        signUpLast: "",
+        signUpUser: "kiki",
+        signUpEmail: "kiki@gmail.com",
+        signUpPass: "M1234m",
+        signUpPass2: "M1234m",
+        signUpFirst: "Kiki",
+        signUpLast: "Ya",
         alert: "",
         alerttype: "normal",
 
@@ -59,13 +59,16 @@ class Home extends Component {
     }
 
     validateSignUp = userInfo =>{
+        console.log("hello")
         if(this.validateEmail(userInfo.email) && userInfo.firstName && this.validatePassword(userInfo.password) && this.confirmPassword(userInfo.password2, userInfo.password)){
             API.checkUser(userInfo.username).then((result)=>{
                 if (result.data.exists){
                     this.setState({alert: "This username is already taken"});
                     return false;
                 }else{
+                    console.log("can sign up")
                     API.signUp(userInfo).then(result =>{
+                        console.log(result)
                         this.setState({alert: "Username Successfully created"})
                         console.log(result.data)
                         window.location.href= "/"

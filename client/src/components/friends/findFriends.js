@@ -1,7 +1,7 @@
 import React from "react";
 import $ from "jquery";
 import API from "../../utils/API";
-
+import ShowFriends from "../../components/friends/showAllFriends";
 
 
 class FindFriends extends React.Component {
@@ -9,19 +9,49 @@ class FindFriends extends React.Component {
     super(props);
     this.state = {
       searchKey: "",
-      potentialFriends: []
+      potentialFriends: [],
+      allFriends: []
     };
   }
 
+  componentDidMount = () =>{
+    console.log("mount")
+    this.getAllFriends();
+  }
+
+  getAllFriends = () => {
+    API.getAllFriends()
+    .then(result => {
+      // console.log("mount")
+      console.log(result);
+      if(Array.isArray(result.data) && result.data.length > 0){
+        console.log("set")
+        this.setState({
+          allFriends: result.data.filter(f => f.length > 0) 
+        }, ()=>{
+          console.log(this.state.allFriends)
+        })
+      }
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+  }
   // set searchKey and send request to retrive a list of potential friends
   handleSearchKeyChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => {
-      API.searchFriends(this.state.searchKey)
-      .then(result => {
-        console.log(result.data);
-        this.setState({ potentialFriends: result.data });
-      });
+      if(this.state.searchKey){
+        API.searchFriends(this.state.searchKey)
+        .then(result => {
+          console.log(result);
+          if(Array.isArray(result.data)){
+            this.setState({ potentialFriends: result.data},()=>{
+              console.log(this.state.allFriends)
+            });
+          }
+        });
+      }
     });
   };
 
@@ -49,11 +79,11 @@ class FindFriends extends React.Component {
     if(this.state.searchKey && this.verifyFriendInDB(this.state.searchKey)){
       // const searchKey = this.state.searchKey;
       API.addFriend({
-        user: "erin",
         friend: searchKey
       }).then(result => {
         console.log(result);
           $("#addStatus").text(result.data)
+          this.getAllFriends();
       })
       .catch(err => {
         console.log(err);
@@ -66,83 +96,59 @@ class FindFriends extends React.Component {
 
   render() {
     return (
-      <div
-        className="modal fade"
-        id="findFriendComp"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog" role="document">
-          {/* title and close button */}
-          <div className="modal-content">
-            <div className="modal-header">
+      <div className="row justify-content-center m-4">
+        {/* show friends */}
+        <div className="col-12 col-md-6">
+              <ShowFriends data={this.state.allFriends} />
+        </div>
+
+        <div className="col-12 col-md-4"> 
+          <form>
+            {/* title and close button */}
+            <div className="form-group">
               <h5 className="modal-title" id="exampleModalLabel">
                 Find New Friends
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <hr style={{ margin: "0 0 2em 0" }} />
+              </h5>             
             </div>
 
             {/* body */}
-            <div className="modal-body">
-              <form>
-
-                {/* Enter search key here */}
-                <div className="form-group">
-                  <label htmlFor="recipient-name" className="col-form-label">
-                    Find frind by user name:
-                  </label>
-                  <input
-                    onChange={this.handleSearchKeyChange}
-                    value={this.state.searchKey}
-                    type="text"
-                    className="form-control"
-                    name="searchKey"
-                    list="searchFriends"
-                  />
-                </div>
-
-                {/* print suggested friends here */}
-                <div className="form-group">
-                  <label htmlFor="message-text" className="col-form-label">
-                    Suggested result:
-                  </label>
-                  <div>
-                    <select id="searchFriends" name="searchKey" onChange={this.handleSelect} className="border border-info" multiple style={{width:"100%"}}>
-                      {this.state.potentialFriends.map(user => (
-                        <option key={user.id} value={user.username} >
-                          {user.username}
-                        </option>
-                      ))}
-                    </select>                  
-                  </div>
-                  <p id="addStatus"></p>
-                </div>
-              </form>
+            {/* Enter search key here */}
+            <div className="form-group">
+              <label htmlFor="recipient-name" className="col-form-label">
+                Find frind by user name:
+              </label>
+              <input
+                onChange={this.handleSearchKeyChange}
+                value={this.state.searchKey}
+                type="text"
+                className="form-control"
+                name="searchKey"
+                list="searchFriends"
+              />
             </div>
 
-            {/* footer: display close and add buttons */}
-            <div className="modal-footer" id="modal-addFriend">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button onClick={this.handleSubmit} type="button" className="btn btn-primary">
-                Add
-              </button>
+            {/* print suggested friends here */}
+            <div className="form-group">
+              <label htmlFor="message-text" className="col-form-label">
+                Suggested result:
+              </label>
+              <div>
+                <select id="searchFriends" name="searchKey" onChange={this.handleSelect} className="border border-info" multiple style={{width:"100%"}}>
+                  {this.state.potentialFriends.map(user => (
+                    <option key={user.id} value={user.username} >
+                      {user.username}
+                    </option>
+                  ))}
+                </select>                  
+              </div>
+              <p id="addStatus"></p>
             </div>
-          </div>
+
+            <button onClick={this.handleSubmit} type="button" className="btn btn-primary">
+              Add
+            </button>
+          </form>
         </div>
       </div>
     );

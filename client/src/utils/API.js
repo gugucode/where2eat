@@ -13,6 +13,8 @@ const API = {
   deleteRestaurant: function(id) {
     return axios.delete(`/api/saved/${id}`);
   },
+
+
   // Send a Pick-Restaurant invite to friends
   sendPickInvite: function(data) {
     // console.log("react send invite");
@@ -21,13 +23,22 @@ const API = {
 
   // search and add friend
   searchFriends: function(key,cb) {
-    // console.log(key);
-    return axios.get("api/friend/searchFriend/"+key);
+    if(key){
+      return axios.get("/user/friend/searchFriend/"+key);
+    }
   },
 
   addFriend: function(data) {
-    console.log(data);
-    return axios.put("api/friend/add",data)
+    // console.log(data);
+    return axios.put("/user/friend/add",data)
+  },
+
+  deleteFriend: function(data) {
+    return axios.put("/user/friend/delete",data)
+  },
+
+  getAllFriends: function() {
+    return axios.get("/user/friend/findAll")
   },
 
   createEvent: function(data) {
@@ -35,14 +46,17 @@ const API = {
     delete data['searchResult'];
     data.attendees = data.attendees.toString();
     console.log(data);
-    return axios.post("api/event/createevent",data);
+    return axios.post("user/event/createevent",data);
   },
 
+
+  // login API
   authenticate: function(data){
     return axios.post("/api/login", data);
   },
 
   signUp: function(data){
+    console.log("signup")
     return axios.post("/api/signup", data);
   },
 
