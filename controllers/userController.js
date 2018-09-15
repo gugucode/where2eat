@@ -2,12 +2,25 @@ const db = require("../models");
 
 module.exports = {
 
-
-
     createUser: function(req,res){
 
         db.User.create(req.body).then(dbUser => {
             res.json(dbUser)
+        })
+    },
+
+    checkUsername: (req, res) => {
+        const username = req.params.username;
+        db.User.findOne({
+            where:{
+                username: username,
+            }
+        }).then(result => {
+            if(result){
+                res.json({exists: true})
+            }else{
+                res.json({exists: false})
+            }
         })
     },
     // find user by username

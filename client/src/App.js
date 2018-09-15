@@ -3,10 +3,11 @@ import "./App.css";
 import AfterLoginHome from "./pages/afterLogin/home";
 import Friend from "./pages/afterLogin/friends";
 import Home from './pages/home';
+import Signup from './pages/signUp';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-
 class App extends Component {
+
   testData = [
     {
       photos_url: "images/rest1.png",
@@ -57,6 +58,7 @@ class App extends Component {
             <Route exact path="/friend" component={Friend} />
             <Route exact path="/" component={Home} />
             <Route exact path="/dashboard" render={() => <AfterLoginHome data={this.testData} friends={this.friends} />} />
+            <Route exact path="/signup" component={Signup}/>
           </Switch>
         </div>
       </Router>

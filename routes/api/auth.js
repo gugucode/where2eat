@@ -1,6 +1,13 @@
 const router = require("express").Router();
 const db = require("../../models");
 const bcrypt = require("bcrypt-nodejs")
+const loggedIn = function(req,res,next){
+    if(req.isAuthenticated()){
+        next()
+    }else{
+        res.json({loggedIn: false})
+    }
+}
 
 // const hashPassword = function(passport){
 //     return bcrypt.hashSync(bcrypt.genSaltSync(10))
@@ -43,10 +50,34 @@ module.exports= function(passport){
         })
     })
 
-    router.post("/login", passport.authenticate('local'), 
-    function(req,res){
-        res.json({success: true, message: "Logged in successfully"})
-        console.log("HEY")
+    router.post("/login", function(req,res,next){
+        passport.authenticate('local',function(err,user, info){
+            if(err) {
+                return next(err)
+            }
+            if(!user){
+                return res.json({success: false, message: "Wrong username or password"})
+            }
+            req.login(user, function(err){
+                if(err) {
+                    return next(err);
+                }
+                return res.json({success: true, message: "Logged in successfully"})
+            })
+        })(req,res,next)
     })
+
+    router.get("/logout", function(req, res){
+        console.log("Logged out")
+        req.session.destroy(function (err) {
+            console.log("here")
+            if(err){console.log(err)}
+            res.send({logout: true, message: "Logged out successfully"})
+        })
+      })
+
+      router.get("/auth", loggedIn, function(req, res, next){
+        res.send(req.session)
+      })
     return router;
 }

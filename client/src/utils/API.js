@@ -44,6 +44,10 @@ const API = {
 
   signUp: function(data){
     return axios.post("/api/signup", data);
+  },
+
+  checkUser: function(username){
+    return axios.get("/api/check/"+username)
   }
 };
 
