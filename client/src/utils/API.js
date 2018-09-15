@@ -1,15 +1,15 @@
 import axios from "axios";
 
 const API = {
-  // Retrieves saved articles from the db
+  // Retrieves saved restaurants from the db
   getRestaurant: function(cuisine, zipCode) {
     return axios.get("/api/searchRestaurant/" + cuisine + "/" + zipCode);
   },
-  // Saves a new article to the db
+  // Saves a new restaurant to the db
   saveRestaurant: function(savedRestaurant) {
     return axios.post("/api/saved", savedRestaurant);
   },
-  // Deletes an article from the db
+  // Deletes an restaurant from the db
   deleteRestaurant: function(id) {
     return axios.delete(`/api/saved/${id}`);
   },

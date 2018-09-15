@@ -1,5 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
+import $ from "jquery";
 
  // When delete article button is clicked, remove article from db
 const handleDeleteButton = (id) => {
@@ -33,7 +34,9 @@ class Saved extends React.Component{
     const newComment = {comment: this.state.comment};
     API.saveRestaurant(newComment)
     .then(result => {
-      console.log(result)
+      console.log(result);
+      $(".modal-footer").append ("You saved comment!");
+
     })
   
   
@@ -46,13 +49,15 @@ class Saved extends React.Component{
     <li className="list-group-item">
       <h4>
       <span>
-            <em>{this.props.data.name}</em> 
-            <em>{this.props.data.cuisines}</em>
-            <em>{this.props.data.user_rating.aggregate_rating}</em>
-          </span>
-          <span className="btn-group pull-right">
+        <ul>
+            <li>{this.newSave}</li> 
+            {/* <li>{this.props.findRestaurantByID.cuisines}</li>
+            <li>{this.props.findRestaurantByID.location.address}</li>
+          <li className="btn-group pull-right">
             <img href={this.props.data.thumb} target="_blank" />
-          </span>
+          </li> */}
+          </ul>
+      </span>
           
           <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Comment</button>
          
