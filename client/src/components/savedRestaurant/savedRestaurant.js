@@ -5,7 +5,7 @@ import $ from "jquery";
  // When delete article button is clicked, remove article from db
 const handleDeleteButton = (id) => {
   API.deleteRestaurant(id)
-    // .then(this.deleteRestaurant());
+    .then(this.savedRestaurant());
 }
 
 

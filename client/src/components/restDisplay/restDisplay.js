@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import API from "../../utils/API";
 
+
 export const DisplayResults = props => {
+
 
   // When save restaurant button is clicked, add restaurant to db
 const handleSaveButton = (id) => {
@@ -15,10 +17,10 @@ const handleSaveButton = (id) => {
                    rates: findRestaurantByID.user_rating.aggregate_rating,
                    rest_id: findRestaurantByID.id};
   API.saveRestaurant(newSave)
-  .then(result => {
-    console.log(result)
-  })
-  // .then(this.getSavedRestaurant());
+  // .then(result => {
+  //   console.log(result)
+  // })
+  .then(this.getSavedRestaurant());
 }
 
   return (
