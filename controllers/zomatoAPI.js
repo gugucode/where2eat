@@ -21,7 +21,8 @@ module.exports = {
       apikey: apiKey,
       cuisine: cuisine,
       lat: lat,
-      lon: lng
+      lon: lng,
+      count: 10
     }
 
     axios.get(queryURL,{params: d})

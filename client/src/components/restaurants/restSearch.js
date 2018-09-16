@@ -1,8 +1,9 @@
 import React from "react";
-import { DisplayResults } from "../restDisplay/restDisplay";
+import { DisplayResults } from "./restDisplay";
 import { ShowRestList } from "../../components/showRest/showRestList/showRestList";
 import API from "../../utils/API";
-import DeleteRest from "../../components/savedRestaurant/savedRestaurant";
+import DeleteRest from "./savedRestaurant";
+import MainRest from "../../pages/afterLogin/rest";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class RestSearch extends React.Component {
@@ -29,26 +30,29 @@ class RestSearch extends React.Component {
   //when the search submits, perform Zomato API search with user input
   handleFormSubmit = event => {
     event.preventDefault();
-    API.getRestaurant(this.state.cuisine, this.state.zipCode)
-    .then(res => {
-      // console.log(err)
-      console.log(res);
-      // window.location = 'http://www.google.com'
+    // API.getRestaurant(this.state.cuisine, this.state.zipCode)
+    // .then(res => {
+    //   // console.log(err)
+    //   console.log(res);
+    //   // window.location = 'http://www.google.com'
      
-      this.setState({ restArray: res.data }, () => {
-        console.log(this.state.restArray[0].restaurant)
-        console.log(this.state.restArray[1].restaurant)
-       
-      }
+    //   this.setState({ restArray: res.data }, () => {
+    //     console.log(this.state.restArray[0].restaurant)
+    //     console.log(this.state.restArray[1].restaurant)
+    //     window.location = `/rest/${this.state.cuisine}/${this.state.zipCode}`
+        
+    //   }
+      
      
 
-      );
-      // window.location = '/api/searchRestaurant/';
-      // this.setState({restName: res.data.response.restName},
-      //               {cuisine: res.data.respone.cuisine},
-      //               {photos: res.data.respone.photo},
-      //               {rates: res.data.response.rates})
-    });
+    //   );
+    //   // window.location = '/api/searchRestaurant/';
+    //   // this.setState({restName: res.data.response.restName},
+    //   //               {cuisine: res.data.respone.cuisine},
+    //   //               {photos: res.data.respone.photo},
+    //   //               {rates: res.data.response.rates})
+    // });
+    window.location = `/rest/${this.state.cuisine}/${this.state.zipCode}`
   };
 
   render() {
@@ -102,7 +106,7 @@ class RestSearch extends React.Component {
           </div>
         </div>
         <div className="row" id="result">
-        {
+        {/* {
           //  (this.state.restArray).length > 0 ? (<DisplayResults data={this.state.restArray[1].restaurant} />) : ""
           // (this.state.restArray).length > 0 ? (<ShowRestList data={this.state.restArray} />) : ""
           (this.state.restArray).length > 0 ? (<DisplayResults data={(this.state.restArray)[0].restaurant} />) : (<p></p>)
@@ -116,7 +120,7 @@ class RestSearch extends React.Component {
         }
         {
           (this.state.restArray).length > 0 ? (<DeleteRest data={(this.state.restArray)[1].restaurant} />) : <p></p>
-        }
+        } */}
           {/* <DisplayResults data={this.state.restArray[0]} /> */}
         </div>
       </div>

@@ -4,7 +4,7 @@ import Nav from "../../components/nav/navigation";
 import { ShowRestList } from "../../components/showRest/showRestList/showRestList";
 import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 import InviteForm from "../../components/invite/inviteForm";
-import RestSearch from "../../components/restaurantSearch/restSearch";
+import RestSearch from "../../components/restaurants/restSearch";
 // import CreateEvent from "../../components/createEvent/createEventForm";
 import axios from "axios";
 

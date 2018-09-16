@@ -6,7 +6,7 @@ import API from "../../utils/API";
 export const DisplayResults = props => {
 
 
-  // When save restaurant button is clicked, add restaurant to db
+//   // When save restaurant button is clicked, add restaurant to db
 const handleSaveButton = (id) => {
   const findRestaurantByID = props.data;
   console.log("findArticleByID: ", findRestaurantByID);
@@ -20,12 +20,14 @@ const handleSaveButton = (id) => {
   // .then(result => {
   //   console.log(result)
   // })
-  .then(this.getSavedRestaurant());
+  .then(result=>{
+    console.log(result)
+  });
 }
 
   return (
-    <div className="container">
-     <div className= "row">
+    // <div className="container">
+    //  <div className= "row">
       <div className = "col-md-6">
       <li className="list-group-item">
         <h4>
@@ -44,7 +46,7 @@ const handleSaveButton = (id) => {
        
       </li>
       <button className="btn btn-primary" onClick={() => handleSaveButton(props.data.id)}>Save</button>
-      <nav aria-label="Page navigation example">
+      {/* <nav aria-label="Page navigation example">
         <ul className="pagination">
          <li className="page-item">
           <a className="page-link" href="#" aria-label="Previous">
@@ -62,10 +64,11 @@ const handleSaveButton = (id) => {
           </a>
          </li>
         </ul>
-      </nav>
+      </nav> */}
      </div>
-    </div>
-   </div>
+     
+  //   </div>
+  //  </div>
 
   );
 };

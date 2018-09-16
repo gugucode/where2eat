@@ -1,20 +1,43 @@
 import React, { Component } from "react";
-import { DisplayResults } from "../restDisplay/restDisplay";
-import DeleteRest from "../savedRestaurant/savedRestaurant";
+import DisplaySearch from "./displaySearch";
+import DeleteRest from "./savedRestaurant";
 import API from "../../utils/API";
 
-class Main extends Component {
-
-    state = {
+class MainRest extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
       zipcode: "",
       cuisine: "",
-      saved: []
+      saved: [],
+      restArray: []
     };
-  
-  
-    componentDidMount() {
-      this.getSavedRestaurant()
-    }
+  }
+
+
+  componentDidMount = () => {
+    // console.log(this.props)
+    // // const { match: { params } } = this.props;
+    // // console.log(this.props.match);
+    // const { cuisine, zipCode } = this.props;
+    // console.log(cuisine);
+    // console.log(zipCode);
+    // this.getSavedRestaurant()
+    // API.getRestaurant({
+    //   cuisine: cuisine,
+    //   zipCode: zipCode
+    // })
+    // .then(res => {
+    //   console.log(res);
+    
+    //   this.setState({ restArray: res.data }, () => {
+    //     console.log(this.state.restArray[0].restaurant)
+    //     console.log(this.state.restArray[1].restaurant)
+    //     // window.location = `/rest/${this.state.cuisine}/${this.state.zipCode}`
+        
+    //   }
+    // )})
+  }
   
     getSavedRestaurant = () => {
       API.saveRestaurant()
@@ -26,7 +49,7 @@ class Main extends Component {
   
     // When save article button is clicked, add article to db
     handleSaveButton = (id) => {
-        const findRestaurantByID = props.data;
+        const findRestaurantByID = this.props.data;
         console.log("findArticleByID: ", findRestaurantByID);
         const newSave = {restName: findRestaurantByID.name, 
                          cuisine: findRestaurantByID.cuisines, 
@@ -64,7 +87,8 @@ class Main extends Component {
                     </div>
                     <div className="panel-body">
                       <ul className="list-group">
-                        {this.renderSaved()}
+                        {/* {this.renderSaved()} */}
+                        <DisplaySearch />
                       </ul>
                     </div>
                   </div>
@@ -79,4 +103,4 @@ class Main extends Component {
   
   }
   
-  export default Main;
+  export default MainRest;
