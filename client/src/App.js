@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
 import AfterLoginHome from "./pages/afterLogin/home";
+import Friend from "./pages/afterLogin/friends";
+import Events from "./pages/afterLogin/events";
 import Home from './pages/home';
+import Signup from './pages/signUp';
+import NoMatch from "./pages/noMatch";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import axios from "axios";
 
 class App extends Component {
+
   testData = [
     {
       photos_url: "images/rest1.png",
@@ -47,16 +52,54 @@ class App extends Component {
     { label: "Frank" }
   ];
 
+  constructor(props){
+    super(props);
+    this.state= {
+      loggedIn: false,
+      username: ""
+    }
+  }
+  
+  componentWillMount= () =>{
+    axios.get("/api/auth").then((result)=>{
+      console.log(result)
+      if(result.data.passport){
+        this.setState({
+          loggedIn:true,
+          username: result.data.passport.user.username
+        });
+      }else{
+        // window.location.href= ("/");
+        this.setState({loggedIn:false});
+      }
+    })
+  }
+
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard" render={() => <AfterLoginHome data={this.testData} friends={this.friends} />} />
-          </Switch>
-        </div>
-      </Router>
+      this.state.loggedIn ? 
+      (
+        <Router>
+          <div className="App">
+            <Switch>
+              <Route exact path="/events" render={()=> <Events username={this.state.username}/>} />
+              <Route exact path="/friends" render={()=> <Friend username={this.state.username}/>} />
+              <Route exact path="/dashboard" render={() => <AfterLoginHome username={this.state.username} data={this.testData} friends={this.friends} />} />
+              <Route component={NoMatch} />
+            </Switch>
+          </div>  
+        </Router> 
+        ) : (
+          <Router>
+          <div className="App">
+            <Switch>
+              <Route exact path="/" component={Home} />            
+              <Route exact path="/signup" component={Signup}/>
+              <Route component={NoMatch} />
+            </Switch>
+          </div>  
+        </Router>
+      )
     );
   }
 }

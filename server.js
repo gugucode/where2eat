@@ -52,7 +52,11 @@ app.use(express.static("client/build"));
 // app.use(express.static("./public"));
 
 
-
+app.get("/logout", function(req, res){
+  console.log("Logged out")
+  req.logout();
+  res.redirect("/")
+})
 
 
 // Start the API server

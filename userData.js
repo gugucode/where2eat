@@ -5,7 +5,7 @@ module.exports = [
         firstName: "Erin",
         lastName: "Ha",
         email: "yahoo@gmail.com",
-        friends: "john$"
+        friends: "john"
     },
     {
         username: "tom",
@@ -13,7 +13,7 @@ module.exports = [
         firstName: "Tom",
         lastName: "Haha",
         email: "yahoo@gmail.com",
-        friends: "ben$"
+        friends: "ben"
     },
     {
         username: "john",
@@ -21,7 +21,7 @@ module.exports = [
         firstName: "John",
         lastName: "Ha",
         email: "yahoo@gmail.com",
-        friends: "erin$"
+        friends: "erin"
     },
     {
         username: "ben",
@@ -29,7 +29,7 @@ module.exports = [
         firstName: "Ben",
         lastName: "Ha",
         email: "yahoo@gmail.com",
-        friends: "tom$"
+        friends: "tom"
     },
     {
         username: "benha",
@@ -37,6 +37,6 @@ module.exports = [
         firstName: "Ben",
         lastName: "Hehe",
         email: "yahoo@gmail.com",
-        friends: "tom$"
+        friends: "tom"
     }
 ]

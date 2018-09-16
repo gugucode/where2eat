@@ -1,47 +1,53 @@
 import React from "react";
+import Axios from "axios";
 
 class Nav extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
+  handleLogout = event =>{
+    event.preventDefault();
+    Axios.get("/api/logout").then(function(result){
+      console.log(result.data)
+      if(result.data.logout){
+        window.location.href = "/";
+      }
+    })
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand">Brand Name</a>
+        <a className="navbar-brand" href="/dashboard">Where2eat</a>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto">
-            {/* find friend */}
-            <li className="nav-item active">
-              <a
-                className="nav-link"
-                data-toggle="modal"
-                href="#findFriendComp"
-                data-whatever="@mdo"
-              >
-                Find friends
-              </a>
-            </li>
-
-            {/* create event */}
-            <li className="nav-item active">
-              <a
-                className="nav-link"
-                data-toggle="modal"
-                href="#createEvent"
-                data-whatever="@mdo"
-              >
-                Create Event
-              </a>
-            </li>
-
-            <li className="nav-item active">
+          <li className="nav-item active">
               <a className="nav-link" href="#">
-                Name <span className="sr-only">(current)</span>
+                Hello, {this.props.username} <span className="sr-only">(current)</span>
               </a>
             </li>
 
             {/* log out */}
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" onClick= {this.handleLogout}>
                 Log out
+              </a>
+            </li>
+
+            {/* find friend */}
+            <li className="nav-item active">
+              <a className="nav-link" href="/friends">
+                friends
+              </a>
+            </li>
+
+            {/* create event */}
+            <li className="nav-item active">
+              <a className="nav-link" href="/events">
+                Events
               </a>
             </li>
           </ul>

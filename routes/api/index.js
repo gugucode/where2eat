@@ -2,40 +2,34 @@ const passport = require("passport")
 const router = require("express").Router();
 // const inviteFriendRoutes = require("./inviteFriend");
 const friend = require("./friend");
-const loginUser = require("./login");
 const signUp = require("./auth")(passport);
 const saveRest = require("./saveRest");
 const event = require("./event")
-const loggedIn = function(req,res,next){
-    if(req.isAuthenticated()){
-        next()
-    }else{
-        res.send("You're not allowed to see this page")
+const checkUser = require("./checkUsername")
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
     }
+    res.redirect("/");
 }
 
-// Book routes
-router.use("/friend", friend);
+// friend routes
+router.use("/friend", isLoggedIn, friend);
 // router.use("/addFriend", friend);
-router.use("/event", event);
-router.use("/saved", saveRest);
+router.use("/event", isLoggedIn, event);
+router.use("/saved", isLoggedIn, saveRest);
+
 const restaurantRoutes = require("./restaurant");
-
-
 router.use("/searchRestaurant", restaurantRoutes);
-router.use("/", loginUser);
+
+// router.use("/", loginUser);
 router.use("/", signUp);
+router.use("/check", checkUser);
   
-  router.get("/dashboard", loggedIn, function(req, res, next){
-    console.log("HIT DASHBOARD")
-    res.send(req.session)
-  })
   
-  router.get("/logout", function(req, res){
-    console.log("Logged out")
-    req.logout();
-    res.redirect("/")
-  })
+  
+
 
 
 

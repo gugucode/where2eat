@@ -2,20 +2,53 @@ import React, { Component } from "react";
 import {Input} from "../../components/input"
 import {Submit} from "../../components/submitBtn"
 import {HomeHeader} from "../../components/homeHeader"
-import {SignupModal, SignupBtn} from "../../components/signupModal"
 import API from "../../utils/API";
 import "./home.css"
-import { userInfo } from "os";
+import { TweenMax, TimelineMax, CSSPlugin, AttrPlugin, Elastic, Power4, Power1 }  from "gsap/all";
+// import DrawSVGPlugin  from "../../gsap-bonus/DrawSVGPlugin";
+//this line is to avoid tree shaking : https://greensock.com/docs/NPMUsage
+const plugins = [ CSSPlugin, AttrPlugin];
+
 class Home extends Component {
+
+    gitterAnimation = (el,dur,deg1,deg2) =>{
+        var gitter = new TimelineMax({repeat: 20})
+        gitter.to(el, dur, {rotation:deg1, transformOrigin: "50% 50%"})
+        .to(el, dur, {rotation:deg2, transformOrigin: "50% 50%"}, "+=0.2")
+    }
+    
+    componentDidMount = () =>{
+        
+        let path = document.querySelector(".rest-line")
+        let l = path.getTotalLength();
+        TweenMax.set(path,{strokeDasharray:l});
+        let tl = new TimelineMax();
+        tl.staggerFrom(".img1", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4);
+        // tl.from(".rest-line", 1, {DrawSVGPlugin:"0% 0%"});
+        // tl.from(path,0.1,{opacity:0})
+        // tl.set(path,{strokeDasharray:0});
+        tl.fromTo(path,0.5,{strokeDashoffset:l}, {strokeDashoffset: 0}, "-=1.5")
+        tl.staggerFrom(".flwrs", 1, {scale:0, transformOrigin: "50% 50%", ease: Elastic.easeOut}, 0.04, "-=1")
+        this.gitterAnimation("#img1-b", 0.2, 1, 0)
+        this.gitterAnimation("#img1-p", 0.1, 3, -3)
+        this.gitterAnimation("#img1-t", 0.15, 2, -2)
+        tl.staggerTo(".img1", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1, "+=1");
+        tl.staggerTo(".flwrs", 0.5, {scale:0, transformOrigin: "50% 50%", ease: Power1.easeOut}, 0.04, "-=1")
+        tl.to(path,0.5,{strokeDashoffset:l}, "-=0.8")
+        tl.staggerFrom(".img2", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4, "+=0.3");
+        this.gitterAnimation("#img2-b", 0.4, 0, 1)
+        this.gitterAnimation("#img2-p", 0.2, 1, 1)
+        this.gitterAnimation("#img2-s", 0.08, 8, -5)
+        tl.staggerTo(".img2", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1, "+=2");
+        tl.staggerFrom(".img3", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4, "+=0.3");
+        this.gitterAnimation("#img3-b", 0.3, 0.2, 0)
+        this.gitterAnimation("#img3-p", 0.1, -1, 1)
+        this.gitterAnimation("#img3-t", 0.2, 0.5, -1)
+
+    }
     state = {
-        username: "",
-        password: "",
-        signUpUser: "",
-        signUpEmail: "",
-        signUpPass: "",
-        signUpPass2: "",
-        signUpFirst: "",
-        signUpLast: "",
+        username: "kiki",
+        password: "M1234m",
         auth: false,
         loginMsg: "",
         alerttype: "normal",
@@ -43,8 +76,9 @@ class Home extends Component {
                         loginMsg: "Login Successful",
                         alerttype: "success"
                     })
-                    window.location.href = "./dashboard";
+                    window.location.href = "/dashboard";
                 }else{
+                    console.log(result.data)
                     this.setState({
                         loginMsg: "Wrong Username or Password",
                         alerttype: "fail"
@@ -60,97 +94,43 @@ class Home extends Component {
         
     }
 
-    handleSignUp = event =>{
-        event.preventDefault();
-        const userInfo={
-            firstName: this.state.signUpFirst,
-            lastName: this.state.signUpLast,
-            email: this.state.signUpEmail,
-            username: this.state.signUpUser,
-            password: this.state.signUpPass,
-        }
-        console.log(userInfo);
-        API.signUp(userInfo)
-    }
-    componentDidMount(){
-
-    }
     render() {
         return (
             <div className="mycontainer">
-                <HomeHeader/>
-                
-                <SignupModal>
-                    <Input
-                        name= "signUpFirst"
-                        value = {this.state.signUpFirst}
-                        onChange = {this.handleInputChange}
-                        label = "First Name:"
-                    />
-                    <Input
-                        name= "signUpLast"
-                        value = {this.state.signUpLast}
-                        onChange = {this.handleInputChange}
-                        label = "Last Name:"
-                    />
-                    <Input
-                        name= "signUpUser"
-                        value = {this.state.signUpUser}
-                        onChange = {this.handleInputChange}
-                        label = "Pick a Username:"
-                    />
-                    <Input
-                        name= "signUpEmail"
-                        value = {this.state.signUpEmail}
-                        onChange = {this.handleInputChange}
-                        label = "Email Address:"
-                    />
-                    <Input
-                        type= "password"
-                        name= "signUpPass"
-                        value = {this.state.signUpPass}
-                        onChange = {this.handleInputChange}
-                        label = "Choose Password"
-                    />
-                    <Input
-                        type= "password"
-                        name= "signUpPass2"
-                        value = {this.state.signUpPass2}
-                        onChange = {this.handleInputChange}
-                        label = "Repeat Password"
-                    />
-                    <Submit
-                        onClick={this.handleSignUp}
-                    />
-                </SignupModal>
-                <div className="row" id="home">
-                    <div className="col1">
-                        <div id="svgDiv">
-                        <svg id="homesvg" viewBox="0 0 1024 768">
-
-                            <circle id="circle" className="blue" cx="714.1" cy="377.6" r="104"/>
-                            
-                            <image href="./img/1-b.png"  transform="matrix(0.3195 0 0 0.3195 249.265 116.3358)">
-                            </image>
-                            <polygon id="floor" className="red" points="167.4,626.5 421.3,559 729.2,575.2 297,650.8 "/>
-                            <image href="./img/1-p.png"  transform="matrix(7.640124e-02 0 0 7.640124e-02 763.2389 368.2395)">
-                            </image>
-                            <image href="./img/1-t.png"  transform="matrix(0.2132 0 0 0.2132 195.0435 454.0901)">
-                            </image>
-
-                            {/* <image href="./img/2-b.png"  transform="matrix(0.2938 0 0 0.2938 264.1174 145.792)">
-                            </image>
-
-                            <image href="./img/2-p.png"  transform="matrix(0.1054 0 0 0.1054 220 481.5145)">
-                            </image>
-
-                            <image href="./img/2-s.png"  transform="matrix(9.469943e-02 0 0 9.469943e-02 683.7705 452.4616)">
-                            </image> */}
-                        </svg>
-                        </div>
+            <div id="content">
+                <HomeHeader
+                />
+                <div className="container">
+                    <div id="login" className = "loginDiv collapse">
+                        
+                            <form>
+                            {this.state.loginMsg ? 
+                            <div className="alert">
+                                <p className= {this.state.alerttype}>{this.state.loginMsg}</p>
+                            </div> : ""}
+                                <Input
+                                    name= "username"
+                                    value = {this.state.username}
+                                    onChange = {this.handleInputChange}
+                                    label = "User name:"
+                                />
+                                <Input
+                                    type="password"
+                                    name="password"
+                                    value = {this.state.password}
+                                    onChange = {this.handleInputChange}
+                                    label= "Password"
+                                />
+                                <Submit
+                                    type="submit" onClick={this.handleSignIn}
+                                />
+                            <p>Don't have an account? Sign up <a href="/signup">Here</a></p>
+                            </form>
                     </div>
-                    <div className="col2">
-                        <div className="login">
+                <div className="row" id="home">
+                    
+                    <div className="col2 mycol">
+                        <div className="intro">
                             <div className="logoDiv">
                                 <svg x="0px" y="0px" viewBox="0 0 583 138">
                                     
@@ -193,33 +173,69 @@ class Home extends Component {
                                 </svg>
 
                             </div>
-                            <div className = "loginDiv">
-                            {this.state.loginMsg ? 
-                                <div className="alert">
-                                    <p className= {this.state.alerttype}>{this.state.loginMsg}</p>
-                                </div> : ""}
+                            <h1>
+                                Life is too short to be indecisive!
+                            </h1>
+                            <p>
+                            Where2eat breaks the restaurant selection process into quick and simple one-on-one comparisons. It's a gamified experience that is designed to help YOU choose restaurants quickly! 
+                            </p>
                             
-                                <Input 
-                                    name= "username"
-                                    value = {this.state.username}
-                                    onChange = {this.handleInputChange}
-                                    label = "User name:"
-                                />
-                                <Input
-                                    name="password"
-                                    value = {this.state.password}
-                                    onChange = {this.handleInputChange}
-                                    label= "Password"
-                                />
-                                <Submit
-                                    onClick={this.handleSignIn}
-                                />
-                                <SignupBtn/>
-                            </div>
                         </div>
                         
                     </div>
+                    <div className="col1 mycol">
+                        <div id="svgDiv">
+                        <svg id="homesvg" viewBox="0 0 1024 768">
+
+                            <g id="img1-graphs">
+                                <circle className="flwrs" cx="606.7" cy="404.5" r="8.1"/>
+                                <circle className="flwrs" cx="653.1" cy="406.1" r="11.5"/>
+                                <circle className="flwrs" cx="580.7" cy="410.4" r="16.7"/>
+                                <circle className="flwrs" cx="630.5" cy="403.7" r="14.2"/>
+                                <circle className="flwrs" cx="696.3" cy="405.9" r="11.9"/>
+                                <circle className="flwrs" cx="724" cy="405.2" r="10"/>
+                                <circle className="flwrs" cx="424.5" cy="401.3" r="10.3"/>
+                                <circle className="flwrs" cx="393.6" cy="406" r="13.1"/>
+                                <circle className="flwrs" cx="362.3" cy="406.4" r="13.1"/>
+                                <circle className="flwrs" cx="331.4" cy="402.8" r="15.8"/>
+                                <circle className="flwrs" cx="306.7" cy="398.6" r="15.5"/>
+                                <circle className="flwrs" cx="278.5" cy="401.3" r="12.1"/>
+                                <path className="rest-line" d="M731.5,185.8c-88.7,82.5-424.6,85.5-429.6,23.6c-2.9-36.2,70.7-50.8,158.7-54.8s210.7,0.9,220.8,38.3c6.5,24.2-57.1,75.5-179.2,80.8"/>
+                            </g>
+                            
+                            <image className="img1" id="img1-b" href="./img/1-b.png"  transform="matrix(0.3195 0 0 0.3195 249.265 116.3358)">
+                            </image>
+                            <image className="img1" id="img1-p" href="./img/1-p.png"  transform="matrix(7.640124e-02 0 0 7.640124e-02 763.2389 368.2395)">
+                            </image>
+                            <image className="img1" id="img1-t" href="./img/1-t.png"  transform="matrix(0.2132 0 0 0.2132 195.0435 454.0901)">
+                            </image>
+
+                            <image id="img2-b" className="img2" href="./img/2-b.png"  transform="matrix(0.2938 0 0 0.2938 264.1174 145.792)">
+                            </image>
+
+                            <image id="img2-p" className="img2" href="./img/2-p.png"  transform="matrix(0.1054 0 0 0.1054 220 481.5145)">
+                            </image>
+
+                            <image id="img2-s" className="img2" href="./img/2-s.png"  transform="matrix(9.469943e-02 0 0 9.469943e-02 683.7705 452.4616)">
+                            </image>
+
+                            <image id="img3-b" className="img3" href="./img/3-b.png"  transform="matrix(0.3095 0 0 0.3095 256.5281 78)">
+                            </image>
+
+                            <image id="img3-t" className="img3" href="./img/3-t.png"  transform="matrix(0.2314 0 0 0.2314 581.7001 471.1018)">
+                            </image>
+
+                            <image id="img3-p" className="img3" href="./img/t-p.png"  transform="matrix(0.1047 0 0 0.1047 203.0752 385.3544)">
+                            </image>
+                        </svg>
+                        </div>
+                    </div>
                     
+                </div>
+                </div>
+                </div>
+                <div className="footer">
+                    <img id="bg-img" src="./img/bg-2.png"/>
                 </div>
             </div>
         )
