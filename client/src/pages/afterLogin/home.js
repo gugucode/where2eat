@@ -32,7 +32,7 @@ class AfterLoginHome extends Component {
     // if(this.state.loggedIn){
     return (
       <div className="container-fluid">
-        <Nav />
+        <Nav username={this.props.username}/>
         <div className="row justify-content-center">
           {/* show restaurants */}
           <div className="col-12 col-md-5">

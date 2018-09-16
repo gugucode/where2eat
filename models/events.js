@@ -7,7 +7,8 @@ module.exports = function(sequelize, Sequelize) {
       startDateTime: Sequelize.STRING,
       endDateTime: Sequelize.STRING,
       attendees: Sequelize.STRING,
-      reminders: Sequelize.STRING
+      reminders: Sequelize.STRING,
+      creator: Sequelize.STRING,
     });
   
     return events;

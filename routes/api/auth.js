@@ -76,8 +76,8 @@ module.exports= function(passport){
         })
       })
 
-      router.get("/auth", loggedIn, function(req, res, next){
+    router.get("/auth", loggedIn, function(req, res, next){
         res.send(req.session)
-      })
+    })
     return router;
 }

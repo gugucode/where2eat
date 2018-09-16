@@ -2,6 +2,11 @@ import React from "react";
 import Axios from "axios";
 
 class Nav extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
   handleLogout = event =>{
     event.preventDefault();
     Axios.get("/api/logout").then(function(result){
@@ -11,16 +16,17 @@ class Nav extends React.Component {
       }
     })
   }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand">Where2eat</a>
+        <a className="navbar-brand" href="/dashboard">Where2eat</a>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
               <a className="nav-link" href="#">
-                Name <span className="sr-only">(current)</span>
+                Hello, {this.props.username} <span className="sr-only">(current)</span>
               </a>
             </li>
 
@@ -30,28 +36,18 @@ class Nav extends React.Component {
                 Log out
               </a>
             </li>
-            
+
             {/* find friend */}
             <li className="nav-item active">
-              <a
-                className="nav-link"
-                // data-toggle="modal"
-                href="/friends"
-                // data-whatever="@mdo"
-              >
+              <a className="nav-link" href="/friends">
                 friends
               </a>
             </li>
 
             {/* create event */}
             <li className="nav-item active">
-              <a
-                className="nav-link"
-                data-toggle="modal"
-                href="#createEvent"
-                data-whatever="@mdo"
-              >
-                Create Event
+              <a className="nav-link" href="/events">
+                Events
               </a>
             </li>
           </ul>

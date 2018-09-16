@@ -7,6 +7,12 @@ router
   .route("/createevent")
   .post(event.createEvent)
 
-
+router
+  .route("/findall")
+  .get(event.findAllEvents)
+  
+router
+  .route("/delete")
+  .delete(event.deleteEvent)
   
 module.exports = router;

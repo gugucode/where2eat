@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Nav from "../../components/nav/navigation";
-import FindFriends from "../../components/friends/findFriends";
-import ShowFriends from "../../components/friends/showAllFriends";
+import CreateEvent from "../../components/event/createEventForm";
+
 import API from "../../utils/API";
 
 class FriendPage extends Component {
@@ -18,7 +18,7 @@ class FriendPage extends Component {
     return (
       <div className="container-fluid">
         <Nav username={this.props.username}/> 
-        <FindFriends />       
+        <CreateEvent />       
       </div>
     );
   }

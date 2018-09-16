@@ -21,11 +21,11 @@ const API = {
     return axios.post("/api/friend/sendPickInvite", data);
   },
 
-  // search and add friend
+  // friend API
   searchFriends: function(key,cb) {
-    if(key){
+    // if(key){
       return axios.get("/user/friend/searchFriend/"+key);
-    }
+    // }
   },
 
   addFriend: function(data) {
@@ -41,14 +41,24 @@ const API = {
     return axios.get("/user/friend/findAll")
   },
 
+  // Event API
   createEvent: function(data) {
     delete data['searchKey'],
     delete data['searchResult'];
+    delete data['savedEvents'];
     data.attendees = data.attendees.toString();
     console.log(data);
     return axios.post("user/event/createevent",data);
   },
 
+  deleteEvent: function(data) {
+    console.log(data)
+    return axios.delete("/user/event/delete",{data})
+  },
+
+  getAllEvents: function() {
+    return axios.get("/user/event/findAll")
+  },
 
   // login API
   authenticate: function(data){

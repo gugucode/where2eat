@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import AfterLoginHome from "./pages/afterLogin/home";
 import Friend from "./pages/afterLogin/friends";
+import Events from "./pages/afterLogin/events";
 import Home from './pages/home';
 import Signup from './pages/signUp';
 import NoMatch from "./pages/noMatch";
@@ -55,14 +56,18 @@ class App extends Component {
     super(props);
     this.state= {
       loggedIn: false,
+      username: ""
     }
   }
   
   componentWillMount= () =>{
     axios.get("/api/auth").then((result)=>{
+      console.log(result)
       if(result.data.passport){
-        this.setState({loggedIn:true});
-        
+        this.setState({
+          loggedIn:true,
+          username: result.data.passport.user.username
+        });
       }else{
         // window.location.href= ("/");
         this.setState({loggedIn:false});
@@ -77,8 +82,9 @@ class App extends Component {
         <Router>
           <div className="App">
             <Switch>
-              <Route exact path="/friends" component={Friend} />
-              <Route exact path="/dashboard" render={() => <AfterLoginHome data={this.testData} friends={this.friends} />} />
+              <Route exact path="/events" render={()=> <Events username={this.state.username}/>} />
+              <Route exact path="/friends" render={()=> <Friend username={this.state.username}/>} />
+              <Route exact path="/dashboard" render={() => <AfterLoginHome username={this.state.username} data={this.testData} friends={this.friends} />} />
               <Route component={NoMatch} />
             </Switch>
           </div>  
