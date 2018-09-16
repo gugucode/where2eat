@@ -18,7 +18,7 @@
 .st5{fill:none;stroke:#002626;stroke-width:4.4928;stroke-miterlimit:10;}
 .st6{
     font-family:"museo-sans-rounded", sans-serif;
-    font-weight: 600;
+    font-weight: 700;
 }
 .flwrs{
     opacity:0.92;
@@ -27,11 +27,23 @@
 .rest-line{
     fill:none;stroke:#95C623;stroke-width:19;stroke-miterlimit:10;
 }
+.arrow{fill:none;stroke:#e55812;stroke-width:10.4023;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+.bar-path{fill:none;stroke:#95C623;stroke-width:5;stroke-linecap:round;stroke-miterlimit:10;}
+.bar-circle{fill:#0E4749;}
+.window{fill:#e55812;}
+.cafe-sign{fill:#EFE7DA;}
+.start{
+    fill:#0E4749;
+}
+.start-bg{
+    fill: #95C623;
+}
 .st7{font-size:74.6628px;}
 
 *{
  box-sizing: border-box;
  font-family: "museo-sans-rounded", sans-serif;
+ fill: #002626;
 }
 .mycontainer{
     display: flex;
