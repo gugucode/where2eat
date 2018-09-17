@@ -6,7 +6,15 @@ export const HomeHeader = props => (
     <div className="icon"><img src="./img/icon.png" /></div>
     <div className="nav">
       <a href="/signup">Signup</a>
-      <a href="#" data-toggle="collapse" data-target="#login">Login</a>
+      
+      {
+        props.isSignup ? 
+        (
+          <a href="/">Login</a>
+        ):(
+          <a href="#" data-toggle="collapse" data-target="#login">Login</a>
+        )
+      }
     </div>
   </div>
 );

@@ -6,7 +6,7 @@ import {Modal, Btn} from "../../components/Modal"
 import API from "../../utils/API";
 import "./signUp.css"
 
-class Home extends Component {
+class Signup extends Component {
     state = {
         signUpUser: "kiki",
         signUpEmail: "kiki@gmail.com",
@@ -100,7 +100,7 @@ class Home extends Component {
     render() {
         return (
             <div className="mycontainer">
-                <HomeHeader/>
+                <HomeHeader isSignup={true}/>
                 
                 <div className="col-md-4"></div>
                 <div className="signupCol col-md-4">
@@ -158,5 +158,5 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default Signup;
 

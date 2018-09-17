@@ -20,7 +20,7 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/dashboard">Where2eat</a>
+        <a className="navbar-brand" href="/dashboard"><img src="./img/icon.png" style={{width: "100px", marginTop: "6px"}}/></a>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto">
@@ -40,7 +40,7 @@ class Nav extends React.Component {
             {/* find friend */}
             <li className="nav-item active">
               <a className="nav-link" href="/friends">
-                friends
+                Friends
               </a>
             </li>
 

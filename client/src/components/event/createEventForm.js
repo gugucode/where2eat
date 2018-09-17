@@ -55,10 +55,7 @@ class CreateEvent extends React.Component {
 
   }
 
-  handleUpdateEvent = data => {
-    // console.log(this.state);
-    // const data = {...this.state}
-    // console.log(data)
+  handleUpdateEvent = (data) => {
     API.updateEvent(data)
     .then(result =>{
       this.getAllEvents();
@@ -73,7 +70,7 @@ class CreateEvent extends React.Component {
       <div className="row justify-content-center m-4">
         {/* show friends */}
         <div className="col-12 col-md-5">
-              <ShowEvents handleSubmit={this.handleUpdateEvent} data={this.state.savedEvents}/>
+              <ShowEvents handleUpdateEvent={this.handleUpdateEvent} data={this.state.savedEvents}/>
         </div>
 
         <div className="col-12 col-md-6"> 

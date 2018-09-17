@@ -12,7 +12,11 @@ router
   .get(event.findAllEvents)
   
 router
-  .route("/delete")
+  .route("/delete/")
   .delete(event.deleteEvent)
+
+router
+  .route("/updateevent/:id")
+  .put(event.updateEvent)
   
 module.exports = router;

@@ -51,6 +51,15 @@ const API = {
     return axios.post("user/event/createevent",data);
   },
 
+  updateEvent: function(data) {
+    delete data['searchKey'],
+    delete data['searchResult'];
+    delete data['savedEvents'];
+    data.attendees = data.attendees.toString();
+    console.log(data);
+    return axios.put("user/event/updateevent/"+data.id,data);
+  },
+
   deleteEvent: function(data) {
     console.log(data)
     return axios.delete("/user/event/delete",{data})

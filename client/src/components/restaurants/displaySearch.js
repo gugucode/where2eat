@@ -7,104 +7,90 @@ import { RestSearch } from "./restSearch";
 
 
 class DisplaySearch extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          zipCode: "78660",
-          cuisine: "bbq",
-          restArray: []
-        };
-    }
-
-    componentDidMount = () => {
-      console.log(this.props)
-      // const { match: { params } } = this.props;
-      // console.log(this.props.match);
-      const { cuisine, zipCode } = this.props;
-      console.log(cuisine);
-      console.log(zipCode);
-      // this.getSavedRestaurant()
-      API.getRestaurant({
-        cuisine: cuisine,
-        zipCode: zipCode
-      })
-      .then(res => {
-        console.log(res);
-      
-        this.setState({ restArray: res.data }, () => {
-          console.log(this.state.restArray[0].restaurant)
-          console.log(this.state.restArray[1].restaurant)
-          // window.location = `/rest/${this.state.cuisine}/${this.state.zipCode}`
-          
-        }
-      )})
-    }
-
-    handleFormSubmit = event => {
-        event.preventDefault();
-        API.getRestaurant(this.state.cuisine, this.state.zipCode)
-        .then(res => {
-          // console.log(err)
-          console.log(res);
-          // window.location = 'http://www.google.com'
-         
-          this.setState({ restArray: res.data }, () => {
-            console.log(this.state.restArray[0].restaurant)
-            console.log(this.state.restArray[1].restaurant)
-           
-          }
-    
-          );
-          // this.setState({restName: res.data.response.restName},
-          //               {cuisine: res.data.respone.cuisine},
-          //               {photos: res.data.respone.photo},
-          //               {rates: res.data.response.rates})
-        });
+  constructor(props) {
+      super(props);
+      this.state = {
+        zipCode: "78660",
+        cuisine: "bbq",
+        changeArray: [],
+        originRestArray: [],
+        rest1: null,
+        rest2: null,
+        restPickNum: {}
       };
+  }
+
+  componentDidMount = () => {
+    console.log(this.props)
+    const { cuisine, zipCode } = this.props;
+
+    API.getRestaurant({
+      cuisine: cuisine,
+      zipCode: zipCode
+    })
+    .then(res => {
+      console.log(res);
+    
+      this.setState({ 
+        changeArray: res.data,
+        originRestArray: res.data,
+      }, () => {
+        console.log(this.state.changeArray.length)
+        // console.log(this.state.rest1)
+        // console.log(this.state.rest2)
+        this.setState({
+          rest1: this.getRamdRest(),
+          rest2: this.getRamdRest()
+        })
+      }
+    )})
+  }
+
+  getRamdRest = () => {
+    console.log(this.state.changeArray.length)
+    const index = Math.floor(Math.random()* this.state.changeArray.length)
+    const t = this.state.changeArray.splice(index,1)
+    console.log(t)
+    return t[0].restaurant;
+  }
+
+  setRest = (rest,id) => {
+    this.setState((previousState, currentProps)=>{
+      let restPickNum = previousState.restPickNum;
+      restPickNum[id] = restPickNum[id] ? restPickNum[id] + 1: 1;
+      
+      return {
+        [rest]: this.getRamdRest(),
+        restPickNum: restPickNum
+      }
+    })
+  }
 
   // When save restaurant button is clicked, add restaurant to db
-handleSaveButton = (id) => {
-    // const findRestaurantByID = props.data;
-    // console.log("findArticleByID: ", findRestaurantByID);
-    // const newSave = {restName: findRestaurantByID.name, 
-    //                  cuisine: findRestaurantByID.cuisines, 
-    //                  location: findRestaurantByID.location.address,
-    //                  photos: findRestaurantByID.photos_url,
-    //                  rates: findRestaurantByID.user_rating.aggregate_rating,
-    //                  rest_id: findRestaurantByID.id};
-    // API.saveRestaurant(newSave)
-    // // .then(result => {
-    // //   console.log(result)
-    // // })
-    // .then(this.getSavedRestaurant());
+  handlePick = (id) => {
+    console.log(id);
+    console.log(this.state.restPickNum);
+
+    if(this.state.changeArray.length > 0){
+      id === this.state.rest1.id ?
+      (
+        this.setRest("rest2",id)
+      ) : (
+        this.setRest("rest1",id)
+      )
+    }
   }
 
 
-render() {
-    return(
-        <div className="row" id="result">
-        {
-          //  (this.state.restArray).length > 0 ? (<DisplayResults data={this.state.restArray[1].restaurant} />) : ""
-          // (this.state.restArray).length > 0 ? (<ShowRestList data={this.state.restArray} />) : ""
-          (this.state.restArray).length > 0 ? (<DisplayResults pickRest={this.handleSaveButton} data={(this.state.restArray)[0].restaurant} />) : (<p></p>)
-          // <DisplayResults data={(this.state.restArray)[0].restaurant} />
-        }
-        {
-             (this.state.restArray).length > 0 ? (<DisplayResults pickRest={this.handleSaveButton} data={(this.state.restArray)[1].restaurant} />) : (<p></p>)
-        }
-        {
-          (this.state.restArray).length > 0 ? (<DeleteRest data={(this.state.restArray)[0].restaurant} />) : <p></p>
-        }
-        {
-          (this.state.restArray).length > 0 ? (<DeleteRest data={(this.state.restArray)[1].restaurant} />) : <p></p>
-        }
-          {/* <DisplayResults data={this.state.restArray[0]} /> */}
-        </div>
-     
+  render() {
+      return(
+          <div className="row justify-content-center" id="result">
+            { this.state.rest1 !== null ? <DisplayResults pickRest={this.handlePick} data={this.state.rest1} /> : ("") }
+            { this.state.rest2 !== null ? <DisplayResults pickRest={this.handlePick} data={this.state.rest2} /> : ("") }
+          </div>
+      )
 
-    )
-
-}
+  }
 }
 
 export default DisplaySearch;

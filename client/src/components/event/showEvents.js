@@ -23,7 +23,6 @@ class ShowEvents extends React.Component {
     })
   }
 
-
   render() {
     return (
         <div id="favorite-places">
@@ -39,7 +38,7 @@ class ShowEvents extends React.Component {
                             <div className="card-header d-flex justify-content-between align-items-center" id="headingOne">
                                 <h5 className="mb-0">
                                     <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#${index}`} aria-expanded="true" aria-controls="collapseOne">
-                                        event.summary
+                                        {event.summary}
                                     </button>
                                 </h5>
                                 <a onClick={this.deleteEvent}>
