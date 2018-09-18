@@ -26,7 +26,7 @@ const handleSaveButton = (id) => {
 }
 
   return (
-      <div className = "col-12 col-md-5">
+      <div className = "col-12 col-md-4 pt-3">
         <div className='card'  style={{width: "100%"}}>
           <div className='image-div-result'>
             <img className='card-img-top' src={props.data.thumb} />
@@ -38,15 +38,15 @@ const handleSaveButton = (id) => {
             </div>
           
             <div className='result-element result-vote'>
-              <h5>{props.data.cuisines}</h5>
+              <h6>{props.data.cuisines}</h6>
             </div>
 
             <div className='result-element result-vote'>
-              <h5>{props.data.user_rating.aggregate_rating}</h5>
+              <h6>{props.data.user_rating.aggregate_rating}</h6>
             </div>
 
             <div className='result-element result-vote'>
-              <h6>{props.data.location.address}</h6>
+              <p style={{fontSize: "0.7em"}}>{props.data.location.address}</p>
             </div>
           </div>
         
