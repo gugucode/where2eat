@@ -38,7 +38,7 @@ class AfterLoginHome extends Component {
           <div className="col-12 col-md-5">
             <div className="row py-3">
               <div className="col-12">
-                <ShowRestList data={this.props.data} />
+                <ShowRestList data={this.props.data} header={"Your Favorite Restaurants"}/>
               </div>
             </div>
             <div className="row py-3">
