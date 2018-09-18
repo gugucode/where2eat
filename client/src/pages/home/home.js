@@ -18,62 +18,63 @@ class Home extends Component {
     }
     
     componentDidMount = () =>{
-        
-        let restPath = document.querySelector(".rest-line")
-        let restL = restPath.getTotalLength();
-        TweenMax.set(restPath,{strokeDasharray:restL});
-        let arrPath1 = document.querySelector("#arrow1")
-        let arr1L = arrPath1.getTotalLength() + 4;
-        TweenMax.set(arrPath1,{strokeDasharray:arr1L});
-        let arrPath2 = document.querySelector("#arrow2")
-        let arr2L = arrPath2.getTotalLength() + 4;
-        TweenMax.set(arrPath2,{strokeDasharray:arr2L});
-        
-        let tl = new TimelineMax();
-        tl.staggerFrom(".img1", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4);
-
-        tl.fromTo(restPath,0.5,{strokeDashoffset:restL, ease:Power4.easeOut}, {strokeDashoffset: 0}, "-=1.5")
-        tl.staggerFrom(".flwrs", 1, {scale:0, transformOrigin: "50% 50%", ease: Elastic.easeOut}, 0.04, "-=1")
-        this.gitterAnimation(restPath, 0.2, 0.5, -0.5)
-        this.gitterAnimation("#img1-p", 0.1, 1, -1)
-        this.gitterAnimation("#img1-t", 0.15, 1, -2)
-        tl.staggerTo(".img1", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1, "+=1");
-        tl.staggerTo(".flwrs", 0.5, {scale:0, transformOrigin: "50% 50%", ease: Power1.easeOut}, 0.04, "-=1")
-        tl.to(restPath,0.5,{strokeDashoffset:restL}, "-=0.8")
-        tl.staggerFrom(".img2", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4, "+=0.3");
-        this.gitterAnimation("#img2-p", 0.2, 1, 1)
-        this.gitterAnimation("#img2-s", 0.1, 3, -3)
-        tl.fromTo(arrPath1,0.25,{strokeDashoffset:arr1L, ease:Power1.easeOut}, {strokeDashoffset: 0}, "-=1.5")
-        tl.fromTo(arrPath2,0.15,{strokeDashoffset:arr2L, ease:Power1.easeOut}, {strokeDashoffset: 0}, "-=1.2")
-        tl.staggerFrom(".bar-path", 0.8, {scale:0, transformOrigin: "50% 50%", ease:Elastic.easeOut}, 0.1, "-=1");
-        tl.from(".bar-circle", 0.5, {scale: 0, transformOrigin: "50% 50%", ease: Elastic.easeOut})
-        tl.staggerTo(".img2", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1, "+=1.1");
-        tl.to(arrPath1,0.2,{strokeDashoffset:arr1L}, "-=0.8")
-        tl.to(arrPath2,0.2,{strokeDashoffset:arr2L}, "-=0.8")
-        tl.staggerTo(".bar-path", 0.8, {scale:0, transformOrigin: "50% 50%", ease:Elastic.easeIn}, 0.1, "-=1");
-        tl.to(".bar-circle", 0.5, {scale:0, transformOrigin: "50% 50%", ease: Elastic.easeIn},"-=1")
-
-
-        tl.staggerFrom(".img3", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4, "+=0.3");
-        tl.from(".cafe-sign", 0.5, {scale:0, transformOrigin: "50% 50%", ease:Elastic.easeOut}, "-=1")
-        tl.from(".cups", 0.2, {scale:0, transformOrigin: "50% 50%"})
-        tl.staggerTo(".img3", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1, "+=1.3");
-        tl.to(".cafe-sign", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn});
-
-        tl.to(".cups", 0.5, {rotation:180, transformOrigin: "50% 50%", ease:Elastic.easeOut}, "-=0.5")
-        tl.from(".handle", 0.2, {scale:0, transformOrigin: "50% 50%"})
-        tl.to("#mug1", 0.5, {x:70, transformOrigin: "50% 50%", rotation: 10})
-        tl.to("#mug2", 0.5, {x:-70, transformOrigin: "50% 50%", rotation: -7}, "-=0.5")
-        tl.to("#mug1", 0.5, { x:60, y: -30, transformOrigin: "50% 50%", rotation: 0})
-        tl.to("#mug2", 0.5, {x:-65, y: -35, transformOrigin: "50% 50%", rotation: 0}, "-=0.5")
-        tl.to("#mug1", 0.3, {x:-100, scale: 0, transformOrigin: "50% 50%", rotation: 360}, "+=0.3")
-        tl.to("#mug2", 0.3, {x:100, scale: 0, transformOrigin: "50% 50%", rotation: 360}, "-=0.3")
-        tl.fromTo("#thelogo", 0.3, {scale: 0, transformOrigin: "50% 50%", ease:Power1.easeIn},{scale:0.7, y:-160}, "-=0.4")
-        tl.fromTo("#startBtn", 0.3, {scale: 0, transformOrigin: "50% 50%", ease:Power1.easeIn},{scale:0.9, y:-80}, "-=0.4")
-        this.gitterAnimation(".cafe-sign", 0.2, 1, -1)
-        this.gitterAnimation("#img3-p", 0.1, -1, 1)
-        this.gitterAnimation("#img3-t", 0.2, 0.5, -1)
-
+        setTimeout(()=>{
+            document.querySelector("#svgDiv").classList.remove("invisible")
+            let restPath = document.querySelector(".rest-line")
+            let restL = restPath.getTotalLength();
+            TweenMax.set(restPath,{strokeDasharray:restL});
+            let arrPath1 = document.querySelector("#arrow1")
+            let arr1L = arrPath1.getTotalLength() + 4;
+            TweenMax.set(arrPath1,{strokeDasharray:arr1L});
+            let arrPath2 = document.querySelector("#arrow2")
+            let arr2L = arrPath2.getTotalLength() + 4;
+            TweenMax.set(arrPath2,{strokeDasharray:arr2L});
+            
+            let tl = new TimelineMax();
+            tl.staggerFrom(".img1", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4);
+    
+            tl.fromTo(restPath,0.5,{strokeDashoffset:restL, ease:Power4.easeOut}, {strokeDashoffset: 0}, "-=1.5")
+            tl.staggerFrom(".flwrs", 1, {scale:0, transformOrigin: "50% 50%", ease: Elastic.easeOut}, 0.04, "-=1")
+            this.gitterAnimation(restPath, 0.2, 0.5, -0.5)
+            this.gitterAnimation("#img1-p", 0.1, 1, -1)
+            this.gitterAnimation("#img1-t", 0.15, 1, -2)
+            tl.staggerTo(".img1", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1, "+=1");
+            tl.staggerTo(".flwrs", 0.5, {scale:0, transformOrigin: "50% 50%", ease: Power1.easeOut}, 0.04, "-=1")
+            tl.to(restPath,0.5,{strokeDashoffset:restL}, "-=0.8")
+            tl.staggerFrom(".img2", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4, "+=0.3");
+            this.gitterAnimation("#img2-p", 0.2, 1, 1)
+            this.gitterAnimation("#img2-s", 0.1, 3, -3)
+            tl.fromTo(arrPath1,0.25,{strokeDashoffset:arr1L, ease:Power1.easeOut}, {strokeDashoffset: 0}, "-=1.5")
+            tl.fromTo(arrPath2,0.15,{strokeDashoffset:arr2L, ease:Power1.easeOut}, {strokeDashoffset: 0}, "-=1.2")
+            tl.staggerFrom(".bar-path", 0.8, {scale:0, transformOrigin: "50% 50%", ease:Elastic.easeOut}, 0.1, "-=1");
+            tl.from(".bar-circle", 0.5, {scale: 0, transformOrigin: "50% 50%", ease: Elastic.easeOut})
+            tl.staggerTo(".img2", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1, "+=1.1");
+            tl.to(arrPath1,0.2,{strokeDashoffset:arr1L}, "-=0.8")
+            tl.to(arrPath2,0.2,{strokeDashoffset:arr2L}, "-=0.8")
+            tl.staggerTo(".bar-path", 0.8, {scale:0, transformOrigin: "50% 50%", ease:Elastic.easeIn}, 0.1, "-=1");
+            tl.to(".bar-circle", 0.5, {scale:0, transformOrigin: "50% 50%", ease: Elastic.easeIn},"-=1")
+    
+    
+            tl.staggerFrom(".img3", 1, {scale:0, x:-400, transformOrigin: "50% 50%", ease:Power4.easeOut}, 0.4, "+=0.3");
+            tl.from(".cafe-sign", 0.5, {scale:0, transformOrigin: "50% 50%", ease:Elastic.easeOut}, "-=1")
+            tl.from(".cups", 0.2, {scale:0, transformOrigin: "50% 50%"})
+            tl.staggerTo(".img3", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn}, 0.1, "+=1.3");
+            tl.to(".cafe-sign", 0.3, {scale:0, transformOrigin: "50% 50%", ease:Power1.easeIn});
+    
+            tl.to(".cups", 0.5, {rotation:180, transformOrigin: "50% 50%", ease:Elastic.easeOut}, "-=0.5")
+            tl.from(".handle", 0.2, {scale:0, transformOrigin: "50% 50%"})
+            tl.to("#mug1", 0.5, {x:70, transformOrigin: "50% 50%", rotation: 10})
+            tl.to("#mug2", 0.5, {x:-70, transformOrigin: "50% 50%", rotation: -7}, "-=0.5")
+            tl.to("#mug1", 0.5, { x:60, y: -30, transformOrigin: "50% 50%", rotation: 0})
+            tl.to("#mug2", 0.5, {x:-65, y: -35, transformOrigin: "50% 50%", rotation: 0}, "-=0.5")
+            tl.to("#mug1", 0.3, {x:-100, scale: 0, transformOrigin: "50% 50%", rotation: 360}, "+=0.3")
+            tl.to("#mug2", 0.3, {x:100, scale: 0, transformOrigin: "50% 50%", rotation: 360}, "-=0.3")
+            tl.fromTo("#thelogo", 0.3, {scale: 0, transformOrigin: "50% 50%", ease:Power1.easeIn},{scale:0.7, y:-160}, "-=0.4")
+            tl.fromTo("#startBtn", 0.3, {scale: 0, transformOrigin: "50% 50%", ease:Power1.easeIn},{scale:0.9, y:-80}, "-=0.4")
+            this.gitterAnimation(".cafe-sign", 0.2, 1, -1)
+            this.gitterAnimation("#img3-p", 0.1, -1, 1)
+            this.gitterAnimation("#img3-t", 0.2, 0.5, -1)
+        }, 500)
     }
     state = {
         username: "kiki",
@@ -213,7 +214,7 @@ class Home extends Component {
                         
                     </div>
                     <div className="col1 mycol">
-                        <div id="svgDiv">
+                        <div id="svgDiv" className="invisible">
                         <svg id="homesvg" viewBox="0 0 1024 768">
 
                             <g id="img1-graphs">
