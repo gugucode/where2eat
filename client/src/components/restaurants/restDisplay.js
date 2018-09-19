@@ -11,10 +11,11 @@ export const DisplayResults = props => {
 const handleSaveButton = (id) => {
   const findRestaurantByID = props.data;
   console.log("findArticleByID: ", findRestaurantByID);
+  // const newSave = props.data;
   const newSave = {restName: findRestaurantByID.name, 
                    cuisine: findRestaurantByID.cuisines, 
                    location: findRestaurantByID.location.address,
-                   photos: findRestaurantByID.photos_url,
+                   photos: findRestaurantByID.thumb,
                    rates: findRestaurantByID.user_rating.aggregate_rating,
                    rest_id: findRestaurantByID.id};
   API.saveRestaurant(newSave)
@@ -52,6 +53,9 @@ const handleSaveButton = (id) => {
               <p><i className="fas fa-map-marker-alt"></i>  {props.data.location.address}</p>
             </div>
           </div>
+        
+          <button className="btn btn-primary" onClick={() => props.pickRest(props.data.id)}>Yes</button>
+          <button className="btn btn-primary" onClick={() => handleSaveButton(props.data.id)}>Save</button>
         </div>     
      </div>
      

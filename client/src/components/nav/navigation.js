@@ -50,6 +50,13 @@ class Nav extends React.Component {
                 Events
               </a>
             </li>
+
+            {/* display all restaurant */}
+            <li className="nav-item active">
+              <a className="nav-link" href="/allrestaurants">
+                Show All Restaurants
+              </a>
+            </li>
           </ul>
 
           {/* search form */}

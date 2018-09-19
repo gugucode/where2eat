@@ -14,6 +14,10 @@ const API = {
     return axios.delete(`/api/saved/${id}`);
   },
 
+  //save comment
+  saveComment: function(saveComment) {
+    return axios.post("/api/comment/addcomment", saveComment);
+  },
 
   // Send a Pick-Restaurant invite to friends
   sendPickInvite: function(data) {
@@ -41,6 +45,9 @@ const API = {
     return axios.get("/user/friend/findAll")
   },
 
+  getAllRests: function() {
+    return axios.get("/user/restaurants/allRests")
+  },
   // Event API
   createEvent: function(data) {
     delete data['searchKey'],

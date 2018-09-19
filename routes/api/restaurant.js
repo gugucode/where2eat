@@ -11,7 +11,11 @@ const googleAPI =  require("../../controllers/googleAPI");
 router
   .route("/:cuisine/:zipCode")
   .get(googleAPI.searchLocation)
+  
   // .put(restaurantController.update)
   // .delete(restaurantController.remove);
+router
+  .route("/allRests")
+  .get(restaurantController.getAllRest)
 
 module.exports = router;
