@@ -8,12 +8,12 @@ module.exports = {
     });
   
   },
-  // Find all Restaurants and return them to the user with res.json
-  // get("/api/searchRestaurant", function(req, res) {
-  //   db.Restaurant.findAll({}).then(function(dbRestaurant) {
-  //     res.json(dbRestaurant);
-  //   });
-  // });
+  //Find all Restaurants and return them to the user with res.json
+  getAllRest: function(req, res) {
+    db.Restaurant.findAll({}).then(function(dbRestaurant) {
+      res.json(dbRestaurant);
+    });
+  },
 
   // app.get("/api/Restaurants/:id", function(req, res) {
   //   // Find one Restaurant with the id in req.params.id and return them to the user with res.json

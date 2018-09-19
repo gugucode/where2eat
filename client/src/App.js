@@ -9,16 +9,18 @@ import Signup from './pages/signUp/signUp';
 import NoMatch from "./pages/noMatch";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
+import { ShowRestList } from "./components/showRest/showRestList/showRestList";
+import ShowAll from "./pages/afterLogin/showAllRest";
 
 class App extends Component {
 
   testData = [
     {
-      photos_url: "images/rest1.png",
+      photos: "images/rest1.png",
       url: "#",
-      name: "Hoho",
-      rating: "2/10",
-      cuisines: "BBQ",
+      restName: "Hoho",
+      rates: "2/10",
+      cuisine: "BBQ",
       location: {address: "10710 Research Blvd #200, Austin, TX 78759"}
     },
     {
@@ -83,12 +85,14 @@ class App extends Component {
         <Router> 
           <div className="App">
             <Switch>
+            <Route path="/allrestaurants" render={()=> <ShowAll username={this.state.username} />} />
               <Route path="/events" render={()=> <Events username={this.state.username}/>} />
               <Route path="/friends" render={()=> <Friend username={this.state.username}/>} />
               <Route path="/rest/:cuisine/:zipCode" render={({match})=> <MainRest username={this.state.username} cuisine={match.params.cuisine} zipCode={match.params.zipCode}/>} />
               <Route path="/" render={() => <AfterLoginHome username={this.state.username} data={this.testData} friends={this.friends} />} />
               <Route exact path="/dashboard" render={() => <AfterLoginHome username={this.state.username} data={this.testData} friends={this.friends} />} />
               <Route component={NoMatch} />
+              
             </Switch>
           </div>  
         </Router> 

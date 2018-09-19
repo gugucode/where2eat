@@ -3,11 +3,6 @@ import API from "../../utils/API";
 import $ from "jquery";
 import ShowComments from "./showComments";
 
- // When delete article button is clicked, remove article from db
-const handleDeleteButton = (id) => {
-  API.deleteRestaurant(id)
-    .then(this.savedRestaurant());
-}
 
 
 class Saved extends React.Component{
@@ -17,6 +12,17 @@ class Saved extends React.Component{
       comment: "",
       id: ''
     }
+  }
+
+   // When delete article button is clicked, remove article from db
+  handleDeleteButton = (id) => {
+    API.deleteRestaurant(id)
+      .then(result => {
+          console.log(result);
+          if(result.status === 200){
+              $(`#rest${id}`).remove();
+          }
+      });
   }
 
   handInputChange = (event) => {
@@ -32,11 +38,16 @@ class Saved extends React.Component{
     // const newComment = {
     //   comment: saveComments.comments
     // }
-    const newComment = {comment: this.state.comment};
-    API.saveRestaurant(newComment)
+    const newComment = {
+        comment: this.state.comment,
+        restId: this.props.id,
+        creator: this.props.user,
+    };
+
+    API.saveComment(newComment)
     .then(result => {
       console.log(result);
-      $(".modal-footer").append ("You saved comment!");
+      $(".collapse-footer").append ("You saved comment!");
 
     })
   
@@ -47,47 +58,47 @@ class Saved extends React.Component{
   
   return (
   <div className="container">
-    <li className="list-group-item">
+    {/* <li className="list-group-item">
       <h4>
       <span>
         <ul>
-            <li>{this.newSave}</li> 
+            <li>{this.newSave}</li>  */}
             {/* <li>{this.props.findRestaurantByID.cuisines}</li>
             <li>{this.props.findRestaurantByID.location.address}</li>
           <li className="btn-group pull-right">
             <img href={this.props.data.thumb} target="_blank" />
           </li> */}
-          </ul>
-      </span>
+          {/* </ul> */}
+     {/* </span> */}
           
-          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Comment</button>
+          
          
-          <button className="btn btn-primary" onClick={() => handleDeleteButton(this.props.data.id)}>Delete</button>
+          <button className="btn btn-primary" onClick={() => this.handleDeleteButton(this.props.id)}>Delete</button>
       
-      </h4>  
-    </li>
+      {/* </h4>   */}
+    {/* </li> */}
 
-  {/* modal for add comment */}
-  <div className="modal" id="exampleModal" tabindex="-1" role="dialog">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
+  {/* collapse for add comment */}
+  <div className="collapse" id={`${this.props.id}`} tabindex="-1" role="dialog">
+
+    <div className="collapse-content">
       {/* <form> */}
-      <div className="modal-header">
-        <h5 className="modal-title">Add Comment Here...</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+      <div className="collapse-header">
+        <h5 className="collapse-title">Add Comment Here...</h5>
+        <button type="button" className="close" data-dismiss="collapse" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div className="modal-body">
+      <div className="collapse-body">
         <textarea className ="form-control" name="comment" value={this.state.comment} onChange={this.handInputChange}/>
       </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+      <div className="collapse-footer">
+   
         <button className="btn btn-primary" onClick={this.saveCommentButton}>Save Comment</button>
       </div>
       {/* </form> */}
     </div>
-  </div>
+  
 </div>
 
 

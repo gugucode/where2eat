@@ -4,7 +4,7 @@ const comments = require("../../controllers/commentController");
 
 // Matches with "/api/sendPickInvite"
 router
-  .route("/addComment")
+  .route("/addcomment")
   .post(comments.addComment)
 
 router
@@ -14,6 +14,8 @@ router
 router
   .route("/deletecomments/")
   .delete(comments.deleteComment)
+
+
 
 
   

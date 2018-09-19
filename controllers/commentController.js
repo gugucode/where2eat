@@ -5,8 +5,8 @@ module.exports = {
     addComment: function(req, res) {
         console.log("create Comment")
         let data = req.body;
-        data['creator'] =  req.restaurant;
-        db.comments.create(data)
+        // data['creator'] =  req.restaurant;
+        db.Comments.create(data)
         .then(result => {
             res.send(result);
         }).catch(err => {

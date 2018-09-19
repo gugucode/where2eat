@@ -1,5 +1,5 @@
 module.exports = function(sequelize, Sequelize) {
-    const comments = sequelize.define('Comment', {
+    const comments = sequelize.define('Comments', {
     //   id: {
     //     type: Sequelize.INTEGER,
     //     references: {
@@ -7,7 +7,9 @@ module.exports = function(sequelize, Sequelize) {
     //         key: 'id'}
     //   },
       comment: Sequelize.TEXT,
-      primarykey: true,
+      creator: Sequelize.STRING,
+      restId: Sequelize.STRING
+      // primarykey: true,
   
     });
   
