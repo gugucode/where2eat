@@ -1,9 +1,12 @@
 import React from "react";
 import { DisplayResults } from "./restDisplay";
 import API from "../../utils/API";
+import { TweenMax, TimelineMax, CSSPlugin, AttrPlugin, Elastic, Power4, Power1 }  from "gsap/all";
 
 import ShowResult from "./showResult";
 import "./restStyle.css";
+
+const plugins = [ CSSPlugin, AttrPlugin];
 
 class DisplaySearch extends React.Component {
   constructor(props) {
@@ -19,6 +22,12 @@ class DisplaySearch extends React.Component {
         progress: 0,
         chose: null
       };
+  }
+
+  flipAnimation = (el) =>{
+      var tl = new TimelineMax()
+      tl.to(el, 0.025, {rotationY:180, transformOrigin: "50% 50%", opacity:0, scale:0.5, ease:Power1.easeOut})
+      .to(el, 0.25, {rotationY:0, transformOrigin: "50% 50%", opacity:1, scale:1, ease:Power1.easeOut}, "=+0.1")
   }
 
   componentDidMount = () => {
@@ -60,7 +69,7 @@ class DisplaySearch extends React.Component {
 
   // When save restaurant button is clicked, get new restaurant 
   handlePick = (id) => {
-
+    
     // Save number of pick for each restaurant
     this.setState((previousState, currentProps)=>{
       let restPickNum = previousState.restPickNum;
@@ -74,8 +83,11 @@ class DisplaySearch extends React.Component {
     if(this.state.changeArray.length > 0){
       if(id === this.state.rest1.id)
       {
+        this.flipAnimation("#rest2")
         this.setRest("rest2")
+
        }else{
+        this.flipAnimation("#rest1")
         this.setRest("rest1")
        }
     }else{
@@ -111,8 +123,8 @@ loader = {
                 <div className="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progress}%`}}></div>
               </div>
               <div className="row justify-content-center" id="result">
-                { this.state.rest1 !== null ? <DisplayResults pickRest={this.handlePick} data={this.state.rest1} /> : ("") }
-                { this.state.rest2 !== null ? <DisplayResults pickRest={this.handlePick} data={this.state.rest2} /> : ("") }
+                { this.state.rest1 !== null ? <DisplayResults divID="rest1" pickRest={this.handlePick} data={this.state.rest1} /> : ("") }
+                { this.state.rest2 !== null ? <DisplayResults divID="rest2" pickRest={this.handlePick} data={this.state.rest2} /> : ("") }
               </div>
             </div>
           ) : (
