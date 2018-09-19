@@ -111,7 +111,7 @@ loader = {
           (
             <div>
               <div className="progress">
-                <div className="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progress}%`}}></div>
+                <div className="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progress}%`}}></div>
               </div>
               <div className="row justify-content-center" id="result">
                 { this.state.rest1 !== null ? <DisplayResults pickRest={this.handlePick} data={this.state.rest1} /> : ("") }

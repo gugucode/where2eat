@@ -26,31 +26,31 @@ const handleSaveButton = (id) => {
 }
 
   return (
-      <div className = "col-12 col-md-4 pt-3">
-        <div className='card'  style={{width: "100%"}}>
+      <div className = "card-container">
+        <div className='card' onClick={() => props.pickRest(props.data.id)} style={{width: "100%"}}>
           <div className='image-div-result'>
             <img className='card-img-top' src={props.data.thumb} />
           </div>
         
           <div className="card-body">
-            <div className='result-element result-name'>
-              <h5>{props.data.name}</h5>
+            <div className="nameNtype">
+              <div className='result-element result-name'>
+                <h4>{props.data.name}</h4>
+              </div>
+              <div className='result-element result-type'>
+                <h5>{props.data.cuisines}</h5>
+              </div>
             </div>
-          
-            <div className='result-element result-vote'>
-              <h6>{props.data.cuisines}</h6>
+            <div className='result-element result-cost-rate'>
+              <h6><span>Avg cost for two<br/></span> ${props.data.average_cost_for_two}</h6>
+              <h6><span>User rating</span><br/>{props.data.user_rating.aggregate_rating}</h6>
             </div>
 
-            <div className='result-element result-vote'>
-              <h6>{props.data.user_rating.aggregate_rating}</h6>
-            </div>
 
-            <div className='result-element result-vote'>
-              <p style={{fontSize: "0.7em"}}>{props.data.location.address}</p>
+            <div className='result-element result-address'>
+              <p><i className="fas fa-map-marker-alt"></i>  {props.data.location.address}</p>
             </div>
           </div>
-        
-          <button className="btn btn-primary" onClick={() => props.pickRest(props.data.id)}>Yes</button>
         </div>     
      </div>
      
