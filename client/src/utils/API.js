@@ -48,7 +48,7 @@ const API = {
     delete data['savedEvents'];
     data.attendees = data.attendees.toString();
     console.log(data);
-    return axios.post("user/event/createevent",data);
+    return axios.post("/user/event/createevent",data);
   },
 
   updateEvent: function(data) {

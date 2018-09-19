@@ -20,7 +20,7 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/dashboard"><img src="./img/icon.png" style={{width: "100px", marginTop: "6px"}}/></a>
+        <a className="navbar-brand" href="/dashboard"><img src={window.location.origin + '/img/icon.png'} style={{width: "100px", marginTop: "6px"}}/></a>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto">

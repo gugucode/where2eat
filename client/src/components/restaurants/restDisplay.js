@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import API from "../../utils/API";
+// import noimage from "../../../public/img/noimage"
 
 
 export const DisplayResults = props => {
@@ -29,7 +30,7 @@ const handleSaveButton = (id) => {
       <div className = "card-container">
         <div className='card' onClick={() => props.pickRest(props.data.id)} style={{width: "100%"}}>
           <div className='image-div-result'>
-            <img className='card-img-top' src={props.data.thumb} />
+            <img className='card-img-top' src={props.data.thumb? props.data.thumb:(window.location.origin + '/img/noimage.jpg')} alt="RestaurantImage"/>
           </div>
         
           <div className="card-body">
@@ -59,5 +60,5 @@ const handleSaveButton = (id) => {
 };
 
 DisplayResults.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.object
 };

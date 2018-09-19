@@ -1,6 +1,5 @@
 import React from "react";
 import { DisplayResults } from "./restDisplay";
-import { ShowRestList } from "../showRest/showRestList/showRestList";
 import API from "../../utils/API";
 
 import ShowResult from "./showResult";
@@ -24,12 +23,10 @@ class DisplaySearch extends React.Component {
 
   componentDidMount = () => {
     console.log(this.props)
-    const { cuisine, zipCode } = this.props;
+    const cuisine = this.props.cuisine;
+    const zipCode = this.props.zipCode;
 
-    API.getRestaurant({
-      cuisine: cuisine,
-      zipCode: zipCode
-    })
+    API.getRestaurant(cuisine,zipCode)
     .then(res => {
       console.log(res);
     
@@ -107,7 +104,7 @@ loader = {
   render() {
       return(
         
-          this.state.changeArray.length > 0 || this.state.chose === null ? 
+          this.state.changeArray.length > -1 && this.state.chose === null ? 
           (
             <div>
               <div className="progress">

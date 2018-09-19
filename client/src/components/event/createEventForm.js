@@ -1,7 +1,5 @@
 import React from "react";
-import $ from "jquery";
 import API from "../../utils/API";
-import Moment from "moment-timezone";
 import ShowEvents from "./showEvents"
 import EventForm from "./eventForm";
 
@@ -43,9 +41,6 @@ class CreateEvent extends React.Component {
  
   // handle add friend request, searchKey cannot be empty and searchKey must be in the potentialFriends list
   handleCreateEvent = data => {
-    // console.log(this.state);
-    // const data = {...this.state}
-    // console.log(data)
     API.createEvent(data)
     .then(result =>{
       this.getAllEvents();

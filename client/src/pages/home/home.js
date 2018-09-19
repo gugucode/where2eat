@@ -7,7 +7,7 @@ import "./home.css"
 import { TweenMax, TimelineMax, CSSPlugin, AttrPlugin, Elastic, Power4, Power1 }  from "gsap/all";
 // import DrawSVGPlugin  from "../../gsap-bonus/DrawSVGPlugin";
 //this line is to avoid tree shaking : https://greensock.com/docs/NPMUsage
-const plugins = [ CSSPlugin, AttrPlugin];
+// const plugins = [ CSSPlugin, AttrPlugin];
 
 class Home extends Component {
 

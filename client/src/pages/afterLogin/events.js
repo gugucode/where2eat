@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import Nav from "../../components/nav/navigation";
 import CreateEvent from "../../components/event/createEventForm";
 
-import API from "../../utils/API";
-
 class FriendPage extends Component {
 
   constructor(props){

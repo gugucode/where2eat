@@ -3,7 +3,7 @@ import "./App.css";
 import AfterLoginHome from "./pages/afterLogin/home";
 import Friend from "./pages/afterLogin/friends";
 import Events from "./pages/afterLogin/events";
-import MainRest from "./pages/afterLogin/rest";
+import Rest from "./pages/afterLogin/rest";
 import Home from './pages/home/home';
 import Signup from './pages/signUp/signUp';
 import NoMatch from "./pages/noMatch";
@@ -85,7 +85,7 @@ class App extends Component {
             <Switch>
               <Route path="/events" render={()=> <Events username={this.state.username}/>} />
               <Route path="/friends" render={()=> <Friend username={this.state.username}/>} />
-              <Route path="/rest/:cuisine/:zipCode" render={({match})=> <MainRest username={this.state.username} cuisine={match.params.cuisine} zipCode={match.params.zipCode}/>} />
+              <Route path="/rest/:cuisine/:zipCode" render={({match})=> <Rest username={this.state.username} cuisine={match.params.cuisine} zipCode={match.params.zipCode}/>} />
               <Route path="/" render={() => <AfterLoginHome username={this.state.username} data={this.testData} friends={this.friends} />} />
               <Route exact path="/dashboard" render={() => <AfterLoginHome username={this.state.username} data={this.testData} friends={this.friends} />} />
               <Route component={NoMatch} />

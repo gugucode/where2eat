@@ -6,7 +6,7 @@ import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 import InviteForm from "../../components/invite/inviteForm";
 import RestSearch from "../../components/restaurants/restSearch";
 // import CreateEvent from "../../components/createEvent/createEventForm";
-import axios from "axios";
+
 
 class AfterLoginHome extends Component {
   constructor(props){
@@ -15,18 +15,6 @@ class AfterLoginHome extends Component {
       loggedIn: false,
     }
   }
-  
-  // componentWillMount= () =>{
-  //   axios.get("/api/auth").then((result)=>{
-  //     if(result.data.passport){
-  //       this.setState({loggedIn:true});
-        
-  //     }else{
-  //       window.location.href= ("/");
-  //       this.setState({loggedIn:false});
-  //     }
-  //   })
-  // }
 
   render() {
     // if(this.state.loggedIn){
