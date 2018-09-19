@@ -31,7 +31,7 @@ const handleSaveButton = (id) => {
       <div className = "card-container">
         <div className='card' onClick={() => props.pickRest(props.data.id)} style={{width: "100%"}}>
           <div className='image-div-result'>
-            <img className='card-img-top' src={props.data.thumb? props.data.thumb:(window.location.origin + '/img/noimage.jpg')} alt="RestaurantImage"/>
+            <img className='card-img-top' src={ props.data.thumb || (window.location.origin + '/img/noimage.jpg')} alt="RestaurantImage"/>
           </div>
         
           <div className="card-body">

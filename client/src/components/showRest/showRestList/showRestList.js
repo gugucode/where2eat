@@ -28,7 +28,7 @@ export const ShowRestList = props => {
           <li key={index} className="list-group-item">
             <div className="row justify-content-start">
               <div className="col-5">
-                <img src={rest.restaurant.thumb} alt="Error" style={{ ...imgStyle, width: "100%" }} />
+                <img src={rest.restaurant.thumb || (window.location.origin + "/img/noimage.jpg")} alt="Error" style={{ ...imgStyle, width: "100%" }} />
               </div>
 
               <div className="col-7 text-sm-left">
@@ -45,7 +45,7 @@ export const ShowRestList = props => {
             <li id={`rest${rest.id}`} key={index} className="list-group-item">
             <div className="row justify-content-start">
               <div className="col-5">
-                <img src={rest.photos} alt="Error" style={{ width: "100%" }} />
+                <img src={rest.photos || (window.location.origin + "/img/noimage.jpg")} alt="Error" style={{ width: "100%" }} />
               </div>
 
               <div className="col-7 text-sm-left">
