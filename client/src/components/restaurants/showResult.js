@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { render } from 'react-dom';
 import API from "../../utils/API";
 import { ShowRestList } from "../showRest/showRestList/showRestList"
-import Map from "./map";
+import ShowMap from "./map";
+import $ from "jquery";
+import { rend } from 'react-dom'
 
 class ShowResult extends React.Component {
     constructor(props){
@@ -27,15 +30,21 @@ class ShowResult extends React.Component {
                                 <h4 className="rest-name">{this.props.chose.name}</h4>
                                 <p className="rest-location my-0"><span className="title">Address: </span>{this.props.chose.location.address}</p>
                                 <p className="rest-cousines my-0"><span className="title">Cousines: </span>{this.props.chose.cuisines}</p>
-                                <p className="rest-cost my-0"><span className="title">Average cost for two: </span>0</p>
-                                <p className="rest-rating my-0"><span className="title">Rating: </span>${this.props.chose.average_cost_for_two}</p>
+                                <p className="rest-cost my-0"><span className="title">Average cost for two: </span>${this.props.chose.average_cost_for_two}</p>
+                                <p className="rest-rating my-0"><span className="title">Rating: </span>${this.props.chose.user_rating.aggregate_rating}</p>
                                 <p className="rest-url my-0"><span className="title"><a href="#" target="_blank">More Info</a></span> </p>
                             </div>
                         </div>
 
                         {/* show restaurant on map */}
                         <div className = "col-12">
-                            <Map data={this.props.others} pickId={this.props.chose.id}/>
+                            <div id="mapcontainer">
+                                <ShowMap 
+                                    data={this.props.others} 
+                                    chose={this.props.chose}
+                                />
+                            </div>
+                       
                         </div>
                     </div>
                 </div>

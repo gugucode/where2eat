@@ -1,163 +1,95 @@
-// map function
+// import React from "react";
+// import L from "leaflet";
 
+// const style = {
+//   width: "100%",
+//   height: "300px"
+// };
+
+// class Map extends React.Component {
+//   componentDidMount() {
+//     // create map
+//     this.map = L.map("map", {
+//       center: [49.8419, 24.0315],
+//       zoom: 16,
+//       layers: [
+//         L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+//           attribution:
+//             '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//         })
+//       ]
+//     });
+
+//     // add marker
+//     this.marker = L.marker(this.props.markerPosition).addTo(this.map);
+//   }
+//   componentDidUpdate({ markerPosition }) {
+//     // check if position has changed
+//     if (this.props.markerPosition !== markerPosition) {
+//       this.marker.setLatLng(this.props.markerPosition);
+//     }
+//   }
+//   render() {
+//     return <div id="map" style={style} />;
+//   }
+// }
+
+// export default Map;
 
 import React from "react";
-import PropTypes from "prop-types";
-import $ from "jquery";
-import L from "leaflet";
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
-class Map extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-
-        }
-        // this.printRestOnMap = this.printRestOnMap.bind(this);
+class ShowMap extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        center: [props.chose.location.latitude,props.chose.location.longitude],
+        zoom: 13,
     };
+  }
 
-    printMap = (restID) => {
-        // create map and use the winning restaruant as center of the map
-        let mymap;
-        const allRest = this.props.data;
-        for (let i = 0; i < allRest.length; i++) {
-            if (restID == allRest[i].RestID) {
-                console.log(allRest[i]);
-                const r = allRest[i].restaurant;
-                mymap = L.map('map').setView([r.location.latitude, r.location.longitude], 12);
-                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                    maxZoom: 18,
-                    id: 'mapbox.streets',
-                    accessToken: 'pk.eyJ1IjoiZ3VndWNvZGUiLCJhIjoiY2pocjU1Z3R2MWMwcjM3cHZnZDhqa3NyYyJ9.6qeZqaN1FcIHVZqSut1hgw'
-                }).addTo(mymap);
-                break;
-            } 
+  createMarker = (data) =>{
+    let result = [];
+    for(let i=0; i<data.length; i++){
+        const rest = data[i].restaurant;
+        result.push(
+            <Marker position={[rest.location.latitude,rest.location.longitude]}>
+                <Popup>
+                    <span>{rest.name} <br/> {`${rest.user_rating.aggregate_rating}/5`}</span>
+                </Popup>
+            </Marker>
+        )
+    }
+    return result;
+  }
+
+  render() {
+    const position = this.state.center;
+    return (
+      <Map center={position} zoom={this.state.zoom}>
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+        />
+        {
+            // this.props.data.map(rest => {
+            //     rest.location ? 
+            //     (<Marker position={[rest.restaurant.location.latitude,rest.restaurant.location.longitude]}>
+            //         <Popup>
+            //             <span>{rest.name} <br/> {`${rest.user_rating.aggregate_rating}/5`}</span>
+            //         </Popup>
+            //     </Marker>) :(
+            //         ""
+            //     )
+            // })
+            this.createMarker(this.props.data)
+
         }
-        console.log("hi")
-        return mymap;
-        // print out all restaurants 
-        // allRest.forEach(function(restaurant) {
-        //     console.log(restaurant.restaurant.id)
-        //     if(this !== undefined){
-        //         this.printRestOnMap(mymap,restaurant,restID);
-        //     }
-            
-        // });          
-    };
+        
+      </Map>
+    );
+  }
+}
 
-    printRestOnMap = (mymap,restaurant,restID)=>{
-        restaurant = restaurant.restaurant
-        var lat = restaurant.latitude;
-        var long = restaurant.longitude;
-        var rest_icon;
-    
-        if(restID == restaurant.RestID){
-            rest_icon = {icon: L.AwesomeMarkers.icon({icon: 'glass', markerColor: 'blue', prefix: 'fa', iconColor: 'yellow', spin: 'true'}) };
-        }else{
-            rest_icon = {icon: L.AwesomeMarkers.icon({icon: 'glass', markerColor: 'blue', prefix: 'fa', iconColor: 'white'}) }        
-        }
-    
-        var detail = $("<div>");
-        var name = $("<p class='mapRestName'>"+restaurant.Name+"</p>");
-        name.css("margin","5px 0")
-        var address = $("<p class='mapLocat'>"+restaurant.Location+"</p>");
-        address.css("margin","5px 0")
-    
-        // star rating html
-        var rating_star = $("<div class='star-ratings-css'>");
-        var stars = $("<div class='star-ratings-css-top'>");
-        var stars_span = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
-        // set stars tag's width by restaurant's rating
-        stars.css("width",(restaurant.Rating/5).toFixed(2)*100+"%");
-        stars.append(stars_span);
-        rating_star.append(stars)
-    
-        detail.append(name,address,rating_star);
-    
-        // add restaurant to map
-        L.marker([lat, long],rest_icon).addTo(mymap).bindPopup(detail.html());
-    }
-
-    componentDidMount = () => {
-        const mymap = this.printMap(this.props.pickId);
-        const allRest = this.props.data;
-        // allRest.forEach(function(restaurant) {
-        //     console.log(restaurant.restaurant.id)
-        //     if(this !== undefined){
-                // this.printRestOnMap(mymap,allRest[0],allRest[0].restaurant.id);
-            // }
-            
-        // }); 
-    }
-
-    render() {
-        return (
-            <div id="map">
-            
-            </div>
-        );
-    }
-};
-
-export default Map;
-
-Map.propTypes = {
-  data: PropTypes.array
-};
-
-// function printRestOnMap(mymap,restaurant,restID){
-//     var lat = restaurant.latitude;
-//     var long = restaurant.longitude;
-//     var rest_icon;
-
-//     if(restID == restaurant.RestID){
-//         rest_icon = {icon: L.AwesomeMarkers.icon({icon: 'glass', markerColor: 'blue', prefix: 'fa', iconColor: 'yellow', spin: 'true'}) };
-//     }else{
-//         rest_icon = {icon: L.AwesomeMarkers.icon({icon: 'glass', markerColor: 'blue', prefix: 'fa', iconColor: 'white'}) }        
-//     }
-
-//     var detail = $("<div>");
-//     var name = $("<p class='mapRestName'>"+restaurant.Name+"</p>");
-//     name.css("margin","5px 0")
-//     var address = $("<p class='mapLocat'>"+restaurant.Location+"</p>");
-//     address.css("margin","5px 0")
-
-//     // star rating html
-//     var rating_star = $("<div class='star-ratings-css'>");
-//     var stars = $("<div class='star-ratings-css-top'>");
-//     var stars_span = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
-//     // set stars tag's width by restaurant's rating
-//     stars.css("width",(restaurant.Rating/5).toFixed(2)*100+"%");
-//     stars.append(stars_span);
-//     rating_star.append(stars)
-
-//     detail.append(name,address,rating_star);
-
-//     // add restaurant to map
-//     L.marker([lat, long],rest_icon).addTo(mymap).bindPopup(detail.html());
-// }
-
-
-// function printMap(restID){
-//     // create map and use the winning restaruant as center of the map
-//     var mymap;
-//     for (var i = 0; i < allRest.length; i++) {
-//         if (restID == allRest[i].RestID) {
-//             console.log(allRest[i].Name);
-//             var mymap = L.map('mapid').setView([allRest[i].latitude, allRest[i].longitude], 12);
-//             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-//                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//                 maxZoom: 18,
-//                 id: 'mapbox.streets',
-//                 accessToken: 'pk.eyJ1IjoiZ3VndWNvZGUiLCJhIjoiY2pocjU1Z3R2MWMwcjM3cHZnZDhqa3NyYyJ9.6qeZqaN1FcIHVZqSut1hgw'
-//             }).addTo(mymap);
-//             break;
-//         } 
-//     }
-
-//     // print out all restaurants 
-//     allRest.forEach(function(restaurant) {
-//         printRestOnMap(mymap,restaurant,restID);
-//     });
-    
-// }
+export default ShowMap;
+// window.ReactDOM.render(<SimpleExample />, document.getElementById('container'));
