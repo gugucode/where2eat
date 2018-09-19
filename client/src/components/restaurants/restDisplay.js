@@ -26,7 +26,7 @@ const handleSaveButton = (id) => {
 }
 
   return (
-      <div className = "card-container">
+      <div id={props.divID} className = "card-container">
         <div className='card' onClick={() => props.pickRest(props.data.id)} style={{width: "100%"}}>
           <div className='image-div-result'>
             <img className='card-img-top' src={props.data.thumb} />

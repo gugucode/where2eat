@@ -39,9 +39,10 @@ h4{
 }
 
 .card-container{
-  width: 23% ;
+  width: 25% ;
   min-width: 300px;
   border-radius: 10px;
+  border: #eee 2px solid;
   overflow: hidden;
   background:;
   margin: 20px 35px;
@@ -49,17 +50,28 @@ h4{
   cursor: pointer;
 }
 .card-container:hover{
-  /* background: #eee; */
+  background:rgba(239, 231, 218, 0.3);
   box-shadow: #EFE7DA 0 0 5px;
   transform: scale(1.05)
 }
 .card{
   background-color: unset;
+  border: none;
 }
 .card-body{
   color: #0e4749;
   height: 250px;
   background-color: unset;
+}
+.image-div-result{
+  height: 250px;
+  overflow: hidden;
+  border-bottom: #69B578 2px solid;
+}
+.card-img-top{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 .card-body .nameNtype{
   min-height: 80px;
