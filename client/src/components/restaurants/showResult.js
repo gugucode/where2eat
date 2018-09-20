@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { ShowRestList } from "../showRest/showRestList/showRestList"
 import ShowMap from "./map";
 import CreateEventForm from "../event/eventForm";
-import API from "../../utils/API"
+import API from "../../utils/API";
+import $ from "jquery";
 
 class ShowResult extends React.Component {
     constructor(props){
@@ -14,15 +15,41 @@ class ShowResult extends React.Component {
     }
 
     handleCreateEvent = data => {
+        const att = data.attendees;
+        const sendEmailData = {
+            sender: this.props.username, // need to get sender
+            reciever: att, // need check if erciever has signed up
+            receiverEmail: att,
+            inviteUrl: "#", // need to compose the invite url
+            restInfo: this.props.chose,
+            startTime: data.startDateTime,
+            endDateTime: data.endDateTime,
+            description: data.description
+        };
+
         API.createEvent(data)
         .then(result =>{
             console.log(result);
-        //   this.getAllEvents();
+            $("#eventStatus").text("Event has been created");
+            this.sendInviteEmail(sendEmailData)
         }).catch(err => {
           console.log(err);
         })
     
     }
+
+    sendInviteEmail = data => {
+        // event.preventDefault();
+    
+        API.sendEventInvite(data).then(result => {
+          console.log(result);
+          if (result.data.code === 400) {
+            $("#sendStatus").text("Send invite failed");
+          } else {
+            $("#sendStatus").text("Invitation has been sent");
+          }
+        });
+      };
 
     render() {
         return (
