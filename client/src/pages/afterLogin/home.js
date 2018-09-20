@@ -6,7 +6,7 @@ import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 import InviteForm from "../../components/invite/inviteForm";
 import RestSearch from "../../components/restaurants/restSearch";
 // import CreateEvent from "../../components/createEvent/createEventForm";
-
+import "./dashboard.css"
 
 class AfterLoginHome extends Component {
   constructor(props){
@@ -21,7 +21,7 @@ class AfterLoginHome extends Component {
     return (
       <div className="container-fluid">
         <Nav username={this.props.username}/>
-        <div className="row justify-content-center">
+        <div id="dashboard-row" className="row justify-content-center">
           {/* show restaurants */}
           <div className="col-12 col-md-5">
             <div className="row py-3">
@@ -39,12 +39,12 @@ class AfterLoginHome extends Component {
           {/* search restaurants and find friends */}
           <div className="col-12 col-md-6">
             <div className="row">
-              <div className="col-12">
+              <div id="search" className="col-12">
                 <RestSearch />
                 
               </div>
             </div>
-            <div className="row">
+            <div id="invite-div" className="row">
               <div className="col-12">
                 <InviteForm friends={this.props.friends} />
                 {/* <CreateEvent /> */}

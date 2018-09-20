@@ -103,6 +103,12 @@ class DisplaySearch extends React.Component {
       }
     }
   }
+  handleLike = (event) =>{
+    console.log("HERE", event)
+    const likeDiv= event.target;
+    event.target.firstChild.classList.remove('far');
+    event.target.firstChild.classList.add('fas');
+  }
 
 loader = {
     border: "16px solid #f3f3f3",
@@ -123,8 +129,8 @@ loader = {
                 <div className="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progress}%`}}></div>
               </div>
               <div className="row justify-content-center" id="result">
-                { this.state.rest1 !== null ? <DisplayResults divID="rest1" pickRest={this.handlePick} data={this.state.rest1} /> : ("") }
-                { this.state.rest2 !== null ? <DisplayResults divID="rest2" pickRest={this.handlePick} data={this.state.rest2} /> : ("") }
+                { this.state.rest1 !== null ? <DisplayResults divID="rest1" pickRest={this.handlePick} data={this.state.rest1} handleLike={this.handleLike} /> : ("") }
+                { this.state.rest2 !== null ? <DisplayResults divID="rest2" pickRest={this.handlePick} data={this.state.rest2} handleLike={this.handleLike}/> : ("") }
               </div>
             </div>
           ) : (

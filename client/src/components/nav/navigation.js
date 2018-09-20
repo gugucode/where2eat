@@ -19,11 +19,11 @@ class Nav extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/dashboard"><img src={window.location.origin + '/img/icon.png'} style={{width: "100px", marginTop: "6px"}}/></a>
+      <nav id="mynav" className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="/dashboard"><img src={window.location.origin + '/img/icon.png'}/></a>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul className="navbar-nav mr-auto">
+          <ul id="smallNav" className="navbar-nav mr-auto">
           <li className="nav-item active">
               <a className="nav-link" href="#">
                 Hello, {this.props.username} <span className="sr-only">(current)</span>
@@ -33,21 +33,22 @@ class Nav extends React.Component {
             {/* log out */}
             <li className="nav-item">
               <a className="nav-link" onClick= {this.handleLogout}>
-                Log out
+              <i className="fas fa-sign-out-alt"></i> Log out
               </a>
             </li>
-
+            </ul>
             {/* find friend */}
+            <ul className="navbar-nav text-right">
             <li className="nav-item active">
               <a className="nav-link" href="/friends">
-                Friends
+              <i className="fas fa-user-friends"></i> Friends
               </a>
             </li>
 
             {/* create event */}
             <li className="nav-item active">
               <a className="nav-link" href="/events">
-                Events
+              <i className="fas fa-calendar-alt"></i> Events
               </a>
             </li>
 
