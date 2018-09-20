@@ -23,6 +23,7 @@ module.exports = {
             }
         })
     },
+
     // find user by username
     findUsers: function(req,res){
         console.log("searchFriend");

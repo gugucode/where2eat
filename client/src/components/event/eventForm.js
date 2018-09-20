@@ -252,6 +252,8 @@ class EventForm extends React.Component {
                 <button onClick={this.handleSubmit} type="button" className="btn btn-primary">
                     {this.props.eventName}
                 </button>
+                <p id="eventStatus"></p>
+                <p id="sendStatus"></p>
             </div>
 
         )
