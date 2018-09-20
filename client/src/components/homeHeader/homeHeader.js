@@ -3,7 +3,7 @@ import "./homeHeader.css";
 
 export const HomeHeader = props => (
   <div className="header">
-    <div className="icon"><img src="./img/icon.png" /></div>
+    <a href="/"><div className="icon"><img src="./img/icon.png" /></div></a>
     <div className="nav">
       <a href="/signup">Signup</a>
       
