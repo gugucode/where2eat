@@ -29,7 +29,8 @@
 }
 
 .progress{
-  margin: 10px 20%;
+  margin: 0px 23%;
+  margin-top: 50px;
 }
 h4{
   font-weight: 700;
@@ -46,17 +47,20 @@ h4{
   overflow: hidden;
   background:;
   margin: 20px 35px;
-  transition: all 0.15s ease-in-out;
-  cursor: pointer;
 }
-.card-container:hover{
+.card:hover{
   background:rgba(239, 231, 218, 0.3);
   box-shadow: #EFE7DA 0 0 5px;
-  transform: scale(1.05)
+  transform: scale(1.05);
+  transform-origin: 50% 50%;
 }
 .card{
+  
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
   background-color: unset;
   border: none;
+  border-bottom: #eee 2px solid;
 }
 .card-body{
   color: #0e4749;
@@ -107,7 +111,25 @@ h6 span{
   color: #69B578;
 }
 
+.likeBtn{
+  cursor: pointer;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  display: absolute;
+  transition: all 0.15s ease-in-out;
+  /* margin-left: -30px; */
+}
 
+.likeBtn i{
+  color: #e55812;
+}
+.likeBtn:hover{
+  transform: scale(1.05);
+  transform-origin: 50% 50%;
+  color: #69B578;
+  background: #EFE7DA80;
+}
 #result{
   margin-bottom: 40px;
 }

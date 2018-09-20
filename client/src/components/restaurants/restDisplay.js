@@ -53,8 +53,8 @@ const handleSaveButton = (id) => {
               <p><i className="fas fa-map-marker-alt"></i>  {props.data.location.address}</p>
             </div>
           </div>
-                  <button className="btn btn-primary" onClick={() => handleSaveButton(props.data.id)}>Save</button>
         </div>     
+       <div onClick={props.handleLike}><div className="likeBtn" onClick={() => handleSaveButton(props.data.id)}><i className="far fa-thumbs-up"></i> Save for later!</div></div> 
      </div>
      
 

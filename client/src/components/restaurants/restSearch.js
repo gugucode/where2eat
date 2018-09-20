@@ -10,7 +10,7 @@ class RestSearch extends React.Component {
       restArray: []
     };
   }
-
+  
   // Keep track of what user types into zipcode input so that input can be grabbed later
   handleZipcodeChange = event => {
     const { name, value } = event.target;
