@@ -28,10 +28,8 @@ module.exports = {
     console.log("get send invite request")
     const data = req.body;
     console.log(req.body)
-    // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    sgMail.setApiKey('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');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
    
-
     for( let i=0; i<data.receiverEmail.length; i++){
       const e = data.receiverEmail[i]
       if(e.indexOf("@") !== -1){
