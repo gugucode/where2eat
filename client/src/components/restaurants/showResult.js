@@ -65,7 +65,7 @@ class ShowResult extends React.Component {
                                 <p className="rest-location my-0"><span className="title">Address: </span>{this.props.chose.location.address}</p>
                                 <p className="rest-cousines my-0"><span className="title">Cousines: </span>{this.props.chose.cuisines}</p>
                                 <p className="rest-cost my-0"><span className="title">Average cost for two: </span>${this.props.chose.average_cost_for_two}</p>
-                                <p className="rest-rating my-0"><span className="title">Rating: </span>${this.props.chose.user_rating.aggregate_rating}</p>
+                                <p className="rest-rating my-0"><span className="title">Rating: </span>{this.props.chose.user_rating.aggregate_rating}</p>
                                 <p className="rest-url my-0"><span className="title"><a href="#" target="_blank">More Info</a></span> </p>
                             </div>
                         </div>

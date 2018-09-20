@@ -25,7 +25,7 @@ class ShowComments extends React.Component {
     return (
         <div id="favorite-places">
             <h5 className="text-left my-0">
-                Comments <hr style={{ margin: "0 0 2em 0" }} />
+                Show Comments <hr style={{ margin: "0 0 2em 0" }} />
             </h5>
 
             <div className="accordion" id="accordionExample">
@@ -36,7 +36,7 @@ class ShowComments extends React.Component {
                             <div className="card-header d-flex justify-content-between align-items-center" id="headingOne">
                                 <h5 className="mb-0">
                                     <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#${index}`} aria-expanded="true" aria-controls="collapseOne">
-                                        {comment.summary}
+                                        {comment.comment}
                                     </button>
                                 </h5>
                                 <a onClick={this.deletecomment}>
@@ -44,8 +44,10 @@ class ShowComments extends React.Component {
                                 </a>
                             </div>
 
-                            <div id={index} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            
+                            <div id={`form${index}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div className="card-body" style={{height: "auto"}}>
+                                <Saved saveCommentButton={this.props.saveCommentButton} />
+                            </div>
                             </div>
                         </div>
                     ))) : ("")
