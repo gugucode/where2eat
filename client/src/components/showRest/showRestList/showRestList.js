@@ -26,7 +26,7 @@ export const ShowRestList = props => {
         {props.data.map((rest, index) => (
           rest.restaurant ? (
           <li key={index} className="list-group-item">
-            <div className="row justify-content-start">
+            <div className="restList-row row justify-content-start">
               <div className="col-5">
                 <img src={rest.restaurant.thumb || (window.location.origin + "/img/noimage.jpg")} alt="Error" style={{ ...imgStyle, width: "100%" }} />
               </div>
@@ -43,23 +43,28 @@ export const ShowRestList = props => {
           </li>
           ) : (
             <li id={`rest${rest.id}`} key={index} className="list-group-item">
-            <div className="row justify-content-start">
-              <div className="col-5">
+            <div className="restList-row row justify-content-start">
+              <div className="col-6">
                 <img src={rest.photos || (window.location.origin + "/img/noimage.jpg")} alt="Error" style={{ width: "100%" }} />
+                
               </div>
 
-              <div className="col-7 text-sm-left">
+              <div className="col-6 text-sm-left">
                 <p className="my-0">{`Name: ${rest.restName}`}</p>
                 <p className="my-0">{`Rating: ${rest.rates}`}</p>
                 <p className="my-0">{`Cuisine: ${rest.cuisine}`}</p>
                 <p className="my-0">{`Address: ${rest.location}`}</p>
-                <button type="button" className="btn btn-primary" data-toggle="collapse" data-target={`#${rest.id}`} data-whatever="@mdo">Add Comment</button>
-                <Saved id={rest.id} user={props.user}/>
-                <button type="button" className="btn btn-primary" data-toggle="collapse" data-target="accordionExample" data-whatever="@mdo">Show Comment</button>
-                <ShowComments />
-                {/* <a href={rest.url} className="badge badge-info btn-sm">
-                  Detail
-                </a> */}
+              </div>
+              <div className="control-row">
+                <div className="col-12">
+                  <button type="button" className="btn btn-primary" data-toggle="collapse" data-target={`#${rest.id}`} data-whatever="@mdo">Add Comment</button>
+                  <button type="button" className="btn btn-primary" data-toggle="collapse" data-target="accordionExample" data-whatever="@mdo">Show Comment</button>
+                  <Saved id={rest.id} user={props.user}/>
+                  <ShowComments />
+                  {/* <a href={rest.url} className="badge badge-info btn-sm">
+                    Detail
+                  </a> */}
+                </div>
               </div>
             </div>
           </li>

@@ -57,7 +57,7 @@ class Saved extends React.Component{
   render() {
   
   return (
-  <div className="container">
+  <div className="deleteBtn-container">
     {/* <li className="list-group-item">
       <h4>
       <span>
@@ -71,7 +71,27 @@ class Saved extends React.Component{
           {/* </ul> */}
      {/* </span> */}
           
-          
+     <div className="collapse" id={`${this.props.id}`} tabIndex="-1" role="dialog">
+
+      <div className="collapse-content">
+        {/* <form> */}
+        <div className="collapse-header">
+          <h5 className="collapse-title">Add Comment Here...</h5>
+          <button type="button" className="close" data-dismiss="collapse" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div className="collapse-body">
+          <textarea className ="form-control" name="comment" value={this.state.comment} onChange={this.handInputChange}/>
+        </div>
+        <div className="collapse-footer">
+
+          <button className="btn btn-primary" onClick={this.saveCommentButton}>Save Comment</button>
+        </div>
+        {/* </form> */}
+      </div>
+
+      </div>
          
           <button className="btn btn-primary" onClick={() => this.handleDeleteButton(this.props.id)}>Delete</button>
       
@@ -79,27 +99,7 @@ class Saved extends React.Component{
     {/* </li> */}
 
   {/* collapse for add comment */}
-  <div className="collapse" id={`${this.props.id}`} tabindex="-1" role="dialog">
 
-    <div className="collapse-content">
-      {/* <form> */}
-      <div className="collapse-header">
-        <h5 className="collapse-title">Add Comment Here...</h5>
-        <button type="button" className="close" data-dismiss="collapse" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div className="collapse-body">
-        <textarea className ="form-control" name="comment" value={this.state.comment} onChange={this.handInputChange}/>
-      </div>
-      <div className="collapse-footer">
-   
-        <button className="btn btn-primary" onClick={this.saveCommentButton}>Save Comment</button>
-      </div>
-      {/* </form> */}
-    </div>
-  
-</div>
 
 
   </div>
