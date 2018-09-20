@@ -8,11 +8,11 @@ router
   .post(comments.addComment)
 
 router
-  .route("/findallcomments")
+  .route("/findallcomments/:id")
   .get(comments.findAllComments)
   
 router
-  .route("/deletecomments/")
+  .route("/deletecomments/:id")
   .delete(comments.deleteComment)
 
 

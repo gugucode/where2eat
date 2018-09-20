@@ -19,11 +19,10 @@ const handleSaveButton = (id) => {
                    rates: findRestaurantByID.user_rating.aggregate_rating,
                    rest_id: findRestaurantByID.id};
   API.saveRestaurant(newSave)
-  // .then(result => {
-  //   console.log(result)
-  // })
   .then(result=>{
     console.log(result)
+  }).catch(err => {
+    console.log(err)
   });
 }
 

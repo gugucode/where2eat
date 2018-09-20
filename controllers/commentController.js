@@ -16,13 +16,13 @@ module.exports = {
 
 
     deleteComment: function(req, res) {
-        console.log("cancel Comment")
-        const data = req.body;
-        console.log(req)
+        console.log("remove Comment")
+        const id = req.params.id;
+        console.log(id)
         db.Comments.destroy({
             where: {
-                id: data.id,
-                creator: req.restaurant
+                id: id,
+                creator: req.user.username
             }
         }).then(result => {
             console.log(result)
@@ -37,14 +37,16 @@ module.exports = {
         // console.log(req.user.username);
         db.Comments.findAll({
             where: {
-                creator: req.comments
-            }
+                restId: req.params.id
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ],
         }).then(result => {
             console.log(result)
-            res.send(result)
-            
+            res.send(result)            
         }).catch(err => {
-        console.log(err)
+            console.log(err)
         })
     }
 };

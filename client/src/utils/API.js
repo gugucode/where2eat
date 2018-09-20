@@ -19,6 +19,14 @@ const API = {
     return axios.post("/api/comment/addcomment", saveComment);
   },
 
+  //Get all comments of a restaurant
+  getComment: function(id) {
+    return axios.get("/api/comment/findallcomments/"+id);
+  },
+
+  deleteComment: function(id) {
+    return axios.delete("/api/comment/deletecomments/"+id)
+  },
   // Send a Pick-Restaurant invite to friends
   sendEventInvite: function(data) {
     // console.log("react send invite");

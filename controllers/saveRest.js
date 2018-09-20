@@ -3,9 +3,25 @@ var db = require("../models");
 module.exports = {
   saveRest: function(req, res) {
     console.log(req.body);
-    db.Restaurant.create(req.body).then(function(dbRestaurant) {
-      res.json(dbRestaurant);
-    });
+    db.Restaurant.findAll({
+      where: {
+        rest_id: req.body.rest_id
+      }
+    }).then(result => {
+      if(result.length === 0){
+        db.Restaurant.create(req.body)
+        .then(function(dbRestaurant) {
+          res.json(dbRestaurant);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }else{
+        res.status(409).end();
+      }
+  }).catch(err => {
+    console.log(err);
+  })
   
   },
   //Find all Restaurants and return them to the user with res.json
