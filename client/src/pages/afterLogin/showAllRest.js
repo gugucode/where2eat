@@ -16,30 +16,21 @@ class ShowAll extends Component {
   }
    
 
-    componentDidMount = () =>{
-        this.getAllRests();
-      }
-    
-      getAllRests = () => {
-        API.getAllRests()
-        .then(result => {
-          console.log(result)
-        //   if(Array.isArray(result.data)){
-        //     result.data.forEach(event =>{
-        //       if(event.attendees){
-        //         event.attendees = event.attendees.split(",")
-        //       }else{
-        //         event.attendees = []
-        //       }
-        //     });
-        //     console.log(result.data)
-            this.setState({
-                allRest: result.data,
-              // attendees: []
-            })
+  componentDidMount = () =>{
+      this.getAllRests();
+  }
+  
+  getAllRests = () => {
+    API.getAllRests()
+    .then(result => {
+      console.log(result)
+        this.setState({
+            allRest: result.data,
           
         })
-      }
+      
+    })
+  }
   
 
   render() {
@@ -54,10 +45,5 @@ class ShowAll extends Component {
   }
 }
 
-// FriendPage.propTypes = {
-//   data: PropTypes.array,
-//   friends: PropTypes.array,
-//   username: PropTypes.string,
-// };
 
 export default ShowAll;

@@ -8,12 +8,12 @@ import "./signUp.css"
 
 class Signup extends Component {
     state = {
-        signUpUser: "kiki",
-        signUpEmail: "kiki@gmail.com",
-        signUpPass: "M1234m",
-        signUpPass2: "M1234m",
-        signUpFirst: "Kiki",
-        signUpLast: "Ya",
+        signUpUser: "",
+        signUpEmail: "",
+        signUpPass: "",
+        signUpPass2: "",
+        signUpFirst: "",
+        signUpLast: "",
         alert: "",
         alerttype: "normal",
 
@@ -99,58 +99,70 @@ class Signup extends Component {
 
     render() {
         return (
-            <div className="mycontainer">
-                <HomeHeader isSignup={true}/>
-                
-                <div className="col-md-4"></div>
-                <div className="signupCol col-md-4">
-                    <form>
-                        <p id="alert">{this.state.alert}</p>
-                        <Input
-                            name= "signUpFirst"
-                            value = {this.state.signUpFirst}
-                            onChange = {this.handleInputChange}
-                            label = "First Name:"
-                        />
-                        <Input
-                            name= "signUpLast"
-                            value = {this.state.signUpLast}
-                            onChange = {this.handleInputChange}
-                            label = "Last Name:"
-                        />
-                        <Input
-                            name= "signUpUser"
-                            value = {this.state.signUpUser}
-                            onChange = {this.handleInputChange}
-                            label = "Pick a Username:"
-                        />
-                        <Input
-                            name= "signUpEmail"
-                            value = {this.state.signUpEmail}
-                            onChange = {this.handleInputChange}
-                            label = "Email Address:"
-                        />
-                        <Input
-                            type= "password"
-                            name= "signUpPass"
-                            value = {this.state.signUpPass}
-                            onChange = {this.handleInputChange}
-                            label = "Choose Password"
-                        />
-                        <Input
-                            type= "password"
-                            name= "signUpPass2"
-                            value = {this.state.signUpPass2}
-                            onChange = {this.handleInputChange}
-                            label = "Repeat Password"
-                        />
-                        <Submit
-                            type="submit"
-                            onClick={this.handleSignUp}
-                        />
-                    </form>
+            <div className="signup-container">
+                <div id="signup-content">
+                    <HomeHeader isSignup={true}/>
+                    <div className="row signup-row">
+                    <div className="col-md-2"></div>
+                    <div id="signup-blurb" className="col-md-4">
+                        <h1>We'll help you find the right place, the fun way!</h1>
+                        <p>Use where2eat to save your favorite places you want to hang out at, connect to your friends and invite them to dine out together!</p>
+                    </div>
+                    <div className="col-md-1"></div>
+                    <div className="signupCol col-md-3">
+                        <form>
+                            <p id="alert">{this.state.alert}</p>
+                            <Input
+                                name= "signUpFirst"
+                                value = {this.state.signUpFirst}
+                                onChange = {this.handleInputChange}
+                                label = "First Name:"
+                            />
+                            <Input
+                                name= "signUpLast"
+                                value = {this.state.signUpLast}
+                                onChange = {this.handleInputChange}
+                                label = "Last Name:"
+                            />
+                            <Input
+                                name= "signUpUser"
+                                value = {this.state.signUpUser}
+                                onChange = {this.handleInputChange}
+                                label = "Pick a Username:"
+                            />
+                            <Input
+                                name= "signUpEmail"
+                                value = {this.state.signUpEmail}
+                                onChange = {this.handleInputChange}
+                                label = "Email Address:"
+                            />
+                            <Input
+                                type= "password"
+                                name= "signUpPass"
+                                value = {this.state.signUpPass}
+                                onChange = {this.handleInputChange}
+                                label = "Choose Password"
+                            />
+                            <Input
+                                type= "password"
+                                name= "signUpPass2"
+                                value = {this.state.signUpPass2}
+                                onChange = {this.handleInputChange}
+                                label = "Repeat Password"
+                            />
+                            <Submit
+                                type="submit"
+                                onClick={this.handleSignUp}
+                            />
+                        </form>
+                    </div>
+                    <div className="col-md-2"></div>
+                    </div>
                 </div>
-                <div className="col-md-4"></div>
+                <div className="footer">
+                    <img id="bg-img" src="./img/bg-2.png"/>
+                </div>
+                
             </div>
                 
         )

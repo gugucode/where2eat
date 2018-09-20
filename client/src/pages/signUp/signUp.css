@@ -1,4 +1,37 @@
+.signup-row{
+    margin-top: 40px;
+}
 .signupCol{
     padding:20px;
     margin: auto;
+    background: #ffffff80;
+    border-radius: 15px;
+    box-shadow: #ddd 0px 0px 2px;
+}
+
+#signup-blurb h1{
+    font-weight: 1000;
+    line-height: 1em;
+    margin-top:30%;
+}
+
+.signup-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;  
+}
+#signup-content{
+    flex: 1 0 auto;
+    height: fit-content;
+    min-height: 80vh;
+    padding-bottom: 80px;
+}
+
+@media only screen and (max-width: 800px){
+    #signup-blurb{
+        display: none;
+    }
 }

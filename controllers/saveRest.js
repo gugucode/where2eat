@@ -31,6 +31,54 @@ module.exports = {
     });
   },
 
+  getNumLike: function(req,res){
+    db.Restaurant.findAll({
+      where: {
+        id: req.params.id
+      }
+    },{
+      attributes: ['numlike']
+    }).then(result => {
+      res.send(result)
+    }).catch(err =>{
+      console.log(err)
+    })
+  },
+
+  likeRest: function(req,res) {
+    db.User.findAll({
+      where:{
+          username: req.user.username,
+          likeRest: {
+            $like: `%&${req.params.id}&%`
+          }
+      },
+      attributes: ['id', 'username']
+    }).then(result => { //update user table
+      if(result.length === 0){
+        db.User.update({
+          likeRest: db.sequelize.literal(`concat(likeRest,"${req.params.id}&")`)
+          },
+          {
+          where: {
+            username: req.user.username,
+          }
+        }).then(result =>{ //update restaurant table
+          db.Restaurant.update({
+            numlike: db.sequelize.literal(`numlike+1`)
+          },{
+            where: {
+              id: req.params.id
+            }
+          }).then(function(dbRestaurant) {
+            res.json(dbRestaurant);
+          }).catch(err => {
+            console.log(err);
+          })
+        })
+      }
+    })
+  },
   // app.get("/api/Restaurants/:id", function(req, res) {
   //   // Find one Restaurant with the id in req.params.id and return them to the user with res.json
   //   db.Restaurant.findOne({

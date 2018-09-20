@@ -14,6 +14,14 @@ const API = {
     return axios.delete(`/api/saved/${id}`);
   },
 
+  likeRestaurant: function(id) {
+    return axios.put(`/api/saved/${id}`);
+  },
+
+  getNumLike: function(id) {
+    return axios.get("/api/saved/numlike/"+id);
+  },
+
   //save comment
   saveComment: function(saveComment) {
     return axios.post("/api/comment/addcomment", saveComment);

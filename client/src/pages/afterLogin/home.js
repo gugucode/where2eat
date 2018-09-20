@@ -5,6 +5,7 @@ import { ShowRestList } from "../../components/showRest/showRestList/showRestLis
 import { ShowCarousel } from "../../components/showRest/showRestCarousel";
 import InviteForm from "../../components/invite/inviteForm";
 import RestSearch from "../../components/restaurants/restSearch";
+import API from "../../utils/API";
 // import CreateEvent from "../../components/createEvent/createEventForm";
 import "./dashboard.css"
 
@@ -13,7 +14,24 @@ class AfterLoginHome extends Component {
     super(props);
     this.state= {
       loggedIn: false,
+      allRest: []
     }
+  }
+
+  componentDidMount = () =>{
+    this.getAllRests();
+}
+
+  getAllRests = () => {
+    API.getAllRests()
+    .then(result => {
+      console.log(result)
+        this.setState({
+            allRest: result.data,
+          
+        })
+      
+    })
   }
 
   render() {
@@ -26,7 +44,7 @@ class AfterLoginHome extends Component {
           <div className="col-12 col-md-5">
             <div className="row py-3">
               <div className="col-12">
-                <ShowRestList data={this.props.data} header={"Your Favorite Restaurants"}/>
+                <ShowRestList data={this.state.allRest} header={"Your Favorite Restaurants"}/>
               </div>
             </div>
             <div className="row py-3">

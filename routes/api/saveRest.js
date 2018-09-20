@@ -8,7 +8,11 @@ router
 
 router
 .route("/:id")
-.delete(saveRestaurant.deleteRest);
+.delete(saveRestaurant.deleteRest)
+.put(saveRestaurant.likeRest);
 
+router
+  .route("/numlike/:id")
+  .get(saveRestaurant.getNumLike);
 
 module.exports = router;
