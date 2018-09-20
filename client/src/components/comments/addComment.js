@@ -84,8 +84,18 @@ class Saved extends React.Component{
     </div>
     
     {/* show comments */}
-    <button type="button" className="btn btn-primary btn-sm mx-0" data-toggle="collapse" data-target={`#comments${this.props.id}`} data-whatever="@mdo">Show Comments</button>
-    <ShowComments id={this.props.id} data={this.state.allComment}/>
+    {
+      this.state.allComment.length > 0 ?
+      ( 
+        <div>
+          <button type="button" className="btn btn-primary btn-sm mx-0" data-toggle="collapse" data-target={`#comments${this.props.id}`} data-whatever="@mdo">Show Comments ( {this.state.allComment.length} )</button>
+          <ShowComments id={this.props.id} data={this.state.allComment}/>
+        </div>
+      ) : (
+        <div></div>
+      )
+    }
+    
 
   </div>
   )}
