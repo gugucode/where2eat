@@ -22,7 +22,7 @@ class InviteForm extends React.Component {
       inviteUrl: "#" // need to compose the invite url
     };
 
-    API.sendPickInvite(data).then(result => {
+    API.sendEventInvite(data).then(result => {
       console.log(result);
       if (result.data.code === 400) {
         $("#sendStatus").text("Send invite failed");

@@ -12,7 +12,7 @@ function isLoggedIn(req, res, next) {
 
 // Matches with "/api/sendPickInvite"
 router
-  .route("/sendPickInvite")
+  .route("/sendeventinvite")
   .post(isLoggedIn, pickInviteController.sendPickInvite)
 
 // Matches with "/api/addFriend/searchFriend/searchKey"

@@ -20,9 +20,9 @@ const API = {
   },
 
   // Send a Pick-Restaurant invite to friends
-  sendPickInvite: function(data) {
+  sendEventInvite: function(data) {
     // console.log("react send invite");
-    return axios.post("/api/friend/sendPickInvite", data);
+    return axios.post("/api/friend/sendeventinvite", data);
   },
 
   // friend API

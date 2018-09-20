@@ -130,7 +130,7 @@ loader = {
           ) : (
             this.state.chose !== null ? 
             (
-              <ShowResult chose={this.state.chose} others={this.state.originRestArray} vote={this.state.restPickNum}/> 
+              <ShowResult username={this.props.username} chose={this.state.chose} others={this.state.originRestArray} vote={this.state.restPickNum}/> 
             ): (
               <div className="row justify-content-center">
                 <div className="loader m-5"></div>
