@@ -39,8 +39,6 @@ class ShowResult extends React.Component {
     }
 
     sendInviteEmail = data => {
-        // event.preventDefault();
-    
         API.sendEventInvite(data).then(result => {
           console.log(result);
           if (result.data.code === 400) {
@@ -49,7 +47,7 @@ class ShowResult extends React.Component {
             $("#sendStatus").text("Invitation has been sent");
           }
         });
-      };
+    };
 
     render() {
         return (
