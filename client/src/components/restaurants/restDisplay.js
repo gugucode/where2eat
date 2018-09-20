@@ -28,7 +28,7 @@ const handleSaveButton = (id) => {
 }
 
   return (
-      <div className = "card-container">
+      <div id={props.divID} className = "card-container">
         <div className='card' onClick={() => props.pickRest(props.data.id)} style={{width: "100%"}}>
           <div className='image-div-result'>
             <img className='card-img-top' src={ props.data.thumb || (window.location.origin + '/img/noimage.jpg')} alt="RestaurantImage"/>
@@ -53,9 +53,7 @@ const handleSaveButton = (id) => {
               <p><i className="fas fa-map-marker-alt"></i>  {props.data.location.address}</p>
             </div>
           </div>
-        
-          <button className="btn btn-primary" onClick={() => props.pickRest(props.data.id)}>Yes</button>
-          <button className="btn btn-primary" onClick={() => handleSaveButton(props.data.id)}>Save</button>
+                  <button className="btn btn-primary" onClick={() => handleSaveButton(props.data.id)}>Save</button>
         </div>     
      </div>
      
