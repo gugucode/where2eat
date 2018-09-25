@@ -1,4 +1,4 @@
-# Where2eat
+# Where2eat   https://damp-spire-58423.herokuapp.com/
 install note
 
 * run "yarn install-client" to install dependent packages in client folder
